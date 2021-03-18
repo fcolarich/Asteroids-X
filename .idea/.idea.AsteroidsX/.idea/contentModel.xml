@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Fran\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Fran\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_AsteroidsX.1218020147.00" t="ExcludeRecursive" />
+    <e p="F:\Unity Projects\Git\AsteroidsX\AsteroidsX" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Input" t="Include">
+          <e p="PlayersActions.cs" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Data" t="Include">
+            <e p="MoveAccelerationData.cs" t="Include" />
+            <e p="MoveRotationData.cs" t="Include" />
+            <e p="MoveSpeedData.cs" t="Include" />
+            <e p="RotationModifierData.cs" t="Include" />
+            <e p="SpeedModifierData.cs" t="Include" />
+          </e>
+          <e p="Systems" t="Include">
+            <e p="GeneralMovementSystem.cs" t="Include" />
+            <e p="GeneralRotationSystem.cs" t="Include" />
+            <e p="InitializeAsteroidsSystem.cs" t="Include" />
+            <e p="PlayerInputSystem.cs" t="Include" />
+          </e>
+          <e p="Tags" t="Include">
+            <e p="AsteroidsTag.cs" t="Include" />
+            <e p="Player1Tag.cs" t="Include" />
+            <e p="Player2Tag.cs" t="Include" />
+            <e p="ToInitializeTag.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="AsteroidsX.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
