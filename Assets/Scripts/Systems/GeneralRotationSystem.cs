@@ -9,7 +9,7 @@ public class GeneralRotationSystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        Entities.WithAll<MoveRotationData>().ForEach((ref Rotation rot, in MoveRotationData moveRotation) =>
+        Entities.ForEach((ref Rotation rot, in MoveRotationData moveRotation) =>
         {
             rot.Value = moveRotation.rotation;
         }).WithoutBurst().Run();

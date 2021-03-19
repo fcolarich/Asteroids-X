@@ -7,9 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 701760270873865488, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: prefabObject
+      value: 
+      objectReference: {fileID: 4690223449115508796, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+    - target: {fileID: 1845973596720909018, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: SpawnEntity
+      value: 
+      objectReference: {fileID: 4690223449115508796, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+    - target: {fileID: 1845973596720909018, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: AmountToSpawn
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845973596720909018, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: SpawnGameObject
+      value: 
+      objectReference: {fileID: 4690223449115508796, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
     - target: {fileID: 4690223449115508796, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
       propertyPath: m_Name
-      value: AsteroidGen Medium Variant
+      value: Asteroid Medium Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5019211534599435142, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
       propertyPath: m_RootOrder
@@ -56,8 +72,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8596205292891767444, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: SpeedModifier
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596205292891767444, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
       propertyPath: asteroidSpeedModifier
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2590782419630402555, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}

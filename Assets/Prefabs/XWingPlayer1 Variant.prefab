@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &661697675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250483971266368678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78b26185b5ddde439aae2ee99c7c1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9182883586094961081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,6 +19,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5260027995461767298, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
+      propertyPath: acceleration
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 5939172606624810261, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: fireInputPlayer1.m_Type
       value: 1
@@ -57,23 +73,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5939172606624810266, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.02233416
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5939172606624810266, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.02233416
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5939172606624810266, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.706754
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5939172606624810266, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.706754
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5939172606624810266, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 86.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5939172606624810266, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -85,8 +101,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5939172606624810271, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: m_Name
-      value: XWingPlayer1
+      value: XWingPlayer1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388701071142907647, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
+      propertyPath: RotationModifier
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5939172606624810261, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
+--- !u!1 &3250483971266368678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5939172606624810271, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
+  m_PrefabInstance: {fileID: 9182883586094961081}
+  m_PrefabAsset: {fileID: 0}

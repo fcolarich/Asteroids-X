@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6506022011637012940, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: m_Name
-      value: AsteroidGen Small Variant
+      value: Asteroid Small Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6844028462795352694, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: m_RootOrder
@@ -54,6 +54,10 @@ PrefabInstance:
     - target: {fileID: 6844028462795352694, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788648756893080420, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
+      propertyPath: SpeedModifier
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7788648756893080420, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: asteroidSpeedModifier

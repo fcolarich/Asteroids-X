@@ -12,23 +12,31 @@
         <e p="Scripts" t="Include">
           <e p="Data" t="Include">
             <e p="MoveAccelerationData.cs" t="Include" />
+            <e p="MoveMaxSpeedData.cs" t="Include" />
             <e p="MoveRotationData.cs" t="Include" />
             <e p="MoveSpeedData.cs" t="Include" />
+            <e p="PlayerPointsData.cs" t="Include" />
             <e p="RotationModifierData.cs" t="Include" />
+            <e p="SpawnEntityData.cs" t="Include" />
             <e p="SpeedModifierData.cs" t="Include" />
           </e>
           <e p="Systems" t="Include">
             <e p="GeneralMovementSystem.cs" t="Include" />
             <e p="GeneralRotationSystem.cs" t="Include" />
             <e p="InitializeAsteroidsSystem.cs" t="Include" />
+            <e p="PlayerFrictionSpeedSystem.cs" t="Include" />
             <e p="PlayerInputSystem.cs" t="Include" />
+            <e p="PlayerSpeedCalculationSystem.cs" t="Include" />
             <e p="ScreenWrappingSystem.cs" t="Include" />
           </e>
           <e p="Tags" t="Include">
             <e p="AsteroidsTag.cs" t="Include" />
+            <e p="CanFireTag.cs" t="Include" />
+            <e p="IsPrefabTag.cs" t="Include" />
             <e p="Player1Tag.cs" t="Include" />
             <e p="Player2Tag.cs" t="Include" />
             <e p="ToInitializeTag.cs" t="Include" />
+            <e p="TryFireTag.cs" t="Include" />
           </e>
         </e>
       </e>

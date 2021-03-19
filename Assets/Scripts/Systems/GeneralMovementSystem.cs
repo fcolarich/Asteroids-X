@@ -8,7 +8,7 @@ public partial class GeneralMovementSystem : SystemBase
    protected override void OnUpdate()
    {
       var deltaTime = Time.DeltaTime;
-      Entities.WithAll<MoveSpeedData>().ForEach((ref Translation trans, ref MoveSpeedData moveSpeed) =>
+      Entities.ForEach((ref Translation trans, in MoveSpeedData moveSpeed) =>
          {
             trans.Value += moveSpeed.movementSpeed * deltaTime;
          }).ScheduleParallel();

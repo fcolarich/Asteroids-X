@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7420183673310954233}
   - component: {fileID: 1154227069060092667}
   - component: {fileID: 4749892706906098958}
+  - component: {fileID: 199067510615511850}
   m_Layer: 0
   m_Name: AsteroidGen
   m_TagString: Untagged
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b93787de9be95b43921327ce2db5cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidSpeedModifier: 0
+  SpeedModifier: 0
 --- !u!114 &7420183673310954233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,3 +140,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f73eabbee6322e4287efb173b6ebfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &199067510615511850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506022011637012940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28df53f459a68a7479396873366ae4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmountToSpawn: 0
+  SpawnEntity: {fileID: 0}
