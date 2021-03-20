@@ -37,7 +37,7 @@ public class ReactOnTriggerSystem : SystemBase
                     }
 
                     var spawnEntityData = EntityManager.GetComponentData<SpawnEntityData>(thisEntity);
-                    SpawnEntities(thisEntity, spawnEntityData, trans, ecb);
+                    SpawnEntities(spawnEntityData, trans, ecb);
                     //INSTANTIATE SPECIAL EFFECTS HERE
                     ecb.DestroyEntity(thisEntity);
                 }
@@ -96,7 +96,7 @@ public class ReactOnTriggerSystem : SystemBase
     }
     
     
-    static void SpawnEntities(Entity thisEntity, SpawnEntityData spawnEntityData, Translation trans, EntityCommandBuffer ecb)
+    static void SpawnEntities(SpawnEntityData spawnEntityData, Translation trans, EntityCommandBuffer ecb)
     {
         var spawnAmount = spawnEntityData.AmountToSpawn;
         var entityToSpawn = spawnEntityData.SpawnEntity;

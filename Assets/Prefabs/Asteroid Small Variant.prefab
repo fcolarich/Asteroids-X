@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 199067510615511850, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
+      propertyPath: SpawnEntity
+      value: 
+      objectReference: {fileID: 1031484636254428367, guid: 52532675b13d1454083d789163442451, type: 3}
+    - target: {fileID: 199067510615511850, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
+      propertyPath: AmountToSpawn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6506022011637012940, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: m_Name
       value: Asteroid Small Variant
