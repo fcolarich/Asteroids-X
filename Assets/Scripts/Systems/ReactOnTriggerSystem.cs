@@ -16,30 +16,70 @@ public class ReactOnTriggerSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _endSimulationECBSystem.CreateCommandBuffer();
-
-
-        Entities.ForEach((Entity thisEntity,ref CollisionControlData collisionControlData, in Translation trans) => {
-            if (collisionControlData.HasCollided)
+        var deltaTime = Time.DeltaTime;
+        
+        
+        Entities.WithAll<AsteroidsTag>().ForEach(
+            (Entity thisEntity, ref CollisionControlData collisionControlData, in Translation trans,
+                in PlayerPointsData playerPointsData) =>
             {
-                if (EntityManager.HasComponent<AsteroidsTag>(thisEntity))
+                if (collisionControlData.HasCollided)
                 {
+                    collisionControlData.HasCollided = false;
+
                     var targetEntity = collisionControlData.AffectedTarget;
-                    
+
                     if (EntityManager.Exists(targetEntity))
                     {
-                        var playerPointsData = EntityManager.GetComponentData<PlayerPointsData>(thisEntity);
                         var currentPlayerPoints = EntityManager.GetComponentData<PlayerPointsData>(targetEntity).points;
-                        AddPointsToPlayer(targetEntity,playerPointsData,ecb,currentPlayerPoints);
+                        AddPointsToPlayer(targetEntity, playerPointsData, ecb, currentPlayerPoints);
                     }
-                    
-                    var spawnEntityData = EntityManager.GetComponentData<SpawnEntityData>(thisEntity); 
+
+                    var spawnEntityData = EntityManager.GetComponentData<SpawnEntityData>(thisEntity);
                     SpawnEntities(thisEntity, spawnEntityData, trans, ecb);
                     //INSTANTIATE SPECIAL EFFECTS HERE
+                    ecb.DestroyEntity(thisEntity);
                 }
+            }).WithoutBurst().Run();
+
+        
+        Entities.ForEach((Entity thisEntity, ref PlayerLivesData playerLivesData,
+            ref CollisionControlData collisionControlData, ref Translation trans, ref MoveSpeedData moveSpeedData) =>
+        {
+            if (collisionControlData.HasCollided)
+            {
+                collisionControlData.HasCollided = false;
+                if (playerLivesData.UpdateDelayTimer <= 0)
+                {
+                    //INSTANTIATE SHIP EXPLOSION HERE
+                    if (playerLivesData.CurrentLives < 1)
+                    {
+                        ecb.DestroyEntity(thisEntity);
+                    }
+                    else
+                    {
+                        playerLivesData.UpdateDelayTimer = playerLivesData.UpdateDelaySeconds;
+                        trans.Value = playerLivesData.OriginPosition;
+                        moveSpeedData.movementSpeed = 0;
+                        playerLivesData.CurrentLives -= 1;
+                    }
+                }
+            }
+            playerLivesData.UpdateDelayTimer -= deltaTime;
+        }).WithoutBurst().Run();
+        
+        Entities.WithAll<PlayerBulletTag>().ForEach((Entity thisEntity,
+            in CollisionControlData collisionControlData) =>
+        {
+            if (collisionControlData.HasCollided)
+            {
                 ecb.DestroyEntity(thisEntity);
             }
-        }).WithoutBurst().Run();
+        }).Schedule();
+        
         _endSimulationECBSystem.AddJobHandleForProducer(this.Dependency);
+        
+
     }
     
     

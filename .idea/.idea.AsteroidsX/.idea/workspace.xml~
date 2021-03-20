@@ -103,12 +103,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/TriggerEventData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/PlayerBulletTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -156,7 +156,7 @@
       <workItem from="1616122142211" duration="3808000" />
       <workItem from="1616152068917" duration="10262000" />
       <workItem from="1616195169211" duration="7661000" />
-      <workItem from="1616244594271" duration="19132000" />
+      <workItem from="1616244594271" duration="18864000" />
     </task>
     <servers />
   </component>

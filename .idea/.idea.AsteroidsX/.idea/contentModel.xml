@@ -21,8 +21,10 @@
             <e p="MoveRotationModifierData.cs" t="Include" />
             <e p="MoveSpeedData.cs" t="Include" />
             <e p="MoveSpeedModifierData.cs" t="Include" />
+            <e p="PlayerLivesData.cs" t="Include" />
             <e p="PlayerPointsData.cs" t="Include" />
             <e p="SpawnEntityData.cs" t="Include" />
+            <e p="TriggerEventData.cs" t="Include" />
           </e>
           <e p="Systems" t="Include">
             <e p="FireRateSystem.cs" t="Include" />
@@ -38,9 +40,9 @@
           </e>
           <e p="Tags" t="Include">
             <e p="AsteroidsTag.cs" t="Include" />
-            <e p="BulletTag.cs" t="Include" />
             <e p="Player1Tag.cs" t="Include" />
             <e p="Player2Tag.cs" t="Include" />
+            <e p="PlayerBulletTag.cs" t="Include" />
             <e p="PowerUpTag.cs" t="Include" />
             <e p="ToInitializeTag.cs" t="Include" />
           </e>

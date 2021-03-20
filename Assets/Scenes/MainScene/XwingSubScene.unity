@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 800093558183690054, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
+      propertyPath: RotationModifier
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3250483971266368675, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -140,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3250483971266368675, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.95
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3250483971266368675, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -177,6 +181,10 @@ PrefabInstance:
     - target: {fileID: 3250483971266368678, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
       propertyPath: m_Name
       value: XWingPlayer1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476248359682942738, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
+      propertyPath: OriginPosition.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3083021705030028306, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
@@ -586,17 +594,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4572607960202684202, guid: d6b8fb6ec27ac8749b28e9a0c8d5a850, type: 3}
+      propertyPath: OriginPosition.x
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7478383023609369755, guid: d6b8fb6ec27ac8749b28e9a0c8d5a850, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7478383023609369755, guid: d6b8fb6ec27ac8749b28e9a0c8d5a850, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7478383023609369755, guid: d6b8fb6ec27ac8749b28e9a0c8d5a850, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.95
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7478383023609369755, guid: d6b8fb6ec27ac8749b28e9a0c8d5a850, type: 3}
       propertyPath: m_LocalPosition.z

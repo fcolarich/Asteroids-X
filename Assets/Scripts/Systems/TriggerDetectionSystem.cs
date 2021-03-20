@@ -1,6 +1,5 @@
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Entities.CodeGeneratedJobForEach;
 using Unity.Jobs;
 using Unity.Physics;
 using Unity.Physics.Systems;
@@ -26,15 +25,9 @@ public class TriggerDetectionSystem : JobComponentSystem
         [ReadOnly] public ComponentDataFromEntity<BulletSourceData> bulletSourceData;
         public EntityManager entityManager;
 
-
-
-
-
         public ComponentDataFromEntity<CollisionControlData> collisionControl;
         private CollisionControlData CollisionControlData;
-
-
-
+        
         public void Execute(TriggerEvent triggerEvent)
         {
             Entity entityA = triggerEvent.EntityA;
@@ -62,16 +55,22 @@ public class TriggerDetectionSystem : JobComponentSystem
             }
             else if (asteroidTag.HasComponent(entityA))
             {
-                if (entityManager.Exists(bulletSourceData[entityB].Source))
+                if (entityManager.Exists(entityB))
                 {
-                    CollisionControlData.AffectedTarget = bulletSourceData[entityB].Source;
+                    if (entityManager.Exists(bulletSourceData[entityB].Source))
+                    {
+                        CollisionControlData.AffectedTarget = bulletSourceData[entityB].Source;
+                    }
                 }
             }
             else if (asteroidTag.HasComponent(entityB))
             {
-                if (entityManager.Exists(bulletSourceData[entityA].Source))
+                if (entityManager.Exists(entityA))
                 {
-                    CollisionControlData.AffectedTarget = bulletSourceData[entityA].Source;
+                    if (entityManager.Exists(bulletSourceData[entityA].Source))
+                    {
+                        CollisionControlData.AffectedTarget = bulletSourceData[entityA].Source;
+                    }
                 }
             }
             if (!powerUP)
