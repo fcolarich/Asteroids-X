@@ -2,7 +2,7 @@ using Unity.Entities;
 
 
 [GenerateAuthoringComponent]
-public struct ToInitializeTag : IComponentData
+public struct PowerUpTag : IComponentData
 {
 
 }

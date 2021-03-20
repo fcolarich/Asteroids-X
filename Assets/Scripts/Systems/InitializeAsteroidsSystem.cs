@@ -6,23 +6,41 @@ using Random = UnityEngine.Random;
 
 public class InitializeAsteroidsSystem : SystemBase
 {
+    EndSimulationEntityCommandBufferSystem _endSimulationECBSystem;
+
+    protected override void OnCreate()
+    {
+        _endSimulationECBSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+    }
+
 
     protected override void OnUpdate()
     {
-        Entities.WithChangeFilter<AsteroidsTag>().ForEach(
-            (ref Rotation rot, ref MoveSpeedData moveSpeed, 
-                ref AsteroidsTag asteroidsTag, in SpeedModifierData speedModifier) =>
-            {
-                rot.Value = Random.rotation;
+        var ecb = _endSimulationECBSystem.CreateCommandBuffer();
 
-                var randomSpeedX = Random.Range(-1f, 1f) * speedModifier.speedModifier;
-                var speedY = Mathf.Sqrt(Mathf.Pow(speedModifier.speedModifier, 2) - Mathf.Pow(randomSpeedX, 2));
-                speedY = speedY * (Random.value < 0.5f ? -1 : 1);
-                var speedFloat3 = new float3(Random.Range(0.9f, 1.1f) * randomSpeedX, Random.Range(0.9f, 1.1f) * speedY,
-                    0);
-                moveSpeed.movementSpeed = speedFloat3;
-            }).Run();
+        Entities.WithAll<ToInitializeTag>().WithAll<AsteroidsTag>().ForEach(
+            (ref Rotation rot, ref MoveSpeedData moveSpeed, in MoveSpeedModifierData speedModifier, in Entity thisEntity) =>
+            {
+                moveSpeed.movementSpeed = GenerateRandomSpeed(speedModifier);
+                ecb.RemoveComponent<ToInitializeTag>(thisEntity);
+                rot.Value = Random.rotation;
+            }).WithoutBurst().Run();
+        _endSimulationECBSystem.AddJobHandleForProducer(this.Dependency);
+
     }
+    
+    static float3 GenerateRandomSpeed(MoveSpeedModifierData speedModifier)
+    {
+        var randomSpeedX = Random.Range(-1f, 1f) * speedModifier.SpeedModifier;
+        var speedY = Mathf.Sqrt(Mathf.Pow(speedModifier.SpeedModifier, 2) - Mathf.Pow(randomSpeedX, 2));
+        speedY = speedY * (Random.value < 0.5f ? -1 : 1);
+        var speedFloat3 = new float3(Random.Range(0.9f, 1.5f) * randomSpeedX, Random.Range(0.9f, 1.5f) * speedY,
+            0);
+        return speedFloat3;
+    }
+    
 }
+
+
 
 

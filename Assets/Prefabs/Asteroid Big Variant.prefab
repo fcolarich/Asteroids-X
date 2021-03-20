@@ -7,9 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 607644396572044853, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+      propertyPath: SpawnEntity
+      value: 
+      objectReference: {fileID: 5829904287980774611, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+    - target: {fileID: 607644396572044853, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+      propertyPath: AmountToSpawn
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 607644396572044853, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+      propertyPath: SpawnGameObject
+      value: 
+      objectReference: {fileID: 5829904287980774611, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+    - target: {fileID: 1751294771106220543, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+      propertyPath: prefabObject
+      value: 
+      objectReference: {fileID: 5829904287980774611, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
     - target: {fileID: 5829904287980774611, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
       propertyPath: m_Name
-      value: AsteroidGen Big Variant
+      value: Asteroid Big Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6077374753049778025, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
       propertyPath: m_RootOrder
@@ -55,9 +71,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6203678480313207439, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+      propertyPath: points
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402551386854368891, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+      propertyPath: SpeedModifier
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7402551386854368891, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
       propertyPath: asteroidSpeedModifier
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
