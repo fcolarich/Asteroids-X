@@ -13,33 +13,34 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Player/PlayerMover.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PlayerPointsData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Managers/FXManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityCommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralRotationSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityDataAccess.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Managers/EnemySpawner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/AsteroidsTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/SpawnEntityData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/CodeGeneratedJobForEach/LambdaJobDescription.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/ComponentData/MoveForwardComponent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/ComponentData/LifetimeComponent.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/IsPrefabTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/Systems/MovementSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveRotationModifierData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerSpeedCalculationSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/Systems/FacePlayerSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Types/Entity.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Types/TypeManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/BulletTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/IJobChunk.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveAccelerationData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/TryFireTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityComponentStoreDebug.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/ConvertToEntity.cs" root0="SKIP_HIGHLIGHTING" />
@@ -54,13 +55,11 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/AsteroidsConfigData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/AsteroidsSpeedModifiersData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/SmallAsteroidSpeedModifierData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/AsteroidsSpeedModifierData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/MovementSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/InputData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/InputDataPlayer2.cs" />
@@ -81,7 +80,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerSpeedCalculationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerPointsData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/IsPrefabTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeSpawnersSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/SpawnEntityData.cs" />
@@ -98,9 +96,16 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedModifierData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletSourceData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/LifeTimeData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/FireRateData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -147,7 +152,8 @@
       <workItem from="1616094523961" duration="21805000" />
       <workItem from="1616122142211" duration="3808000" />
       <workItem from="1616152068917" duration="10262000" />
-      <workItem from="1616195169211" duration="7314000" />
+      <workItem from="1616195169211" duration="7661000" />
+      <workItem from="1616244594271" duration="12105000" />
     </task>
     <servers />
   </component>

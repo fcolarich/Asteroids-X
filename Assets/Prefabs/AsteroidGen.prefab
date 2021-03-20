@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -8224571269869089577}
   - component: {fileID: 3383752321092688756}
   - component: {fileID: 6681678521077348240}
+  - component: {fileID: -4618073866968366144}
   m_Layer: 0
   m_Name: AsteroidGen
   m_TagString: Untagged
@@ -378,3 +379,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 20
+--- !u!114 &-4618073866968366144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506022011637012940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212f0f9a75bbc3143b9279b7545aa3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

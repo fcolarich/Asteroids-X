@@ -62,11 +62,17 @@ public class TriggerDetectionSystem : JobComponentSystem
             }
             else if (asteroidTag.HasComponent(entityA))
             {
-                CollisionControlData.AffectedTarget = bulletSourceData[entityB].Source;
+                if (entityManager.Exists(bulletSourceData[entityB].Source))
+                {
+                    CollisionControlData.AffectedTarget = bulletSourceData[entityB].Source;
+                }
             }
             else if (asteroidTag.HasComponent(entityB))
             {
-                CollisionControlData.AffectedTarget = bulletSourceData[entityA].Source;
+                if (entityManager.Exists(bulletSourceData[entityA].Source))
+                {
+                    CollisionControlData.AffectedTarget = bulletSourceData[entityA].Source;
+                }
             }
             if (!powerUP)
             {

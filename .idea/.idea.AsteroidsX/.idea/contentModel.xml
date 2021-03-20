@@ -11,8 +11,10 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Data" t="Include">
+            <e p="BulletFireData.cs" t="Include" />
             <e p="BulletSourceData.cs" t="Include" />
             <e p="CollisionControlData.cs" t="Include" />
+            <e p="LifeTimeData.cs" t="Include" />
             <e p="MoveAccelerationData.cs" t="Include" />
             <e p="MoveMaxSpeedData.cs" t="Include" />
             <e p="MoveRotationData.cs" t="Include" />
@@ -23,12 +25,13 @@
             <e p="SpawnEntityData.cs" t="Include" />
           </e>
           <e p="Systems" t="Include">
+            <e p="FireRateSystem.cs" t="Include" />
             <e p="GeneralMovementSystem.cs" t="Include" />
             <e p="GeneralRotationSystem.cs" t="Include" />
             <e p="InitializeAsteroidsSystem.cs" t="Include" />
+            <e p="LifeTimeSystem.cs" t="Include" />
             <e p="PlayerFrictionSpeedSystem.cs" t="Include" />
             <e p="PlayerInputSystem.cs" t="Include" />
-            <e p="PlayerSpeedCalculationSystem.cs" t="Include" />
             <e p="ReactOnTriggerSystem.cs" t="Include" />
             <e p="ScreenWrappingSystem.cs" t="Include" />
             <e p="TriggerDetectionSystem.cs" t="Include" />
@@ -36,13 +39,10 @@
           <e p="Tags" t="Include">
             <e p="AsteroidsTag.cs" t="Include" />
             <e p="BulletTag.cs" t="Include" />
-            <e p="CanFireTag.cs" t="Include" />
-            <e p="IsPrefabTag.cs" t="Include" />
             <e p="Player1Tag.cs" t="Include" />
             <e p="Player2Tag.cs" t="Include" />
             <e p="PowerUpTag.cs" t="Include" />
             <e p="ToInitializeTag.cs" t="Include" />
-            <e p="TryFireTag.cs" t="Include" />
           </e>
         </e>
       </e>

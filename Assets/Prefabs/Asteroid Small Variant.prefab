@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7788648756893080420, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: SpeedModifier
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7788648756893080420, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: asteroidSpeedModifier

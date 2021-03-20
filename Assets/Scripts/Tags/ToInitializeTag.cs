@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
-using UnityEngine;
-[GenerateAuthoringComponent]
 
+
+[GenerateAuthoringComponent]
 public struct ToInitializeTag : IComponentData
 {
 
