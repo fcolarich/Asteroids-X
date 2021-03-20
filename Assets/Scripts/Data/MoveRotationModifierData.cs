@@ -3,7 +3,7 @@ using Unity.Entities;
 
 
 [GenerateAuthoringComponent]
-public struct RotationModifierData : IComponentData
+public struct MoveRotationModifierData : IComponentData
 {
     public float RotationModifier;
 }

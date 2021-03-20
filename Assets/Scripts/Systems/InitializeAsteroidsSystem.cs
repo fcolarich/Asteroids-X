@@ -11,7 +11,7 @@ public class InitializeAsteroidsSystem : SystemBase
     {
         Entities.WithChangeFilter<AsteroidsTag>().ForEach(
             (ref Rotation rot, ref MoveSpeedData moveSpeed, 
-                ref AsteroidsTag asteroidsTag, in SpeedModifierData speedModifier) =>
+                ref AsteroidsTag asteroidsTag, in MoveSpeedModifierData speedModifier) =>
             {
                 rot.Value = Random.rotation;
 

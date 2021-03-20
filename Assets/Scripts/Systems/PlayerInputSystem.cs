@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerInputSystem : SystemBase
 {
     private PlayersActions _playersActions;
+    private const int BULLET_SPEED = 80;
 
     protected override void OnStartRunning()
     {
@@ -36,7 +37,7 @@ public class PlayerInputSystem : SystemBase
         {
             Entities.WithAll<Player1Tag>().ForEach(
                 (ref MoveRotationData rotationData, in LocalToWorld localToWorld,
-                    in RotationModifierData rotationModifier) =>
+                    in MoveRotationModifierData rotationModifier) =>
                 {
                     rotationData.rotation = CalculateRotation(ref rotationData, localToWorld, rotationModifier, player1ActionValueX);
                 }).ScheduleParallel();
@@ -61,7 +62,7 @@ public class PlayerInputSystem : SystemBase
         {
             Entities.WithAll<Player2Tag>().ForEach(
                 (ref MoveRotationData rotationData, in LocalToWorld localToWorld,
-                    in RotationModifierData rotationModifier) =>
+                    in MoveRotationModifierData rotationModifier) =>
                 {
                     rotationData.rotation =  CalculateRotation(ref rotationData, localToWorld, rotationModifier, player2ActionValueX);;
                 }).ScheduleParallel();
@@ -71,17 +72,28 @@ public class PlayerInputSystem : SystemBase
         {
             Entities.WithAll<Player1Tag>().ForEach(
                 (in Translation trans, in Rotation rot, in LocalToWorld localToWorld, in MoveSpeedData moveSpeed,
-                    in SpawnEntityData spawnEntityData) =>
+                    in SpawnEntityData spawnEntityData, in Entity thisEntity) =>
                 {
                     var newEntity = EntityManager.Instantiate(spawnEntityData.SpawnEntity);
-                    EntityManager.SetComponentData(newEntity, new Translation() {Value = trans.Value});
+                    EntityManager.SetComponentData(newEntity, new Translation() {Value = trans.Value + (10 * math.forward(rot.Value))});
                     EntityManager.SetComponentData(newEntity,
-                        new MoveSpeedData() {movementSpeed = math.forward(rot.Value) * 50 + moveSpeed.movementSpeed});
+                        new MoveSpeedData() {movementSpeed = math.forward(rot.Value) * BULLET_SPEED + moveSpeed.movementSpeed});
+                    EntityManager.SetComponentData(newEntity, new BulletSourceData() {Source = thisEntity});
                 }).WithStructuralChanges().WithoutBurst().Run();
         }
 
         if (_playersActions.Player2.Fire.triggered)
-        {
+        {Entities.WithAll<Player2Tag>().ForEach(
+                (in Translation trans, in Rotation rot, in LocalToWorld localToWorld, in MoveSpeedData moveSpeed,
+                    in SpawnEntityData spawnEntityData, in Entity thisEntity) =>
+                {
+                    var newEntity = EntityManager.Instantiate(spawnEntityData.SpawnEntity);
+                    EntityManager.SetComponentData(newEntity, new Translation() {Value = trans.Value + (10 * math.forward(rot.Value))});
+                    EntityManager.SetComponentData(newEntity,
+                        new MoveSpeedData() {movementSpeed = math.forward(rot.Value) * BULLET_SPEED + moveSpeed.movementSpeed});
+                    EntityManager.SetComponentData(newEntity, new BulletSourceData() {Source = thisEntity});
+                }).WithStructuralChanges().WithoutBurst().Run();
+            
         }
     }
 
@@ -93,11 +105,11 @@ public class PlayerInputSystem : SystemBase
     
     
     static quaternion CalculateRotation(ref MoveRotationData rotationData, in LocalToWorld localToWorld,
-        in RotationModifierData rotationModifier, in float playerActionValueX)
+        in MoveRotationModifierData moveRotationModifier, in float playerActionValueX)
     {
         var initialRotation = quaternion.LookRotationSafe(localToWorld.Forward, localToWorld.Up);
         var rotationAmount = quaternion.AxisAngle(new float3(0, 0, 1),
-            rotationModifier.RotationModifier * playerActionValueX);
+            moveRotationModifier.RotationModifier * playerActionValueX);
         var finalRotation = math.mul(
             math.mul(initialRotation, math.mul(math.inverse(initialRotation), rotationAmount)),
             initialRotation);

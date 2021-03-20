@@ -11,9 +11,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid Small Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6681678521077348240, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
+      propertyPath: points
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 6844028462795352694, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844028462795352694, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844028462795352694, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844028462795352694, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6844028462795352694, guid: cb12b7e598470334cb42d78ac7760010, type: 3}
       propertyPath: m_LocalPosition.x

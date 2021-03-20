@@ -32,6 +32,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019211534599435142, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019211534599435142, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019211534599435142, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019211534599435142, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -70,6 +82,10 @@ PrefabInstance:
     - target: {fileID: 5019211534599435142, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181139423440399968, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
+      propertyPath: points
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8596205292891767444, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
       propertyPath: SpeedModifier

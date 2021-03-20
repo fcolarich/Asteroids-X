@@ -202,5 +202,33 @@ PrefabInstance:
       propertyPath: movementSpeed.y
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6100969045199462834, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
+      propertyPath: m_ShapeType
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100969045199462834, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
+      propertyPath: m_Material.m_CollisionResponse.m_Value
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100969045199462834, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
+      propertyPath: m_ConvexHullGenerationParameters.m_BevelRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100969045199462834, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
+      propertyPath: m_Material.m_BelongsToCategories.m_Value.Category00
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100969045199462834, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
+      propertyPath: m_Material.m_BelongsToCategories.m_Value.Category04
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100969045199462834, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
+      propertyPath: m_Material.m_CollidesWithCategories.m_Value.Category01
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100969045199462834, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
+      propertyPath: m_ConvexHullGenerationParameters.m_SimplificationTolerance
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
