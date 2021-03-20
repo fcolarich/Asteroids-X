@@ -34,7 +34,7 @@ public class InitializeAsteroidsSystem : SystemBase
         var randomSpeedX = Random.Range(-1f, 1f) * speedModifier.SpeedModifier;
         var speedY = Mathf.Sqrt(Mathf.Pow(speedModifier.SpeedModifier, 2) - Mathf.Pow(randomSpeedX, 2));
         speedY = speedY * (Random.value < 0.5f ? -1 : 1);
-        var speedFloat3 = new float3(Random.Range(0.9f, 1.1f) * randomSpeedX, Random.Range(0.9f, 1.1f) * speedY,
+        var speedFloat3 = new float3(Random.Range(0.9f, 1.5f) * randomSpeedX, Random.Range(0.9f, 1.5f) * speedY,
             0);
         return speedFloat3;
     }

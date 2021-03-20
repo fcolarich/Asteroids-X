@@ -10,4 +10,5 @@ public struct PlayerLivesData : IComponentData
   public float UpdateDelayTimer;
   public float UpdateDelaySeconds;
   public float3 OriginPosition;
+  public int EarnedLives;
 }

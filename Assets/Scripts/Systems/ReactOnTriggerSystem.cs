@@ -4,22 +4,23 @@ using Unity.Transforms;
 
 public class ReactOnTriggerSystem : SystemBase
 {
-    EndSimulationEntityCommandBufferSystem _endSimulationECBSystem;
+    private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
 
 
     protected override void OnCreate()
     {
-        _endSimulationECBSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+        _endSimulationEcbSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
     }
 
 
     protected override void OnUpdate()
     {
-        var ecb = _endSimulationECBSystem.CreateCommandBuffer();
+        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
         
         
-        Entities.WithAll<AsteroidsTag>().ForEach(
+        
+        Entities.WithChangeFilter<CollisionControlData>().WithAll<AsteroidsTag>().ForEach(
             (Entity thisEntity, ref CollisionControlData collisionControlData, in Translation trans,
                 in PlayerPointsData playerPointsData) =>
             {
@@ -42,6 +43,7 @@ public class ReactOnTriggerSystem : SystemBase
                 }
             }).WithoutBurst().Run();
 
+        
         
         Entities.ForEach((Entity thisEntity, ref PlayerLivesData playerLivesData,
             ref CollisionControlData collisionControlData, ref Translation trans, ref MoveSpeedData moveSpeedData) =>
@@ -68,6 +70,8 @@ public class ReactOnTriggerSystem : SystemBase
             playerLivesData.UpdateDelayTimer -= deltaTime;
         }).WithoutBurst().Run();
         
+        
+        
         Entities.WithAll<PlayerBulletTag>().ForEach((Entity thisEntity,
             in CollisionControlData collisionControlData) =>
         {
@@ -77,7 +81,7 @@ public class ReactOnTriggerSystem : SystemBase
             }
         }).Schedule();
         
-        _endSimulationECBSystem.AddJobHandleForProducer(this.Dependency);
+        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
         
 
     }

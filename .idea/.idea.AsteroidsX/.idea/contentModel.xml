@@ -34,6 +34,7 @@
             <e p="LifeTimeSystem.cs" t="Include" />
             <e p="PlayerFrictionSpeedSystem.cs" t="Include" />
             <e p="PlayerInputSystem.cs" t="Include" />
+            <e p="PlayerPointsToLivesSystem.cs" t="Include" />
             <e p="ReactOnTriggerSystem.cs" t="Include" />
             <e p="ScreenWrappingSystem.cs" t="Include" />
             <e p="TriggerDetectionSystem.cs" t="Include" />
