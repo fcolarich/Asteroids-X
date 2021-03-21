@@ -20,11 +20,9 @@ public class ReactOnTriggerSystem : SystemBase
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
         
-        
-        
         Entities.WithChangeFilter<CollisionControlData>().WithAny<AsteroidsTag>().WithAny<UFOSmallTag>().WithAny<UFOMediumTag>().ForEach(
             (Entity thisEntity, ref CollisionControlData collisionControlData, in Translation trans,
-                in PlayerPointsData playerPointsData, in SpawnEntityData spawnEntityData) =>
+                in PlayerPointsData playerPointsData, in SpawnEntityData spawnEntityData, in PowerUpRandomAppearData powerUpRandomAppearData) =>
             {
                 if (collisionControlData.HasCollided)
                 {
@@ -37,7 +35,12 @@ public class ReactOnTriggerSystem : SystemBase
                         AddPointsToPlayer(targetEntity, playerPointsData, ecb, currentPlayerPoints);
                     }
                     
-                    SpawnEntities(spawnEntityData, trans, ecb);
+                    SpawnEntities(spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
+                    if (Random.value < powerUpRandomAppearData.AppearanceChance)
+                    {
+                        SpawnEntities(1, powerUpRandomAppearData.RandomPowerUp, trans, ecb, false);
+                    }
+
                     //INSTANTIATE SPECIAL EFFECTS HERE
                     ecb.DestroyEntity(thisEntity);
                 }
@@ -62,7 +65,7 @@ public class ReactOnTriggerSystem : SystemBase
                             AddPointsToPlayer(targetEntity, playerPointsData, ecb, currentPlayerPoints);
                         }
 
-                        SpawnEntities(spawnEntityData, trans, ecb);
+                        SpawnEntities(spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
 
                         //INSTANTIATE SPECIAL EFFECTS HERE
 
@@ -108,7 +111,6 @@ public class ReactOnTriggerSystem : SystemBase
         }).WithoutBurst().Run();
         
         
-        
         Entities.WithAll<EnemyBulletTag>().ForEach((Entity thisEntity,
             in CollisionControlData collisionControlData) =>
         {
@@ -126,10 +128,10 @@ public class ReactOnTriggerSystem : SystemBase
                 ecb.DestroyEntity(thisEntity);
             }
         }).Schedule();
+        
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
-    
-    
+
     
     static void AddPointsToPlayer(Entity targetEntity, PlayerPointsData playerPointsData, EntityCommandBuffer ecb, int playerPoints)
     {
@@ -139,15 +141,17 @@ public class ReactOnTriggerSystem : SystemBase
     }
     
     
-    static void SpawnEntities(SpawnEntityData spawnEntityData, Translation trans, EntityCommandBuffer ecb)
+    static void SpawnEntities(int amountToSpawn, Entity entityToSpawn, Translation trans, EntityCommandBuffer ecb, bool SpawnInRandomPosition)
     {
-        var spawnAmount = spawnEntityData.AmountToSpawn;
-        var entityToSpawn = spawnEntityData.SpawnEntity;
-                    
-        for (int i = 0; i < spawnAmount; i++)
+        for (int i = 0; i < amountToSpawn; i++)
         {
             var newEntity = ecb.Instantiate(entityToSpawn);
-            var spawnLocation = Random.insideUnitCircle.normalized *10;
+            float2 spawnLocation = 0;
+            if (SpawnInRandomPosition)
+            {
+               spawnLocation = Random.insideUnitCircle.normalized *10;    
+            }
+
             ecb.SetComponent(newEntity, new Translation {Value = new float3(trans.Value.x +spawnLocation.x,
                 trans.Value.y +spawnLocation.y,-50)});
         }

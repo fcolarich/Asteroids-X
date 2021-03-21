@@ -3,7 +3,7 @@ using Unity.Entities;
 
 [GenerateAuthoringComponent]
 
-public struct LevelManagerData : IComponentData
+public struct WaveManagerData : IComponentData
 {
     public int StartingAmountToSpawn;
     public int IncrementPerWave;

@@ -32,7 +32,6 @@ public class MainUFOControlSystem : SystemBase
                 if (HasComponent<UFOSmallTag>(thisEntity))
                 {
                     moveSpeedData.movementSpeed = math.forward(rot.Value) * moveSpeedModifier.SpeedModifier;
-
                 }
                 else if (HasComponent<UFOMediumTag>(thisEntity))
                 {
@@ -53,7 +52,6 @@ public class MainUFOControlSystem : SystemBase
             else
             {
                 int randomInt = Random.Range(0, 2);
-                Debug.Log(randomInt);
                 ufoGeneralData.targetEntity = localTargetEntities[randomInt];
             }
         }).WithoutBurst().Run();

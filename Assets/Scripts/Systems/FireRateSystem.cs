@@ -19,8 +19,6 @@ public class FireRateSystem : SystemBase
         
         Entities.ForEach((int entityInQueryIndex,Entity thisEntity, ref BulletFireData bulletFireData, 
             in Translation trans, in Rotation rot, in MoveSpeedData moveSpeed) => {
-            
-            
             if (bulletFireData.BulletTimer <= 0)
             {
                 
@@ -36,6 +34,7 @@ public class FireRateSystem : SystemBase
                         bulletFireData.BulletTimer = bulletFireData.SecondsBetweenBullets;
                         var bulletEntity = ecb.Instantiate(bulletFireData.BulletPrefab);
                         ecb.SetComponent(bulletEntity, new Translation() {Value = trans.Value + (10 * math.forward(rot.Value))});
+                        ecb.SetComponent(bulletEntity, new Rotation() {Value = rot.Value});
                         ecb.SetComponent(bulletEntity,
                             new MoveSpeedData() {movementSpeed = math.forward(rot.Value) * bulletFireData.BulletSpeed + moveSpeed.movementSpeed});
                         ecb.SetComponent(bulletEntity, new BulletSourceData() {Source = thisEntity});

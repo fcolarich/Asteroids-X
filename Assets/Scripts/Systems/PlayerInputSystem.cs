@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerInputSystem : SystemBase
 {
     private PlayersActions _playersActions;
-    private const int BULLET_SPEED = 150;
 
     protected override void OnStartRunning()
     {

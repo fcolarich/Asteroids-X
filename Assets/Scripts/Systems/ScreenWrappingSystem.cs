@@ -9,7 +9,7 @@ public partial class ScreenWrappingSystem : SystemBase
     private float _cameraMinHeight;
     private float _cameraMaxWidth;
     private float _cameraMinWidth;
-    private const int CAMERA_BOUNDARY = 5;
+    private const int CAMERA_BOUNDARY = 10;
     
 
     protected override void OnStartRunning()

@@ -21,7 +21,7 @@ public class LifeTimeSystem : SystemBase
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
         var deltaTime = Time.DeltaTime;
         
-        Entities.ForEach((int entityInQueryIndex, ref LifeTimeData lifeTime, in Entity thisEntity, in BulletSourceData bulletSource ) =>
+        Entities.WithNone<PowerUpPrefab>().ForEach((int entityInQueryIndex, ref LifeTimeData lifeTime, in Entity thisEntity, in BulletSourceData bulletSource ) =>
         {
             lifeTime.lifeTimeSeconds -= deltaTime;
             if (lifeTime.lifeTimeSeconds < 0)

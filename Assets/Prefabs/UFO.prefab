@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 15798497}
   - component: {fileID: 1434118352203810613}
   - component: {fileID: 15798501}
+  - component: {fileID: 2219947956897247052}
   m_Layer: 0
   m_Name: UFO
   m_TagString: Untagged
@@ -396,3 +397,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmountToSpawn: 0
   SpawnEntity: {fileID: 0}
+--- !u!114 &2219947956897247052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608308809076377764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c31330ca4feae40bc2950a5a6e41ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomPowerUp: {fileID: 3358116459786254392, guid: e384d4f10d5b7394b8be0e66399c3c31, type: 3}
+  AppearanceChance: 0.3

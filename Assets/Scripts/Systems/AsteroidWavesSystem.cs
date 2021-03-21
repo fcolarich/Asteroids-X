@@ -27,7 +27,7 @@ public class AsteroidWavesSystem : SystemBase
         if (newWave)
         {
             newWave = false;
-            Entities.ForEach((ref LevelManagerData levelManagerData) =>
+            Entities.ForEach((ref WaveManagerData levelManagerData) =>
             {
                 levelManagerData.CurrentWave += 1;
                 tempAmountToSpawn = levelManagerData.StartingAmountToSpawn +
@@ -35,7 +35,7 @@ public class AsteroidWavesSystem : SystemBase
 
                 for (int i = 0; i < tempAmountToSpawn; i++)
                 {
-                    var spawnLocation = Random.insideUnitCircle.normalized * 200;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 350;
                     var newEntity = ecb.Instantiate(levelManagerData.SpawnEntity);
                     ecb.SetComponent(newEntity,
                         new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});
