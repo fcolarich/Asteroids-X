@@ -15,6 +15,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/AsteroidsTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/AsteroidWavesSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/CodeGeneratedJobForEach/LambdaJobDescription.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -28,6 +29,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/TriggerEventData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Transforms/LocalToWorld.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics.Hybrid/Conversion/PhysicsShapeConversionSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@1.2.1/Unity.Mathematics/float4x4.gen.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Iterators/ComponentDataFromEntity.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Player/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
@@ -59,10 +61,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/AsteroidsSpeedModifierData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/MovementSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/InputData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/InputDataPlayer2.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/InputDataPlayer1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" />
@@ -108,8 +106,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerPointsToLivesSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/NewComponent.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/SmallAsteroidDestroyedTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/LevelManagerData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AsteroidWavesSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -157,7 +159,7 @@
       <workItem from="1616122142211" duration="3808000" />
       <workItem from="1616152068917" duration="10262000" />
       <workItem from="1616195169211" duration="7661000" />
-      <workItem from="1616244594271" duration="20743000" />
+      <workItem from="1616244594271" duration="27879000" />
     </task>
     <servers />
   </component>

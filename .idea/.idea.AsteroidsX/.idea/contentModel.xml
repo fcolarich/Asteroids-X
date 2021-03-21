@@ -27,6 +27,7 @@
             <e p="TriggerEventData.cs" t="Include" />
           </e>
           <e p="Systems" t="Include">
+            <e p="AsteroidWavesSystem.cs" t="Include" />
             <e p="FireRateSystem.cs" t="Include" />
             <e p="GeneralMovementSystem.cs" t="Include" />
             <e p="GeneralRotationSystem.cs" t="Include" />
@@ -41,10 +42,12 @@
           </e>
           <e p="Tags" t="Include">
             <e p="AsteroidsTag.cs" t="Include" />
+            <e p="LevelManagerData.cs" t="Include" />
             <e p="Player1Tag.cs" t="Include" />
             <e p="Player2Tag.cs" t="Include" />
             <e p="PlayerBulletTag.cs" t="Include" />
             <e p="PowerUpTag.cs" t="Include" />
+            <e p="SmallAsteroidDestroyedTag.cs" t="Include" />
             <e p="ToInitializeTag.cs" t="Include" />
           </e>
         </e>

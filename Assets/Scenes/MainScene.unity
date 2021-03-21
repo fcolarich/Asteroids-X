@@ -355,7 +355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -50}
+  m_LocalPosition: {x: 0, y: 0, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -383,6 +383,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 969211976}
+  - component: {fileID: 969211977}
+  - component: {fileID: 969211978}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -404,6 +406,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969211977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969211975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84235342206eadb46a4d2e203c4d577f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingAmountToSpawn: 2
+  IncrementPerWave: 2
+  CurrentWave: 0
+  SpawnEntity: {fileID: 233205902351168681, guid: 7fb4e084e21f8d14f9e062a396882546, type: 3}
+  NewWave: 1
+--- !u!114 &969211978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969211975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0
 --- !u!1 &1414849135
 GameObject:
   m_ObjectHideFlags: 0
