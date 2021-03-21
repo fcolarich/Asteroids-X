@@ -52,7 +52,6 @@ public class AsteroidWavesSystem : SystemBase
             })
             .Run();
 
-        Debug.Log(amountToSpawn);        
         if (destroyedAsteroidsAmount >= amountToSpawn * 4)
         {
            newWave = true;

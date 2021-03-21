@@ -23,6 +23,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Types/Entity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/PlayerTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Types/TypeManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/IJobChunk.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerPointsToLivesSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -49,11 +50,13 @@
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/Systems/MovementSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveRotationModifierData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/EnemyUFOTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/Systems/FacePlayerSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/PlayerBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOMediumTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveAccelerationData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOBigTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/ConvertToEntity.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics/Dynamics/Simulation/ITriggerEventsJob.cs" root0="SKIP_HIGHLIGHTING" />
@@ -65,12 +68,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/SpeedModifierData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/RotationModifierData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/SpawnPrefabData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/IsArchetypeTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/TryFireTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveMaxSpeedData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerSpeedCalculationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerPointsData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/IsPrefabTag.cs" />
@@ -103,18 +100,24 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/SmallAsteroidDestroyedTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/LevelManagerData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/EnemyUFOData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/EnemyBulletTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AsteroidWavesSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOSmallData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerFrictionSpeedSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/SmallUFOControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/PlayerTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/UFOSmallTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/UFOMediumTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/UFOBigTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AsteroidWavesSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOLivesData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/MainUFOControlSystem.cs" />
     </changedPaths>
   </component>
@@ -164,6 +167,8 @@
       <workItem from="1616152068917" duration="10262000" />
       <workItem from="1616195169211" duration="7661000" />
       <workItem from="1616244594271" duration="33009000" />
+      <workItem from="1616327776360" duration="622000" />
+      <workItem from="1616334199072" duration="6806000" />
     </task>
     <servers />
   </component>

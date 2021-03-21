@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7165299294233568554, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
+      propertyPath: SecondsBetweenBullets
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8476248359682942738, guid: c92c0c58716186a428a961fa45bb983a, type: 3}
       propertyPath: OriginPosition.x
       value: -25
@@ -438,7 +442,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dadf234f35d4de041b0edfd66c28dc6c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -687,6 +691,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3000740892522095890, guid: d6b8fb6ec27ac8749b28e9a0c8d5a850, type: 3}
+      propertyPath: SecondsBetweenBullets
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4572607960202684202, guid: d6b8fb6ec27ac8749b28e9a0c8d5a850, type: 3}
       propertyPath: OriginPosition.x
       value: 20

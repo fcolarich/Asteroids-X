@@ -1,8 +1,7 @@
 using Unity.Entities;
 
-
 [GenerateAuthoringComponent]
-public struct EnemyUFOTag : IComponentData
+public struct UFOBigTag : IComponentData
 {
 
 }
