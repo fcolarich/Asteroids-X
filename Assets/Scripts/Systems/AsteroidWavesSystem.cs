@@ -3,12 +3,14 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using Random = UnityEngine.Random;
 
 public class AsteroidWavesSystem : SystemBase
 {
     private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
-    private LevelManagerData levelManager;
+    private bool newWave = true;
+    private int amountToSpawn;
 
 
     protected override void OnCreate()
@@ -19,43 +21,51 @@ public class AsteroidWavesSystem : SystemBase
 
     protected override void OnUpdate()
     {
-        var localLevelManager = levelManager;
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
+        int tempAmountToSpawn = 0;
 
-        Entities.ForEach((ref LevelManagerData levelManagerData) =>
+        if (newWave)
+        {
+            newWave = false;
+            Entities.ForEach((ref LevelManagerData levelManagerData) =>
             {
-                if (levelManagerData.NewWave)
-                {
-                    levelManagerData.NewWave = false;
-                    localLevelManager = levelManagerData;
+                levelManagerData.CurrentWave += 1;
 
-                    for (int i = 0; i < levelManagerData.AmountToSpawn; i++)
-                    {
-                        var spawnLocation = Random.insideUnitCircle * 100;
-                        var newEntity =ecb.Instantiate(levelManagerData.SpawnEntity);
-                        ecb.SetComponent(newEntity, new Translation() {Value = new float3(spawnLocation.x,spawnLocation.y,0)});
-                    }
+
+                tempAmountToSpawn = levelManagerData.StartingAmountToSpawn +
+                                    (levelManagerData.CurrentWave * levelManagerData.IncrementPerWave);
+
+                for (int i = 0; i < tempAmountToSpawn; i++)
+                {
+                    var spawnLocation = Random.insideUnitCircle * 1000;
+                    var newEntity = ecb.Instantiate(levelManagerData.SpawnEntity);
+                    ecb.SetComponent(newEntity,
+                        new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});
                 }
             }).Run();
+            amountToSpawn = tempAmountToSpawn;
+        }
 
-            int destroyedAsteroidsAmount = 0;
-        
-            Entities.WithAll<SmallAsteroidDestroyedTag>().ForEach((ref Translation translation, in Rotation rotation) =>
+        int destroyedAsteroidsAmount = 0;
+
+        Entities.WithAll<SmallAsteroidDestroyedTag>().ForEach((Entity thisEntity) =>
             {
                 destroyedAsteroidsAmount += 1;
-            }).Run();
-            
-            _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
-            
-            Debug.Log(destroyedAsteroidsAmount);
-            if (destroyedAsteroidsAmount >= (localLevelManager.CurrentWave*2 + localLevelManager.AmountToSpawn) * 4)
-            {
-                Debug.Log("START NEW WAVE PLEACE");
-            }
-            //IF SMALL ASTEROID COUNT = 4+2*WAVE NUMBER THEN WAVE FINISHED AND STARTS A NEW ONE
-            //var wave = localLevelManager.CurrentWave;
+            })
+            .Run();
 
-
-
+        Debug.Log(amountToSpawn);        
+        if (destroyedAsteroidsAmount >= amountToSpawn * 4)
+        {
+           newWave = true;
+           Entities.WithAll<SmallAsteroidDestroyedTag>().ForEach((Entity thisEntity) =>
+               {
+                   ecb.DestroyEntity(thisEntity);
+               })
+               .Run();
         }
+        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+
     }
+    
+}

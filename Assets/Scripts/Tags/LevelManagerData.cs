@@ -5,7 +5,7 @@ using Unity.Entities;
 
 public struct LevelManagerData : IComponentData
 {
-    public int AmountToSpawn;
+    public int StartingAmountToSpawn;
     public int IncrementPerWave;
     public int CurrentWave;
     public Entity SpawnEntity;
