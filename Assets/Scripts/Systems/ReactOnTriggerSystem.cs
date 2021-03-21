@@ -72,6 +72,15 @@ public class ReactOnTriggerSystem : SystemBase
         
         
         
+        Entities.WithAll<EnemyBulletTag>().ForEach((Entity thisEntity,
+            in CollisionControlData collisionControlData) =>
+        {
+            if (collisionControlData.HasCollided)
+            {
+                ecb.DestroyEntity(thisEntity);
+            }
+        }).Schedule();
+        
         Entities.WithAll<PlayerBulletTag>().ForEach((Entity thisEntity,
             in CollisionControlData collisionControlData) =>
         {
@@ -80,6 +89,18 @@ public class ReactOnTriggerSystem : SystemBase
                 ecb.DestroyEntity(thisEntity);
             }
         }).Schedule();
+        
+        Entities.WithAll<EnemyUFOTag>().ForEach((Entity thisEntity,
+            in CollisionControlData collisionControlData) =>
+        {
+            if (collisionControlData.HasCollided)
+            {
+                ecb.DestroyEntity(thisEntity);
+            }
+        }).Schedule();
+        
+        
+        
         
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
         

@@ -25,6 +25,7 @@
             <e p="PlayerPointsData.cs" t="Include" />
             <e p="SpawnEntityData.cs" t="Include" />
             <e p="TriggerEventData.cs" t="Include" />
+            <e p="UFOGeneralData.cs" t="Include" />
           </e>
           <e p="Systems" t="Include">
             <e p="AsteroidWavesSystem.cs" t="Include" />
@@ -33,6 +34,7 @@
             <e p="GeneralRotationSystem.cs" t="Include" />
             <e p="InitializeAsteroidsSystem.cs" t="Include" />
             <e p="LifeTimeSystem.cs" t="Include" />
+            <e p="MainUFOControlSystem.cs" t="Include" />
             <e p="PlayerFrictionSpeedSystem.cs" t="Include" />
             <e p="PlayerInputSystem.cs" t="Include" />
             <e p="PlayerPointsToLivesSystem.cs" t="Include" />
@@ -42,6 +44,8 @@
           </e>
           <e p="Tags" t="Include">
             <e p="AsteroidsTag.cs" t="Include" />
+            <e p="EnemyBulletTag.cs" t="Include" />
+            <e p="EnemyUFOTag.cs" t="Include" />
             <e p="LevelManagerData.cs" t="Include" />
             <e p="Player1Tag.cs" t="Include" />
             <e p="Player2Tag.cs" t="Include" />

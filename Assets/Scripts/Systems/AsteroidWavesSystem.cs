@@ -30,14 +30,12 @@ public class AsteroidWavesSystem : SystemBase
             Entities.ForEach((ref LevelManagerData levelManagerData) =>
             {
                 levelManagerData.CurrentWave += 1;
-
-
                 tempAmountToSpawn = levelManagerData.StartingAmountToSpawn +
                                     (levelManagerData.CurrentWave * levelManagerData.IncrementPerWave);
 
                 for (int i = 0; i < tempAmountToSpawn; i++)
                 {
-                    var spawnLocation = Random.insideUnitCircle * 1000;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 200;
                     var newEntity = ecb.Instantiate(levelManagerData.SpawnEntity);
                     ecb.SetComponent(newEntity,
                         new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});

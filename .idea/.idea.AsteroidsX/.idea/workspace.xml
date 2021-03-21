@@ -18,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/AsteroidWavesSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/CodeGeneratedJobForEach/LambdaJobDescription.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -29,6 +30,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/TriggerEventData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Transforms/LocalToWorld.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/MainUFOControlSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics.Hybrid/Conversion/PhysicsShapeConversionSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@1.2.1/Unity.Mathematics/float4x4.gen.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Iterators/ComponentDataFromEntity.cs" root0="SKIP_HIGHLIGHTING" />
@@ -47,6 +49,7 @@
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/Systems/MovementSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveRotationModifierData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/EnemyUFOTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/Systems/FacePlayerSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/PlayerBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
@@ -56,28 +59,20 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics/Dynamics/Simulation/ITriggerEventsJob.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/EntityManagerExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/EnemyBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Input/PlayersActions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics/Dynamics/Simulation/TriggerEvent.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/InputDataPlayer1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/Player1Tag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveAccelerationData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Input/PlayersActions.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveRotationData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/SpeedModifierData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/RotationModifierData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/SpawnPrefabData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/IsArchetypeTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/TryFireTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerFrictionSpeedSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveMaxSpeedData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerSpeedCalculationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerPointsData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/IsPrefabTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeSpawnersSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/SpawnEntityData.cs" />
@@ -98,20 +93,29 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/FireRateData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/TriggerEventData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/PlayerBulletTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerPointsToLivesSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/NewComponent.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/SmallAsteroidDestroyedTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/LevelManagerData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/EnemyUFOData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/EnemyBulletTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AsteroidWavesSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOSmallData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerFrictionSpeedSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/SmallUFOControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/MainUFOControlSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -159,7 +163,7 @@
       <workItem from="1616122142211" duration="3808000" />
       <workItem from="1616152068917" duration="10262000" />
       <workItem from="1616195169211" duration="7661000" />
-      <workItem from="1616244594271" duration="27879000" />
+      <workItem from="1616244594271" duration="33009000" />
     </task>
     <servers />
   </component>
