@@ -405,4 +405,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RandomPowerUp: {fileID: 3358116459786254392, guid: e384d4f10d5b7394b8be0e66399c3c31, type: 3}
-  AppearanceChance: 0.1
+  AppearanceChance: 0.05

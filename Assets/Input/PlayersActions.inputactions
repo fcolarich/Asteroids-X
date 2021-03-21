@@ -14,17 +14,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "b3c3d615-520e-4b87-b19a-5311d638a4c9",
-                    "expectedControlType": "Vector2",
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "8ec3815a-3621-421d-95ea-ddd003fdf875",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "Hyperspace",
                     "type": "Button",
-                    "id": "8ec3815a-3621-421d-95ea-ddd003fdf875",
+                    "id": "742a32b9-447c-420d-b3a0-b72bde66c7c4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "5611d160-d273-4f00-ab78-c9ce2ad3443c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -121,39 +129,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8c8e490b-c610-4785-884f-f04217b23ca4",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e5f5442-8668-4b27-a940-df99bad7e831",
-                    "path": "<Joystick>/{Hatswitch}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -217,6 +192,28 @@
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "01dfeb37-f1ee-4c6e-bcd2-e0d6786c7294",
+                    "path": "<Keyboard>/numpad0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hyperspace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d27c669-f5f6-4a21-bc04-fd276e98cfa1",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -233,10 +230,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "db955050-152b-4376-bf09-280d028603ec",
-                    "expectedControlType": "Vector2",
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "a699efdb-db96-46a0-854b-ed31965a20a8",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -244,6 +241,14 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "a9e19a0e-1a87-419c-bd72-a2df19667d5e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hyperspace",
+                    "type": "Button",
+                    "id": "81034470-8e40-4ed5-a622-b34e87a7b19a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -340,39 +345,6 @@
                 },
                 {
                     "name": "",
-                    "id": "002883e7-c0a2-465b-bc6b-973b5d304f1a",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "493b456e-23a0-4e2c-bcb2-f1bc379ab702",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cd368374-5423-4120-ad47-531be3bd2bd7",
-                    "path": "<Joystick>/{Hatswitch}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ea4f093c-933d-4f3f-902f-ac839110d6ba",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -434,6 +406,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1532940e-f512-4477-a75b-85f28794c229",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hyperspace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c039801c-54c2-4ff5-91e3-7890635c1091",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

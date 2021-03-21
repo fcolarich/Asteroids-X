@@ -21,6 +21,11 @@ public class PowerUpSpawningSystem : SystemBase
     
     protected override void OnUpdate()
     {
+        
+        if (!HasSingleton<GameStateData>()) return;
+        var gameState = GetSingleton<GameStateData>();
+        if (gameState.GameState != GameStateData.State.Playing) return;
+
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
         Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity, ref PowerUpPrefab powerUpPrefab) =>
@@ -29,11 +34,15 @@ public class PowerUpSpawningSystem : SystemBase
           
           if (powerUpPrefab.AppearanceTimer < 0)
           {
-                  powerUpPrefab.AppearanceTimer = powerUpPrefab.AppearanceTimeSeconds;
-                  var spawnLocation = Random.insideUnitCircle * 130;
-                  var newEntity = ecb.Instantiate(thisEntity);
-                  ecb.RemoveComponent<PowerUpPrefab>(newEntity);
-                  ecb.SetComponent(newEntity, new Translation {Value =  new float3(spawnLocation,-50)});
+              powerUpPrefab.AppearanceTimer = powerUpPrefab.AppearanceTimeSeconds;
+
+                  if (Random.value > 0.5)
+                  {
+                      var spawnLocation = Random.insideUnitCircle * 180;
+                      var newEntity = ecb.Instantiate(thisEntity);
+                      ecb.RemoveComponent<PowerUpPrefab>(newEntity);
+                      ecb.SetComponent(newEntity, new Translation {Value = new float3(spawnLocation, -50)});
+                  }
           }
       }).Run(); 
         

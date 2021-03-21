@@ -18,18 +18,23 @@ public class LifeTimeSystem : SystemBase
     
     protected override void OnUpdate()
     {
+        if (!HasSingleton<GameStateData>()) return;
+        var gameState = GetSingleton<GameStateData>();
+        if (gameState.GameState != GameStateData.State.Playing) return;
+        
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
         var deltaTime = Time.DeltaTime;
-        
-        Entities.WithNone<PowerUpPrefab>().ForEach((int entityInQueryIndex, ref LifeTimeData lifeTime, in Entity thisEntity, in BulletSourceData bulletSource ) =>
-        {
-            lifeTime.lifeTimeSeconds -= deltaTime;
-            if (lifeTime.lifeTimeSeconds < 0)
-            {
-                ecb.DestroyEntity(entityInQueryIndex,thisEntity);
-            }
-        }).ScheduleParallel();
-        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
 
+        Entities.WithNone<PowerUpPrefab>().ForEach(
+            (int entityInQueryIndex, ref LifeTimeData lifeTime, in Entity thisEntity,
+                in BulletSourceData bulletSource) =>
+            {
+                lifeTime.lifeTimeSeconds -= deltaTime;
+                if (lifeTime.lifeTimeSeconds < 0)
+                {
+                    ecb.DestroyEntity(entityInQueryIndex, thisEntity);
+                }
+            }).ScheduleParallel();
+        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
 }

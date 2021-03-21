@@ -27,17 +27,25 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""b3c3d615-520e-4b87-b19a-5311d638a4c9"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ec3815a-3621-421d-95ea-ddd003fdf875"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""Hyperspace"",
                     ""type"": ""Button"",
-                    ""id"": ""8ec3815a-3621-421d-95ea-ddd003fdf875"",
+                    ""id"": ""742a32b9-447c-420d-b3a0-b72bde66c7c4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""5611d160-d273-4f00-ab78-c9ce2ad3443c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -134,39 +142,6 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c1f7a91b-d0fd-4a62-997e-7fb9b69bf235"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Touch"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3e5f5442-8668-4b27-a940-df99bad7e831"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -230,6 +205,28 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""01dfeb37-f1ee-4c6e-bcd2-e0d6786c7294"",
+                    ""path"": ""<Keyboard>/numpad0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hyperspace"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d27c669-f5f6-4a21-bc04-fd276e98cfa1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -246,10 +243,10 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""db955050-152b-4376-bf09-280d028603ec"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""a699efdb-db96-46a0-854b-ed31965a20a8"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -257,6 +254,14 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""a9e19a0e-1a87-419c-bd72-a2df19667d5e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Hyperspace"",
+                    ""type"": ""Button"",
+                    ""id"": ""81034470-8e40-4ed5-a622-b34e87a7b19a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -353,39 +358,6 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""002883e7-c0a2-465b-bc6b-973b5d304f1a"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""493b456e-23a0-4e2c-bcb2-f1bc379ab702"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Touch"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cd368374-5423-4120-ad47-531be3bd2bd7"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ea4f093c-933d-4f3f-902f-ac839110d6ba"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -447,6 +419,28 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1532940e-f512-4477-a75b-85f28794c229"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hyperspace"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c039801c-54c2-4ff5-91e3-7890635c1091"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1025,13 +1019,15 @@ public class @PlayersActions : IInputActionCollection, IDisposable
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Move = m_Player2.FindAction("Move", throwIfNotFound: true);
-        m_Player2_Look = m_Player2.FindAction("Look", throwIfNotFound: true);
         m_Player2_Fire = m_Player2.FindAction("Fire", throwIfNotFound: true);
+        m_Player2_Hyperspace = m_Player2.FindAction("Hyperspace", throwIfNotFound: true);
+        m_Player2_PauseGame = m_Player2.FindAction("PauseGame", throwIfNotFound: true);
         // Player1
         m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
         m_Player1_Move = m_Player1.FindAction("Move", throwIfNotFound: true);
-        m_Player1_Look = m_Player1.FindAction("Look", throwIfNotFound: true);
+        m_Player1_PauseGame = m_Player1.FindAction("PauseGame", throwIfNotFound: true);
         m_Player1_Fire = m_Player1.FindAction("Fire", throwIfNotFound: true);
+        m_Player1_Hyperspace = m_Player1.FindAction("Hyperspace", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1094,15 +1090,17 @@ public class @PlayersActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player2;
     private IPlayer2Actions m_Player2ActionsCallbackInterface;
     private readonly InputAction m_Player2_Move;
-    private readonly InputAction m_Player2_Look;
     private readonly InputAction m_Player2_Fire;
+    private readonly InputAction m_Player2_Hyperspace;
+    private readonly InputAction m_Player2_PauseGame;
     public struct Player2Actions
     {
         private @PlayersActions m_Wrapper;
         public Player2Actions(@PlayersActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player2_Move;
-        public InputAction @Look => m_Wrapper.m_Player2_Look;
         public InputAction @Fire => m_Wrapper.m_Player2_Fire;
+        public InputAction @Hyperspace => m_Wrapper.m_Player2_Hyperspace;
+        public InputAction @PauseGame => m_Wrapper.m_Player2_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Player2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1115,12 +1113,15 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMove;
-                @Look.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLook;
-                @Look.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLook;
-                @Look.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLook;
                 @Fire.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
+                @Hyperspace.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnHyperspace;
+                @Hyperspace.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnHyperspace;
+                @Hyperspace.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnHyperspace;
+                @PauseGame.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnPauseGame;
             }
             m_Wrapper.m_Player2ActionsCallbackInterface = instance;
             if (instance != null)
@@ -1128,12 +1129,15 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Hyperspace.started += instance.OnHyperspace;
+                @Hyperspace.performed += instance.OnHyperspace;
+                @Hyperspace.canceled += instance.OnHyperspace;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
             }
         }
     }
@@ -1143,15 +1147,17 @@ public class @PlayersActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player1;
     private IPlayer1Actions m_Player1ActionsCallbackInterface;
     private readonly InputAction m_Player1_Move;
-    private readonly InputAction m_Player1_Look;
+    private readonly InputAction m_Player1_PauseGame;
     private readonly InputAction m_Player1_Fire;
+    private readonly InputAction m_Player1_Hyperspace;
     public struct Player1Actions
     {
         private @PlayersActions m_Wrapper;
         public Player1Actions(@PlayersActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player1_Move;
-        public InputAction @Look => m_Wrapper.m_Player1_Look;
+        public InputAction @PauseGame => m_Wrapper.m_Player1_PauseGame;
         public InputAction @Fire => m_Wrapper.m_Player1_Fire;
+        public InputAction @Hyperspace => m_Wrapper.m_Player1_Hyperspace;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1164,12 +1170,15 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMove;
-                @Look.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnLook;
-                @Look.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnLook;
-                @Look.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnLook;
+                @PauseGame.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnPauseGame;
                 @Fire.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFire;
+                @Hyperspace.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnHyperspace;
+                @Hyperspace.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnHyperspace;
+                @Hyperspace.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnHyperspace;
             }
             m_Wrapper.m_Player1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -1177,12 +1186,15 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Hyperspace.started += instance.OnHyperspace;
+                @Hyperspace.performed += instance.OnHyperspace;
+                @Hyperspace.canceled += instance.OnHyperspace;
             }
         }
     }
@@ -1340,14 +1352,16 @@ public class @PlayersActions : IInputActionCollection, IDisposable
     public interface IPlayer2Actions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnHyperspace(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
     public interface IPlayer1Actions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnHyperspace(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

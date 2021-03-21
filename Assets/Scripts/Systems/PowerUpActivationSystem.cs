@@ -1,5 +1,6 @@
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
 using Random = UnityEngine.Random;
 
@@ -17,17 +18,20 @@ public class PowerUpActivationSystem : SystemBase
 
     protected override void OnUpdate()
     {
+        if (!HasSingleton<GameStateData>()) return;
+        var gameState = GetSingleton<GameStateData>();
+        if (gameState.GameState != GameStateData.State.Playing) return;
+
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
-
-        
-          Entities.WithAll<PowerUpEffectFireBoosterData>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpEffectFireBoosterData>().ForEach((Entity thisEntity,
             ref PowerUpEffectData powerUpEffectData,
             ref CollisionControlData collisionControlData, ref Translation trans, ref LifeTimeData lifeTimeData,
             in PowerUpEffectFireBoosterData powerUpEffectFireBoosterData) =>
         {
             if (collisionControlData.HasCollided)
             {
+                ecb.RemoveComponent<PhysicsCollider>(thisEntity);
                 if (EntityManager.Exists(collisionControlData.AffectedTarget))
                 {
                     var affectedTarget = collisionControlData.AffectedTarget;
@@ -70,6 +74,7 @@ public class PowerUpActivationSystem : SystemBase
         {
             if (collisionControlData.HasCollided)
             {
+                ecb.RemoveComponent<PhysicsCollider>(thisEntity);
                 if (EntityManager.Exists(collisionControlData.AffectedTarget))
                 {
                     var affectedTarget = collisionControlData.AffectedTarget;
@@ -107,6 +112,7 @@ public class PowerUpActivationSystem : SystemBase
         {
             if (collisionControlData.HasCollided)
             {
+                ecb.RemoveComponent<PhysicsCollider>(thisEntity);
                 if (EntityManager.Exists(collisionControlData.AffectedTarget))
                 {
                     var affectedTarget = collisionControlData.AffectedTarget;
@@ -140,6 +146,7 @@ public class PowerUpActivationSystem : SystemBase
         {
             if (collisionControlData.HasCollided)
             {
+                ecb.RemoveComponent<PhysicsCollider>(thisEntity);
                 if (EntityManager.Exists(collisionControlData.AffectedTarget))
                 {
                     var affectedTarget = collisionControlData.AffectedTarget;
@@ -170,33 +177,5 @@ public class PowerUpActivationSystem : SystemBase
         }).WithoutBurst().Run();
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
-
-    
-    static void AddPointsToPlayer(Entity targetEntity, PlayerPointsData playerPointsData, EntityCommandBuffer ecb, int playerPoints)
-    {
-        var pointsToAdd = playerPointsData.points + playerPoints;
-        ecb.SetComponent(targetEntity,
-            new PlayerPointsData {points = pointsToAdd});
-    }
-    
-    
-    static void SpawnEntities(int amountToSpawn, Entity entityToSpawn, Translation trans, EntityCommandBuffer ecb, bool SpawnInRandomPosition)
-    {
-        for (int i = 0; i < amountToSpawn; i++)
-        {
-            var newEntity = ecb.Instantiate(entityToSpawn);
-            float2 spawnLocation = 0;
-            if (SpawnInRandomPosition)
-            {
-               spawnLocation = Random.insideUnitCircle.normalized *10;    
-            }
-
-            ecb.SetComponent(newEntity, new Translation {Value = new float3(trans.Value.x +spawnLocation.x,
-                trans.Value.y +spawnLocation.y,-50)});
-        }
-    }
-    
-    
-
 }
 
