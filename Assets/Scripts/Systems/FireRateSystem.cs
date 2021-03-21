@@ -17,7 +17,8 @@ public class FireRateSystem : SystemBase
         var deltaTime = Time.DeltaTime;
       
         
-        Entities.ForEach((int entityInQueryIndex,Entity thisEntity, ref BulletFireData bulletFireData, in Translation trans, in Rotation rot, in MoveSpeedData moveSpeed) => {
+        Entities.ForEach((int entityInQueryIndex,Entity thisEntity, ref BulletFireData bulletFireData, 
+            in Translation trans, in Rotation rot, in MoveSpeedData moveSpeed) => {
             
             
             if (bulletFireData.BulletTimer <= 0)
@@ -54,10 +55,12 @@ public class FireRateSystem : SystemBase
                 bulletFireData.BulletGroupTimer -= deltaTime;
             }
 
-            bulletFireData.TryFire = false;
+            if (HasComponent<PlayerTag>(thisEntity))
+            {
+                bulletFireData.TryFire = false;
+            }
         }).Schedule();
 
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
-
     }
 }
