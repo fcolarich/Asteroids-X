@@ -11,7 +11,7 @@ public class PlayerCollisionSystem : SystemBase
     public EventHandler OnLivesUpdatePlayer1;
     public EventHandler OnLivesUpdatePlayer2;
     public EventHandler OnPlayersDestroyed;
-    public EventHandler OnPlayer2Destroyed;
+    public EventHandler OnPlayerShot;
 
 
 
@@ -46,7 +46,10 @@ public class PlayerCollisionSystem : SystemBase
                     {
                         OnLivesUpdatePlayer2(playerLivesData.CurrentLives, EventArgs.Empty);
                     }
-                    //INSTANTIATE SHIP EXPLOSION HERE
+                    OnPlayerShot(this,EventArgs.Empty);
+                    
+                    //TO INSTANTIATE EXPLOSION FX WE NEED THE LOCATION, WILL HAVE TO EDIT EVENT TO SEND LOCATION
+                    
                     if (playerLivesData.CurrentLives < 1)
                     {
                         ecb.DestroyEntity(thisEntity);

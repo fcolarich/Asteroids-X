@@ -10,6 +10,10 @@ public class EnemyCollisionSystem : SystemBase
     private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
     public EventHandler OnPointsUpdatePlayer1;
     public EventHandler OnPointsUpdatePlayer2;
+    public EventHandler OnEnemyHit;
+    public EventHandler OnBigShipDestroyed;
+
+
 
 
     protected override void OnCreate()
@@ -36,6 +40,7 @@ public class EnemyCollisionSystem : SystemBase
                 {
                     collisionControlData.HasCollided = false;
                     var targetEntity = collisionControlData.AffectedTarget;
+                    
 
                     if (EntityManager.Exists(targetEntity))
                     {
@@ -56,7 +61,9 @@ public class EnemyCollisionSystem : SystemBase
                     {
                         SpawnEntities(1, powerUpRandomAppearData.RandomPowerUp, trans, ecb, false);
                     }
-                    //INSTANTIATE SPECIAL EFFECTS HERE
+                    
+                    OnEnemyHit(this, EventArgs.Empty); //SAME AS WITH PLAYER, WE NEED TO SEND LOCATION TO SPAWN FX
+                    
                     ecb.DestroyEntity(thisEntity);
                 }
             }).WithoutBurst().Run();
@@ -91,8 +98,8 @@ public class EnemyCollisionSystem : SystemBase
 
                         SpawnEntities(spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
 
-                        //INSTANTIATE SPECIAL EFFECTS HERE
-
+                        OnEnemyHit(this, EventArgs.Empty); //SAME AS WITH PLAYER, WE NEED TO SEND LOCATION TO SPAWN FX
+                        
                         var currentLives = ufoLivesData.CurrentLives - 1;
                         if (currentLives > 0)
                         {
@@ -102,6 +109,7 @@ public class EnemyCollisionSystem : SystemBase
                         else
                         {
                             ecb.DestroyEntity(thisEntity);
+                            OnBigShipDestroyed(this, EventArgs.Empty);//SAME AS WITH PLAYER, WE NEED TO SEND LOCATION TO SPAWN FX
                         }
                     }
                 } 

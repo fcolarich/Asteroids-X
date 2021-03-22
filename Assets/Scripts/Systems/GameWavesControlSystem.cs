@@ -1,3 +1,4 @@
+using System;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -11,6 +12,9 @@ public class GameWavesControlSystem : SystemBase
     private bool _newWave = true;
     private bool _resetGame = true;
     private int _amountToSpawn;
+    public EventHandler OnEnemyShipCreated;
+    public EventHandler OnEnemyBigShipCreated;
+
 
 
     protected override void OnCreate()
@@ -32,8 +36,6 @@ public class GameWavesControlSystem : SystemBase
             {
                 Entities.WithNone<PowerUpPrefab>().WithAny<MoveSpeedData>().WithAny<PowerUpTag>().ForEach((Entity thisEntity) => { ecb.DestroyEntity(thisEntity); })
                     .WithoutBurst().Run();
-                
-                
                 _newWave = true;
                 Entities.ForEach((ref WaveManagerData waveManagerData) => { waveManagerData.CurrentWave = 0; })
                     .ScheduleParallel();
@@ -72,6 +74,7 @@ public class GameWavesControlSystem : SystemBase
                     var newEntity = ecb.Instantiate(waveManagerData.BigUFOPrefab);
                     ecb.SetComponent(newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 300, spawnLocation.y, -50)});
+                    OnEnemyBigShipCreated(this,EventArgs.Empty);
                 }
 
             }).WithoutBurst().Run();
@@ -87,11 +90,13 @@ public class GameWavesControlSystem : SystemBase
             {
                 if (Random.value > 0.5)
                 {
+                    
                     var spawnLocation = Random.insideUnitCircle.normalized * 95;
                     var newEntity = ecb.Instantiate(waveManagerData.SmallUFOPrefab);
                     ecb.SetComponent(newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 300, spawnLocation.y, -50)});
                     waveManagerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
+                    OnEnemyShipCreated(this, EventArgs.Empty);
                 }
 
                 if (Random.value > 0.7)
@@ -101,6 +106,7 @@ public class GameWavesControlSystem : SystemBase
                     ecb.SetComponent(newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 300, spawnLocation.y, -50)});
                     waveManagerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
+                    OnEnemyShipCreated(this, EventArgs.Empty);
                 }
             }
             else

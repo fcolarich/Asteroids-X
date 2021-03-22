@@ -60,6 +60,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityDataAccess.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpEffectData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Managers/EnemySpawner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/SpawnEntityData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/ComponentData/MoveForwardComponent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/ComponentData/LifetimeComponent.cs" root0="SKIP_HIGHLIGHTING" />
@@ -89,7 +90,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/UFOSmallTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/UFOMediumTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/UFOBigTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData1.cs" />
@@ -127,19 +127,20 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralRotationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralFireRateSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ReactOnTriggerSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/Player2SpawnData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerPointsAndLivesManagerSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/Player2SpawnData1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/Player1SpawnData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralFireRateSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -189,7 +190,7 @@
       <workItem from="1616195169211" duration="7661000" />
       <workItem from="1616244594271" duration="33009000" />
       <workItem from="1616327776360" duration="622000" />
-      <workItem from="1616334199072" duration="43679000" />
+      <workItem from="1616334199072" duration="47879000" />
     </task>
     <servers />
   </component>

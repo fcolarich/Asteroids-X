@@ -1,3 +1,4 @@
+using System;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -5,6 +6,9 @@ using Unity.Transforms;
 public class GeneralFireRateSystem : SystemBase
 {
     EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
+    
+    public EventHandler OnBulletFire;
+
     
     protected override void OnCreate()
     {
@@ -38,6 +42,7 @@ public class GeneralFireRateSystem : SystemBase
 
                     bulletFireData.BulletTimer = bulletFireData.SecondsBetweenBullets;
                     var bulletEntity = ecb.Instantiate(bulletFireData.BulletPrefab);
+                    OnBulletFire(this, EventArgs.Empty);
                     ecb.SetComponent(bulletEntity,
                         new Translation() {Value = trans.Value + (10 * math.forward(rot.Value))});
                     ecb.SetComponent(bulletEntity, new Rotation() {Value = rot.Value});
@@ -68,7 +73,7 @@ public class GeneralFireRateSystem : SystemBase
             {
                 bulletFireData.TryFire = false;
             }
-        }).Schedule();
+        }).WithoutBurst().Run();
 
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }

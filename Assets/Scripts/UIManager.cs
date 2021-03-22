@@ -16,8 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text defeatLine2;
     [SerializeField] private RectTransform welcomeMessage;
     
-    private string _player1Points;
-    private string _player2Points;
+    private string _player1Points = "0";
+    private string _player2Points = "0";
     
 
     
@@ -27,7 +27,6 @@ public class UIManager : MonoBehaviour
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnResume += UIManagerOnResume;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnStart += UIManagerOnStart;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += UIManagerOnReStart;
-
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnPointsUpdatePlayer1 += UIManagerOnPointsUpdatePlayer1;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnPointsUpdatePlayer2 += UIManagerOnPointsUpdatePlayer2;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerCollisionSystem>().OnLivesUpdatePlayer1 += UIManagerOnLivesUpdatePlayer1;
@@ -42,7 +41,10 @@ public class UIManager : MonoBehaviour
         defeatMessage.gameObject.SetActive(false);
         player2LivesText.text = "PRESS INTRO TO JOIN";
         player2PointsText.text = "PLAYER 2";
-
+        _player1Points = "0";
+        _player2Points = "0";
+        player1LivesText.text = "X 3";
+        player1PointsText.text = "POINTS";
     }
 
 
@@ -60,8 +62,8 @@ public class UIManager : MonoBehaviour
     private void UIManagerOnPlayersDestroyed(object sender, EventArgs e)
     {
         defeatMessage.gameObject.SetActive(true);
-        defeatLine1.text = "Player 1 has died with " + _player1Points + "points";
-        defeatLine2.text = "Player 2 has died with " + _player2Points + "points";
+        defeatLine1.text = "Player 1 has died with " + _player1Points + " points";
+        defeatLine2.text = "Player 2 has died with " + _player2Points + " points";
     }
 
     private void UIManagerOnLivesUpdatePlayer1(object sender, EventArgs e)

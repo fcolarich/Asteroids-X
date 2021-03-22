@@ -10,6 +10,7 @@
           <e p="PlayersActions.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
+          <e p="AudioManager.cs" t="Include" />
           <e p="Data" t="Include">
             <e p="BulletFireData.cs" t="Include" />
             <e p="BulletSourceData.cs" t="Include" />
