@@ -5,29 +5,35 @@ public class PlayerFrictionSpeedSystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        var deltaTime = Time.DeltaTime;
+        if (!HasSingleton<GameStateData>()) return;
+        var gameState = GetSingleton<GameStateData>();
+        if (gameState.GameState != GameStateData.State.Playing) return;
         
-        Entities.WithAny<Player1Tag>().WithAny<Player2Tag>().ForEach((ref MoveSpeedData moveSpeedData, in MoveSpeedModifierData speedModifierData) =>
-        {
-            var movementSpeed = moveSpeedData.movementSpeed;
-            var speedModifier = speedModifierData.SpeedModifier;
+        var deltaTime = Time.DeltaTime;
 
-            if (movementSpeed.x > 0)
+        Entities.WithAny<Player1Tag>().WithAny<Player2Tag>().ForEach(
+            (ref MoveSpeedData moveSpeedData, in MoveSpeedModifierData speedModifierData) =>
             {
-                moveSpeedData.movementSpeed.x -= speedModifier*deltaTime;
-            } else if (movementSpeed.x < 0)
-            {
-                moveSpeedData.movementSpeed.x += speedModifier*deltaTime;
-            }
-            
-            if (movementSpeed.y > 0)
-            {
-                moveSpeedData.movementSpeed.y -= speedModifier*deltaTime;
-            } else if (movementSpeed.y < 0)
-            {
-                moveSpeedData.movementSpeed.y += speedModifier*deltaTime;
-            }
-        }).ScheduleParallel();
+                var movementSpeed = moveSpeedData.movementSpeed;
+                var speedModifier = speedModifierData.SpeedModifier;
 
+                if (movementSpeed.x > 0)
+                {
+                    moveSpeedData.movementSpeed.x -= speedModifier * deltaTime;
+                }
+                else if (movementSpeed.x < 0)
+                {
+                    moveSpeedData.movementSpeed.x += speedModifier * deltaTime;
+                }
+
+                if (movementSpeed.y > 0)
+                {
+                    moveSpeedData.movementSpeed.y -= speedModifier * deltaTime;
+                }
+                else if (movementSpeed.y < 0)
+                {
+                    moveSpeedData.movementSpeed.y += speedModifier * deltaTime;
+                }
+            }).ScheduleParallel();
     }
 }

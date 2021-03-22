@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 3383752321092688756}
   - component: {fileID: 6681678521077348240}
   - component: {fileID: -4618073866968366144}
+  - component: {fileID: 1130238397300112724}
   m_Layer: 0
   m_Name: AsteroidGen
   m_TagString: Untagged
@@ -130,7 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6982b78c707bec3429ed3cba4596b03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0
+  movementSpeed:
+    x: 0
+    y: 0
+    z: 0
 --- !u!114 &1154227069060092667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,3 +392,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212f0f9a75bbc3143b9279b7545aa3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1130238397300112724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506022011637012940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c31330ca4feae40bc2950a5a6e41ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomPowerUp: {fileID: 3358116459786254392, guid: e384d4f10d5b7394b8be0e66399c3c31, type: 3}
+  AppearanceChance: 0.05

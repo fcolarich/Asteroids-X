@@ -91,14 +91,27 @@ public class TriggerDetectionSystem : JobComponentSystem
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
-        var job = new OnTriggerSystemJob();
-        job.asteroidTag = GetComponentDataFromEntity<AsteroidsTag>(true);
-        job.player1Tag = GetComponentDataFromEntity<Player1Tag>(true);
-        job.player2Tag = GetComponentDataFromEntity<Player2Tag>(true);
-        job.powerUpTag = GetComponentDataFromEntity<PowerUpTag>(true);
-        job.collisionControl = GetComponentDataFromEntity<CollisionControlData>();
-        job.bulletSourceData = GetComponentDataFromEntity<BulletSourceData>(true);
-        job.entityManager = EntityManager;
+
+        if (!HasSingleton<GameStateData>())
+        {
+            return new JobHandle();
+        }
+        var gameState = GetSingleton<GameStateData>();
+        if (gameState.GameState != GameStateData.State.Playing)
+        {
+            return new JobHandle();
+        };
+
+        var job = new OnTriggerSystemJob
+        {
+            asteroidTag = GetComponentDataFromEntity<AsteroidsTag>(true),
+            player1Tag = GetComponentDataFromEntity<Player1Tag>(true),
+            player2Tag = GetComponentDataFromEntity<Player2Tag>(true),
+            powerUpTag = GetComponentDataFromEntity<PowerUpTag>(true),
+            collisionControl = GetComponentDataFromEntity<CollisionControlData>(),
+            bulletSourceData = GetComponentDataFromEntity<BulletSourceData>(true),
+            entityManager = EntityManager
+        };
 
 
 
