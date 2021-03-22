@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1434118352203810613, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: points
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2219947956897247052, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: AppearanceChance

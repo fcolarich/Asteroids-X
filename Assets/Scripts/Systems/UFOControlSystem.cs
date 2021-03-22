@@ -5,7 +5,7 @@ using Unity.Transforms;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MainUFOControlSystem : SystemBase
+public class UFOControlSystem : SystemBase
 {
     private NativeArray<Entity> targetEntities;
 
@@ -17,6 +17,7 @@ public class MainUFOControlSystem : SystemBase
         if (gameState.GameState != GameStateData.State.Playing) return;
         
         targetEntities = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).ToEntityArray(Allocator.Temp);
+
 
         var localTargetEntities = targetEntities;
         Entities.ForEach((Entity thisEntity, ref UFOGeneralData ufoGeneralData, ref Rotation rot,
@@ -44,7 +45,7 @@ public class MainUFOControlSystem : SystemBase
                 }
                 else if (HasComponent<UFOBigTag>(thisEntity))
                 {
-                    if (Vector3.Distance(localToWorld.Position, targetPosition) > 80)
+                    if (Vector3.Distance(localToWorld.Position, targetPosition) > 100)
                     {
                         moveSpeedData.movementSpeed = math.forward(rot.Value) * moveSpeedModifier.SpeedModifier;
                     }
@@ -56,8 +57,11 @@ public class MainUFOControlSystem : SystemBase
             }
             else
             {
-                int randomInt = Random.Range(0, 2);
-                ufoGeneralData.targetEntity = localTargetEntities[randomInt];
+                if (localTargetEntities.Length > 0)
+                {
+                    int randomInt = Random.Range(0, localTargetEntities.Length);
+                    ufoGeneralData.targetEntity = localTargetEntities[randomInt];
+                }
             }
         }).WithoutBurst().Run();
     }

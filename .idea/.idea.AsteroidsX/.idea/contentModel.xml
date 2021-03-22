@@ -25,6 +25,8 @@
             <e p="MoveSpeedModifierData.cs" t="Include" />
             <e p="NewComponent.cs" t="Include" />
             <e p="NewComponent1.cs" t="Include" />
+            <e p="Player1SpawnData.cs" t="Include" />
+            <e p="Player2SpawnData.cs" t="Include" />
             <e p="PlayerLivesData.cs" t="Include" />
             <e p="PlayerPointsData.cs" t="Include" />
             <e p="PowerUpBulletData.cs" t="Include" />
@@ -39,21 +41,22 @@
             <e p="UFOLivesData.cs" t="Include" />
           </e>
           <e p="Systems" t="Include">
-            <e p="FireRateSystem.cs" t="Include" />
+            <e p="EnemyCollisionSystem.cs" t="Include" />
             <e p="GameWavesControlSystem.cs" t="Include" />
+            <e p="GeneralFireRateSystem.cs" t="Include" />
             <e p="GeneralMovementSystem.cs" t="Include" />
             <e p="GeneralRotationSystem.cs" t="Include" />
             <e p="InitializeAsteroidsSystem.cs" t="Include" />
             <e p="LifeTimeSystem.cs" t="Include" />
-            <e p="MainUFOControlSystem.cs" t="Include" />
+            <e p="PlayerCollisionSystem.cs" t="Include" />
             <e p="PlayerFrictionSpeedSystem.cs" t="Include" />
             <e p="PlayerInputSystem.cs" t="Include" />
             <e p="PlayerPointsAndLivesManagerSystem.cs" t="Include" />
             <e p="PowerUpActivationSystem.cs" t="Include" />
             <e p="PowerUpSpawningSystem.cs" t="Include" />
-            <e p="ReactOnTriggerSystem.cs" t="Include" />
             <e p="ScreenWrappingSystem.cs" t="Include" />
             <e p="TriggerDetectionSystem.cs" t="Include" />
+            <e p="UFOControlSystem.cs" t="Include" />
           </e>
           <e p="Tags" t="Include">
             <e p="AsteroidsTag.cs" t="Include" />

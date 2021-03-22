@@ -9,6 +9,7 @@ public class GameWavesControlSystem : SystemBase
 {
     private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
     private bool _newWave = true;
+    private bool _resetGame = true;
     private int _amountToSpawn;
 
 
@@ -20,11 +21,28 @@ public class GameWavesControlSystem : SystemBase
 
     protected override void OnUpdate()
     {
+        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
+
         if (!HasSingleton<GameStateData>()) return;
         var gameState = GetSingleton<GameStateData>();
+
+        if (gameState.GameState == GameStateData.State.PlayersDead)
+        {
+            if (_resetGame)
+            {
+                Entities.WithNone<PowerUpPrefab>().WithAny<MoveSpeedData>().WithAny<PowerUpTag>().ForEach((Entity thisEntity) => { ecb.DestroyEntity(thisEntity); })
+                    .WithoutBurst().Run();
+                
+                
+                _newWave = true;
+                Entities.ForEach((ref WaveManagerData waveManagerData) => { waveManagerData.CurrentWave = 0; })
+                    .ScheduleParallel();
+                _resetGame = false;
+            }
+        }
+        
         if (gameState.GameState != GameStateData.State.Playing) return;
         
-        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         int tempAmountToSpawn = 0;
         var deltaTime = Time.DeltaTime;
 
@@ -32,6 +50,7 @@ public class GameWavesControlSystem : SystemBase
         if (_newWave)
         {
             _newWave = false;
+            _resetGame = true;
             Entities.ForEach((ref WaveManagerData waveManagerData) =>
             {
                 waveManagerData.CurrentWave += 1;
@@ -46,7 +65,7 @@ public class GameWavesControlSystem : SystemBase
                         new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});
                 }
 
-                var modWaves = waveManagerData.CurrentWave % 2;
+                var modWaves = waveManagerData.CurrentWave % 3;
                 if (modWaves == 0)
                 {
                     var spawnLocation = Random.insideUnitCircle.normalized * 95;
@@ -58,14 +77,13 @@ public class GameWavesControlSystem : SystemBase
             }).WithoutBurst().Run();
             _amountToSpawn = tempAmountToSpawn;
         }
-
         Entities.ForEach((ref WaveManagerData waveManagerData) =>
         {
 
 
             var destroyedAsteroidsAmount = GetEntityQuery(ComponentType.ReadOnly<SmallAsteroidDestroyedTag>())
                 .CalculateEntityCount();
-            if (destroyedAsteroidsAmount > _amountToSpawn - 5 && waveManagerData.SpawnTimer <= 0)
+            if (destroyedAsteroidsAmount > _amountToSpawn - 4 && waveManagerData.SpawnTimer <= 0)
             {
                 if (Random.value > 0.5)
                 {

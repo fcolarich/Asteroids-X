@@ -2,7 +2,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-public class FireRateSystem : SystemBase
+public class GeneralFireRateSystem : SystemBase
 {
     EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
     

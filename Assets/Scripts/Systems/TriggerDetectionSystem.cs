@@ -19,8 +19,8 @@ public class TriggerDetectionSystem : JobComponentSystem
     struct OnTriggerSystemJob : ITriggerEventsJob
     {
         [ReadOnly] public ComponentDataFromEntity<AsteroidsTag> asteroidTag;
-        [ReadOnly] public ComponentDataFromEntity<Player1Tag> player1Tag;
-        [ReadOnly] public ComponentDataFromEntity<Player2Tag> player2Tag;
+        [ReadOnly] public ComponentDataFromEntity<PlayerTag> playerTag;
+        [ReadOnly] public ComponentDataFromEntity<UFOTag> ufoTag;
         [ReadOnly] public ComponentDataFromEntity<PowerUpTag> powerUpTag;
         [ReadOnly] public ComponentDataFromEntity<BulletSourceData> bulletSourceData;
         public EntityManager entityManager;
@@ -37,8 +37,7 @@ public class TriggerDetectionSystem : JobComponentSystem
 
             CollisionControlData.HasCollided = true;
 
-            if (player1Tag.HasComponent(entityA) || player2Tag.HasComponent(entityA) ||
-                player1Tag.HasComponent(entityB) || player2Tag.HasComponent(entityB))
+            if (playerTag.HasComponent(entityA) || playerTag.HasComponent(entityB))
             {
                 if (powerUpTag.HasComponent(entityA))
                 {
@@ -53,7 +52,7 @@ public class TriggerDetectionSystem : JobComponentSystem
                     powerUP = true;
                 }
             }
-            else if (asteroidTag.HasComponent(entityA))
+            else if (asteroidTag.HasComponent(entityA)|| ufoTag.HasComponent(entityA))
             {
                 if (entityManager.Exists(entityB))
                 {
@@ -63,7 +62,7 @@ public class TriggerDetectionSystem : JobComponentSystem
                     }
                 }
             }
-            else if (asteroidTag.HasComponent(entityB))
+            else if (asteroidTag.HasComponent(entityB)|| ufoTag.HasComponent(entityB))
             {
                 if (entityManager.Exists(entityA))
                 {
@@ -105,8 +104,8 @@ public class TriggerDetectionSystem : JobComponentSystem
         var job = new OnTriggerSystemJob
         {
             asteroidTag = GetComponentDataFromEntity<AsteroidsTag>(true),
-            player1Tag = GetComponentDataFromEntity<Player1Tag>(true),
-            player2Tag = GetComponentDataFromEntity<Player2Tag>(true),
+            playerTag = GetComponentDataFromEntity<PlayerTag>(true),
+            ufoTag = GetComponentDataFromEntity<UFOTag>(true),
             powerUpTag = GetComponentDataFromEntity<PowerUpTag>(true),
             collisionControl = GetComponentDataFromEntity<CollisionControlData>(),
             bulletSourceData = GetComponentDataFromEntity<BulletSourceData>(true),

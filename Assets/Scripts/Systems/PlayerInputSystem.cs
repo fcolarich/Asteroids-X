@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 
@@ -12,13 +13,14 @@ public class PlayerInputSystem : SystemBase
     private PlayersActions _playersActions;
     public EventHandler OnPause;
     public EventHandler OnResume;
+    public EventHandler OnStart;
+    public EventHandler OnRestart;
+    public EventHandler OnPlayer2Join;
     
     protected override void OnStartRunning()
     {
         _playersActions = new PlayersActions();
         _playersActions.Enable();
-        
-        
     }
 
 
@@ -26,25 +28,66 @@ public class PlayerInputSystem : SystemBase
     {
         if (!HasSingleton<GameStateData>()) return;
         var gameState = GetSingleton<GameStateData>();
-        if (gameState.GameState != GameStateData.State.WaitingToStart || gameState.GameState != GameStateData.State.PlayersDead)
+        switch (gameState.GameState)
+        {
+            case GameStateData.State.WaitingToStart:
+            {
+                if (_playersActions.Player1.StartGame.triggered)
+                {
+                    OnStart(this,EventArgs.Empty);
+                    gameState.GameState = GameStateData.State.Playing;
+                    SetSingleton(gameState);
+                    Entities.ForEach((in Player1SpawnData player1SpawnData) =>
+                    { 
+                        EntityManager.Instantiate(player1SpawnData.Player1Prefab);
+                    }).WithoutBurst().WithStructuralChanges().Run();
+                }
+                if (_playersActions.Player2.Fire.triggered)
+                {
+                    OnPlayer2Join(this,EventArgs.Empty);
+                    Entities.ForEach((in Player2SpawnData player2SpawnData) =>
+                    {
+                        var player2 = EntityManager.Instantiate(player2SpawnData.Player2Prefab);
+                    }).WithoutBurst().WithStructuralChanges().Run();
+                }
+                break;
+            }
+            case GameStateData.State.PlayersDead:
+            {
+                if (_playersActions.Player1.StartGame.triggered)
+                {
+                    Entities.ForEach((in Player1SpawnData player1SpawnData) =>
+                    { 
+                        EntityManager.Instantiate(player1SpawnData.Player1Prefab);
+                    }).WithoutBurst().WithStructuralChanges().Run();
+                    gameState.GameState = GameStateData.State.Playing;
+                    SetSingleton(gameState);
+                    OnRestart(this, EventArgs.Empty);
+                }
+
+                break;
+            }
+        }
+        
             if (_playersActions.Player1.PauseGame.triggered)
             {
                 if (gameState.GameState == GameStateData.State.Paused)
                 {
                     gameState.GameState = GameStateData.State.Playing;
-                    OnResume.Invoke(this,EventArgs.Empty);
+                    OnResume(this,EventArgs.Empty);
                     SetSingleton(gameState);
                 } else if (gameState.GameState == GameStateData.State.Playing)
                 {
                     gameState.GameState = GameStateData.State.Paused;
                     SetSingleton(gameState);
-                    OnPause.Invoke(this,EventArgs.Empty);
+                    OnPause(this,EventArgs.Empty);
                 }
             }
 
         if (gameState.GameState != GameStateData.State.Playing) return;
         
         var deltaTime = Time.DeltaTime;
+        
         if (_playersActions.Player1.Move.ReadValue<Vector2>().y > 0)
         {
             Entities.WithAll<Player1Tag>()
@@ -113,7 +156,16 @@ public class PlayerInputSystem : SystemBase
             Entities.WithAll<Player2Tag>()
                 .ForEach((ref BulletFireData bulletFireData) => { bulletFireData.TryFire = true; })
                 .WithStructuralChanges().WithoutBurst().Run();
-
+            
+            var playerAmount = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).CalculateEntityCount();
+            if (playerAmount == 1)
+            {
+                OnPlayer2Join(this,EventArgs.Empty);
+                Entities.ForEach((in Player2SpawnData player2SpawnData) =>
+                {
+                    var player2 = EntityManager.Instantiate(player2SpawnData.Player2Prefab);
+                }).WithStructuralChanges().WithoutBurst().Run();
+            }
         }
 
         if (_playersActions.Player1.Hyperspace.triggered)

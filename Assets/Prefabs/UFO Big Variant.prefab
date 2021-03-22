@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1434118352203810613, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: points
-      value: 2000
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7479918704507730060, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: m_RootOrder

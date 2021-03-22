@@ -49,6 +49,14 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ba3f7e2-b3ca-470a-b8b9-476569d8bb3d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -142,61 +150,6 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""886e731e-7071-4ae4-95c0-e61739dad6fd"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
-                    ""path"": ""<Joystick>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8255d333-5683-4943-a58a-ccb207ff1dce"",
-                    ""path"": ""<XRController>/{PrimaryAction}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""6fbbdb24-c9cb-459e-9ac6-2efcf36ff320"",
                     ""path"": ""<Keyboard>/numpadEnter"",
                     ""interactions"": """",
@@ -227,6 +180,17 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04863fd2-cc70-4141-ba83-c9771299b037"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -239,6 +203,14 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""38bddd56-3b3d-4ce9-bd56-3089a91d2d7e"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""13951e4b-1c62-4210-ac4a-6b9395dafc9f"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -441,6 +413,17 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fb67b94-547d-4aaa-92c3-0b3cd9b955d1"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1022,9 +1005,11 @@ public class @PlayersActions : IInputActionCollection, IDisposable
         m_Player2_Fire = m_Player2.FindAction("Fire", throwIfNotFound: true);
         m_Player2_Hyperspace = m_Player2.FindAction("Hyperspace", throwIfNotFound: true);
         m_Player2_PauseGame = m_Player2.FindAction("PauseGame", throwIfNotFound: true);
+        m_Player2_StartGame = m_Player2.FindAction("StartGame", throwIfNotFound: true);
         // Player1
         m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
         m_Player1_Move = m_Player1.FindAction("Move", throwIfNotFound: true);
+        m_Player1_StartGame = m_Player1.FindAction("StartGame", throwIfNotFound: true);
         m_Player1_PauseGame = m_Player1.FindAction("PauseGame", throwIfNotFound: true);
         m_Player1_Fire = m_Player1.FindAction("Fire", throwIfNotFound: true);
         m_Player1_Hyperspace = m_Player1.FindAction("Hyperspace", throwIfNotFound: true);
@@ -1093,6 +1078,7 @@ public class @PlayersActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player2_Fire;
     private readonly InputAction m_Player2_Hyperspace;
     private readonly InputAction m_Player2_PauseGame;
+    private readonly InputAction m_Player2_StartGame;
     public struct Player2Actions
     {
         private @PlayersActions m_Wrapper;
@@ -1101,6 +1087,7 @@ public class @PlayersActions : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player2_Fire;
         public InputAction @Hyperspace => m_Wrapper.m_Player2_Hyperspace;
         public InputAction @PauseGame => m_Wrapper.m_Player2_PauseGame;
+        public InputAction @StartGame => m_Wrapper.m_Player2_StartGame;
         public InputActionMap Get() { return m_Wrapper.m_Player2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1122,6 +1109,9 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 @PauseGame.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnPauseGame;
                 @PauseGame.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnPauseGame;
                 @PauseGame.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnPauseGame;
+                @StartGame.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnStartGame;
+                @StartGame.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnStartGame;
+                @StartGame.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnStartGame;
             }
             m_Wrapper.m_Player2ActionsCallbackInterface = instance;
             if (instance != null)
@@ -1138,6 +1128,9 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 @PauseGame.started += instance.OnPauseGame;
                 @PauseGame.performed += instance.OnPauseGame;
                 @PauseGame.canceled += instance.OnPauseGame;
+                @StartGame.started += instance.OnStartGame;
+                @StartGame.performed += instance.OnStartGame;
+                @StartGame.canceled += instance.OnStartGame;
             }
         }
     }
@@ -1147,6 +1140,7 @@ public class @PlayersActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player1;
     private IPlayer1Actions m_Player1ActionsCallbackInterface;
     private readonly InputAction m_Player1_Move;
+    private readonly InputAction m_Player1_StartGame;
     private readonly InputAction m_Player1_PauseGame;
     private readonly InputAction m_Player1_Fire;
     private readonly InputAction m_Player1_Hyperspace;
@@ -1155,6 +1149,7 @@ public class @PlayersActions : IInputActionCollection, IDisposable
         private @PlayersActions m_Wrapper;
         public Player1Actions(@PlayersActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player1_Move;
+        public InputAction @StartGame => m_Wrapper.m_Player1_StartGame;
         public InputAction @PauseGame => m_Wrapper.m_Player1_PauseGame;
         public InputAction @Fire => m_Wrapper.m_Player1_Fire;
         public InputAction @Hyperspace => m_Wrapper.m_Player1_Hyperspace;
@@ -1170,6 +1165,9 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMove;
+                @StartGame.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnStartGame;
+                @StartGame.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnStartGame;
+                @StartGame.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnStartGame;
                 @PauseGame.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnPauseGame;
                 @PauseGame.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnPauseGame;
                 @PauseGame.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnPauseGame;
@@ -1186,6 +1184,9 @@ public class @PlayersActions : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @StartGame.started += instance.OnStartGame;
+                @StartGame.performed += instance.OnStartGame;
+                @StartGame.canceled += instance.OnStartGame;
                 @PauseGame.started += instance.OnPauseGame;
                 @PauseGame.performed += instance.OnPauseGame;
                 @PauseGame.canceled += instance.OnPauseGame;
@@ -1355,10 +1356,12 @@ public class @PlayersActions : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnHyperspace(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnStartGame(InputAction.CallbackContext context);
     }
     public interface IPlayer1Actions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnStartGame(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnHyperspace(InputAction.CallbackContext context);
