@@ -191,8 +191,12 @@ PrefabInstance:
       value: PowerUP Effect ENGINEBOOST Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6299976795512267240, guid: 33ab899d7487ac74ba1a3e109900b4a2, type: 3}
+      propertyPath: AppearanceTimer
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299976795512267240, guid: 33ab899d7487ac74ba1a3e109900b4a2, type: 3}
       propertyPath: AppearanceTimeSeconds
-      value: 30
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ab899d7487ac74ba1a3e109900b4a2, type: 3}
@@ -291,6 +295,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8586550948508397935, guid: 81327f14b11afc8419470daadd382014, type: 3}
+      propertyPath: AppearanceTimer
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586550948508397935, guid: 81327f14b11afc8419470daadd382014, type: 3}
+      propertyPath: AppearanceTimeSeconds
+      value: 45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81327f14b11afc8419470daadd382014, type: 3}
 --- !u!1001 &367979850
@@ -300,6 +312,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 861408585294201590, guid: d7e28b8f5a4dfc546ac3d6d4b9d38f20, type: 3}
+      propertyPath: AppearanceTimer
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 861408585294201590, guid: d7e28b8f5a4dfc546ac3d6d4b9d38f20, type: 3}
       propertyPath: AppearanceTimeSeconds
       value: 45
@@ -401,6 +417,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4435908414793218136, guid: 274fa5c76c70c3949bd313ba480360bb, type: 3}
+      propertyPath: AppearanceTimer
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4435908414793218136, guid: 274fa5c76c70c3949bd313ba480360bb, type: 3}
+      propertyPath: AppearanceTimeSeconds
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 6645404467524130151, guid: 274fa5c76c70c3949bd313ba480360bb, type: 3}
       propertyPath: PowerUpDurationSeconds
       value: 5
@@ -659,8 +683,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416268347348476165, guid: 093512518c7efba4ab33f0edbccc8ebc, type: 3}
+      propertyPath: AppearanceTimer
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416268347348476165, guid: 093512518c7efba4ab33f0edbccc8ebc, type: 3}
       propertyPath: AppearanceTimeSeconds
-      value: 25
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 093512518c7efba4ab33f0edbccc8ebc, type: 3}

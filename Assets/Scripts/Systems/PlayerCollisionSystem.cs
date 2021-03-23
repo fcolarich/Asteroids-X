@@ -36,15 +36,6 @@ public class PlayerCollisionSystem : SystemBase
             if (playerLivesData.CanTakeDamage)
             {
                 playerLivesData.CurrentLives -= 1;
-                if (HasComponent<Player1Tag>(thisEntity))
-                {
-                    OnLivesUpdatePlayer1(playerLivesData.CurrentLives, EventArgs.Empty);
-                }
-                else
-                {
-                    OnLivesUpdatePlayer2(playerLivesData.CurrentLives, EventArgs.Empty);
-                }
-
                 OnPlayerShot(this, EventArgs.Empty);
                 Pooler.Instance.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
 
@@ -57,12 +48,19 @@ public class PlayerCollisionSystem : SystemBase
                     trans.Value = playerLivesData.OriginPosition;
                     moveSpeedData.movementSpeed = 0;
                 }
+                if (HasComponent<Player1Tag>(thisEntity))
+                {
+                    OnLivesUpdatePlayer1(playerLivesData.CurrentLives, EventArgs.Empty);
+                }
+                else
+                {
+                    OnLivesUpdatePlayer2(playerLivesData.CurrentLives, EventArgs.Empty);
+                }
             }
             ecb.RemoveComponent<HasCollidedTag>(thisEntity);
         }).WithoutBurst().Run();
         
-        Entities.WithAll<PlayerBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity,
-            in CollisionControlData collisionControlData, in Translation trans, in OnHitParticlesData particlesData) =>
+        Entities.WithAll<PlayerBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity) =>
         {
                 ecb.DestroyEntity(thisEntity);
         }).WithoutBurst().Run();

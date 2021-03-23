@@ -30,7 +30,6 @@ public class AudioManager : MonoBehaviour
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += AudioManagerOnRestart;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += AudioManagerOnPlayer2Join;
         music.SetActive(false);
-        GetComponent<UIManager>().OnLogoOut += AudioManagerOnLogoOut;
         GetComponent<UIManager>().OnVideoFinished += AudioManagerOnVideoFinished;
         _pooler = Pooler.Instance;
     }
@@ -42,27 +41,22 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator MusicFadeIn()
     {
-        music.GetComponent<AudioSource>().volume = 0;
         music.SetActive(true);
-        var dissolving = true;
-        while (dissolving)
+        music.GetComponent<AudioSource>().volume = 0;
+        var fadingIn = true;
+        while (fadingIn)
         {
             yield return new WaitForFixedUpdate();
-            music.GetComponent<AudioSource>().volume += 1;
-            if (music.GetComponent<AudioSource>().volume >= 123)
+            music.GetComponent<AudioSource>().volume += 0.01f;
+            if (music.GetComponent<AudioSource>().volume >= 0.5f)
             {
-                dissolving = false;
+                fadingIn = false;
             }
         }
     }
     
 
-    private void AudioManagerOnLogoOut(object sender, EventArgs e)
-    {
-//
-    }
-
-    
+  
     
     private void AudioManagerOnPlayer2Join(object sender, EventArgs e)
     {

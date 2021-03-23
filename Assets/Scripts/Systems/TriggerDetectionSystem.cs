@@ -27,11 +27,11 @@ public class TriggerDetectionSystem : JobComponentSystem
         [ReadOnly] public ComponentDataFromEntity<UFOTag> ufoTag;
         [ReadOnly] public ComponentDataFromEntity<PowerUpTag> powerUpTag;
         [ReadOnly] public ComponentDataFromEntity<BulletSourceData> bulletSourceData;
-        [ReadOnly] public ComponentDataFromEntity<CollisionControlData> collisionControlData;
-
+        public ComponentDataFromEntity<CollisionControlData> collisionControlData;
         public EntityCommandBuffer ecb;
+
         public EntityManager entityManager;
-        private CollisionControlData localCollisionControlData;
+        public CollisionControlData localCollisionControlData;
 
         public void Execute(TriggerEvent triggerEvent)
         {
@@ -45,14 +45,14 @@ public class TriggerDetectionSystem : JobComponentSystem
                 if (powerUpTag.HasComponent(entityA))
                 {
                     localCollisionControlData.AffectedTarget = entityB;
-                    ecb.SetComponent(entityA, localCollisionControlData);
+                    collisionControlData[entityA] = localCollisionControlData;
                     ecb.AddComponent<HasCollidedTag>(entityA);
                     powerUp = true;
                 }
                 else if (powerUpTag.HasComponent(entityB))
                 {
                     localCollisionControlData.AffectedTarget = entityA;
-                    ecb.SetComponent(entityB, localCollisionControlData);
+                    collisionControlData[entityB]= localCollisionControlData;
                     ecb.AddComponent<HasCollidedTag>(entityB);
                     powerUp = true;
                 }
@@ -82,13 +82,13 @@ public class TriggerDetectionSystem : JobComponentSystem
 
             if (entityManager.Exists(entityA))
             {
-                ecb.SetComponent(entityA, localCollisionControlData);
+                collisionControlData[entityA] = localCollisionControlData;
                 ecb.AddComponent<HasCollidedTag>(entityA);
             }
 
             if (entityManager.Exists(entityB))
             {
-                ecb.SetComponent(entityB, localCollisionControlData);
+                collisionControlData[entityB] = localCollisionControlData;
                 ecb.AddComponent<HasCollidedTag>(entityB);
             }
         }
@@ -115,14 +115,14 @@ public class TriggerDetectionSystem : JobComponentSystem
             ufoTag = GetComponentDataFromEntity<UFOTag>(true),
             powerUpTag = GetComponentDataFromEntity<PowerUpTag>(true),
             bulletSourceData = GetComponentDataFromEntity<BulletSourceData>(true),
-            collisionControlData = GetComponentDataFromEntity<CollisionControlData>(true),
-            ecb = _endSimulationEntityCommandBufferSystem.CreateCommandBuffer(),
-            entityManager = EntityManager
+            entityManager = EntityManager,
+            collisionControlData = GetComponentDataFromEntity<CollisionControlData>(false),
+            ecb = _endSimulationEntityCommandBufferSystem.CreateCommandBuffer()
         };
         
         JobHandle jobHandle = job.Schedule(_stepPhysicsWorld.Simulation, ref _buildPhysicsWorld.PhysicsWorld, inputDeps);
+        _endSimulationEntityCommandBufferSystem.AddJobHandleForProducer(jobHandle);
         jobHandle.Complete();
-        
         return jobHandle;
     }
 }

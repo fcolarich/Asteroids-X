@@ -6,13 +6,7 @@ using UnityEngine;
 public class AudioDespawn : MonoBehaviour
 {
 
-    private WaitForSeconds _waitForSeconds;
-    
-    private void Start()
-    {
-        var time = this.GetComponent<AudioSource>().clip.length;
-        _waitForSeconds = new WaitForSeconds(time);
-    }
+    [SerializeField] private float time;
 
     void OnEnable()
     {
@@ -22,7 +16,7 @@ public class AudioDespawn : MonoBehaviour
     
     IEnumerator DespawnTimer()
     {
-        yield return _waitForSeconds;
+        yield return new WaitForSeconds(time);;
         Pooler.Instance.DeSpawn(this.gameObject);
     } 
     

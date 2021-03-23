@@ -20,8 +20,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform welcomeMessage;
     [SerializeField] private GameObject backGround;
     [SerializeField] private RawImage videoScreen;
+    [SerializeField] private GameObject playerUI;
+
     
-    public EventHandler OnLogoOut;
     public EventHandler OnVideoFinished;
     
     
@@ -49,14 +50,16 @@ public class UIManager : MonoBehaviour
 
     IEnumerator ShowLogo()
     {
-        yield return new WaitForSeconds(100);
+        yield return new WaitForSeconds(65);
         StartCoroutine(DissolveScreen());
     }
 
 
     private void UIManagerOnSkipVideo(object sender, EventArgs e)
     {
+        StopCoroutine(ShowLogo());
         StartCoroutine(DissolveScreen());
+        OnVideoFinished(this, EventArgs.Empty);
     }
 
     IEnumerator DissolveScreen()
@@ -65,20 +68,35 @@ public class UIManager : MonoBehaviour
         float volume = 1;
         var dissolving = true;
         backGround.SetActive(true);
+        backGround.GetComponentInChildren<Light>().intensity = 0;
         while (dissolving)
         {
             yield return new WaitForFixedUpdate();
-            color.a -= 0.1f;
-            volume -= 0.1f;
+            color.a -= 0.005f;
+            videoScreen.color = color;
+            volume -= 0.01f;
             videoScreen.GetComponentInChildren<VideoPlayer>().SetDirectAudioVolume(0, volume);
             if (color.a <= 0.01)
             {
                 dissolving = false;
-                videoScreen.gameObject.SetActive(false);
             }
         }
-        OnVideoFinished(this, EventArgs.Empty);
-        
+        var appearing = true;
+        float intensity = 0;
+        while (appearing)
+        {
+            intensity += 0.01f;
+            backGround.GetComponentInChildren<Light>().intensity = intensity;
+            yield return new WaitForFixedUpdate();
+            
+            if (intensity >= 1.5)
+            {
+                appearing = false;
+                videoScreen.gameObject.SetActive(false);
+                OnVideoFinished(this, EventArgs.Empty);
+            }
+        }
+        playerUI.SetActive(true);
     }
 
     private void UIManagerOnReStart(object sender, EventArgs e)
