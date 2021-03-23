@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 1405755896109033955}
   - component: {fileID: 2017725098203722899}
   - component: {fileID: 2469738723561057625}
+  - component: {fileID: 771839802678472394}
   m_Layer: 0
   m_Name: XWing
   m_TagString: Untagged
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLives: 500
-  UpdateDelayTimer: 0
+  CanTakeDamage: 0
   UpdateDelaySeconds: 0.5
   OriginPosition:
     x: 0
@@ -447,7 +448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a077889c2da3a7438c0c81ca7a6ebe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasCollided: 0
   AffectedTarget: {fileID: 0}
 --- !u!114 &2017725098203722899
 MonoBehaviour:
@@ -482,3 +482,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96dc42dc522e7f4eb572f1b8302d45f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &771839802678472394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939172606624810271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08321a35569b0740af21d260a39c279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedParticleEntity: {fileID: 5046066178861531201, guid: 2debb459fde3f784dade5ecb04d9fdb7, type: 3}
+  ParticlePrefabObject: {fileID: 6026049665455155814, guid: 7be2b7692779fed4287ed3e189c34823, type: 3}

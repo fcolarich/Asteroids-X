@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class GameWavesControlSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
+    private BeginInitializationEntityCommandBufferSystem _beginSimulationEcbSystem;
     private bool _newWave = true;
     private bool _resetGame = true;
     private int _amountToSpawn;
@@ -19,13 +19,13 @@ public class GameWavesControlSystem : SystemBase
 
     protected override void OnCreate()
     {
-        _endSimulationEcbSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+        _beginSimulationEcbSystem = World.GetExistingSystem<BeginInitializationEntityCommandBufferSystem>();
     }
 
 
     protected override void OnUpdate()
     {
-        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
+        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer();
 
         if (!HasSingleton<GameStateData>()) return;
         var gameState = GetSingleton<GameStateData>();
@@ -34,7 +34,8 @@ public class GameWavesControlSystem : SystemBase
         {
             if (_resetGame)
             {
-                Entities.WithNone<PowerUpPrefab>().WithAny<MoveSpeedData>().WithAny<PowerUpTag>().ForEach((Entity thisEntity) => { ecb.DestroyEntity(thisEntity); })
+                Entities.WithNone<PowerUpPrefab>().WithAny<MoveSpeedData>().WithAny<PowerUpTag>().ForEach((Entity thisEntity) => 
+                        { ecb.DestroyEntity(thisEntity); })
                     .WithoutBurst().Run();
                 _newWave = true;
                 Entities.ForEach((ref WaveManagerData waveManagerData) => { waveManagerData.CurrentWave = 0; })
@@ -61,50 +62,49 @@ public class GameWavesControlSystem : SystemBase
 
                 for (int i = 0; i < tempAmountToSpawn; i++)
                 {
-                    var spawnLocation = Random.insideUnitCircle.normalized * 350;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 200;
                     var newEntity = ecb.Instantiate(waveManagerData.AsteroidPrefab);
                     ecb.SetComponent(newEntity,
                         new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});
                 }
 
-                var modWaves = waveManagerData.CurrentWave % 3;
+                var modWaves = waveManagerData.CurrentWave % waveManagerData.BigUFOWaveIntervals;
                 if (modWaves == 0)
                 {
-                    var spawnLocation = Random.insideUnitCircle.normalized * 95;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 90;
                     var newEntity = ecb.Instantiate(waveManagerData.BigUFOPrefab);
                     ecb.SetComponent(newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x + 300, spawnLocation.y, -50)});
+                        new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
                     OnEnemyBigShipCreated(this,EventArgs.Empty);
                 }
 
             }).WithoutBurst().Run();
             _amountToSpawn = tempAmountToSpawn;
         }
+        
+        
         Entities.ForEach((ref WaveManagerData waveManagerData) =>
         {
-
-
             var destroyedAsteroidsAmount = GetEntityQuery(ComponentType.ReadOnly<SmallAsteroidDestroyedTag>())
                 .CalculateEntityCount();
             if (destroyedAsteroidsAmount > _amountToSpawn - 4 && waveManagerData.SpawnTimer <= 0)
             {
                 if (Random.value > 0.5)
                 {
-                    
-                    var spawnLocation = Random.insideUnitCircle.normalized * 95;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 90;
                     var newEntity = ecb.Instantiate(waveManagerData.SmallUFOPrefab);
                     ecb.SetComponent(newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x + 300, spawnLocation.y, -50)});
+                        new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
                     waveManagerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
                     OnEnemyShipCreated(this, EventArgs.Empty);
                 }
 
                 if (Random.value > 0.7)
                 {
-                    var spawnLocation = Random.insideUnitCircle.normalized * 95;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 90;
                     var newEntity = ecb.Instantiate(waveManagerData.MediumUFOPrefab);
                     ecb.SetComponent(newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x + 300, spawnLocation.y, -50)});
+                        new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
                     waveManagerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
                     OnEnemyShipCreated(this, EventArgs.Empty);
                 }
@@ -128,7 +128,7 @@ public class GameWavesControlSystem : SystemBase
                 .Run();
         }
 
-        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
 
 }

@@ -2,23 +2,20 @@ using System;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 using Random = UnityEngine.Random;
-
 
 public class EnemyCollisionSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
+    private BeginSimulationEntityCommandBufferSystem _beginSimulationEcbSystem;
     public EventHandler OnPointsUpdatePlayer1;
     public EventHandler OnPointsUpdatePlayer2;
     public EventHandler OnEnemyHit;
     public EventHandler OnBigShipDestroyed;
 
-
-
-
     protected override void OnCreate()
     {
-        _endSimulationEcbSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+        _beginSimulationEcbSystem = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
     }
 
 
@@ -29,19 +26,14 @@ public class EnemyCollisionSystem : SystemBase
         if (gameState.GameState != GameStateData.State.Playing) return;
 
         
-        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
-        var deltaTime = Time.DeltaTime;
+        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer();
         
-        Entities.WithChangeFilter<CollisionControlData>().WithAny<AsteroidsTag>().WithAny<UFOSmallTag>().WithAny<UFOMediumTag>().ForEach(
+        Entities.WithChangeFilter<CollisionControlData>().WithAll<HasCollidedTag>().WithAny<AsteroidsTag>().WithAny<UFOSmallTag>().WithAny<UFOMediumTag>().ForEach(
             (Entity thisEntity, ref CollisionControlData collisionControlData, in Translation trans,
-                in PlayerPointsData playerPointsData, in SpawnEntityData spawnEntityData, in PowerUpRandomAppearData powerUpRandomAppearData) =>
+                in PlayerPointsData playerPointsData, in SpawnEntityData spawnEntityData, in PowerUpRandomAppearData powerUpRandomAppearData, in OnHitParticlesData particlesData) =>
             {
-                if (collisionControlData.HasCollided)
-                {
-                    collisionControlData.HasCollided = false;
-                    var targetEntity = collisionControlData.AffectedTarget;
-                    
-
+                ecb.RemoveComponent<HasCollidedTag>(thisEntity);
+                var targetEntity = collisionControlData.AffectedTarget;
                     if (EntityManager.Exists(targetEntity))
                     {
                         var currentPlayerPoints = EntityManager.GetComponentData<PlayerPointsData>(targetEntity).points;
@@ -62,23 +54,19 @@ public class EnemyCollisionSystem : SystemBase
                         SpawnEntities(1, powerUpRandomAppearData.RandomPowerUp, trans, ecb, false);
                     }
                     
-                    OnEnemyHit(this, EventArgs.Empty); //SAME AS WITH PLAYER, WE NEED TO SEND LOCATION TO SPAWN FX
+                    OnEnemyHit(this, EventArgs.Empty);
+                   
                     
+                    GameObject.Instantiate(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
                     ecb.DestroyEntity(thisEntity);
-                }
+                    
             }).WithoutBurst().Run();
 
-        Entities.WithAll<UFOBigTag>().ForEach(
+        Entities.WithAll<UFOBigTag>().WithAll<HasCollidedTag>().ForEach(
             (Entity thisEntity, ref UFOLivesData ufoLivesData, ref CollisionControlData collisionControlData, in Translation trans,
-                in PlayerPointsData playerPointsData, in SpawnEntityData spawnEntityData) =>
+                in PlayerPointsData playerPointsData, in SpawnEntityData spawnEntityData, in OnHitParticlesData particlesData) =>
             {
-                if (collisionControlData.HasCollided)
-                {
-                    collisionControlData.HasCollided = false;
-                    
-                    if (ufoLivesData.UpdateDelayTimer <= 0)
-                    {
-                        var targetEntity = collisionControlData.AffectedTarget;
+                    var targetEntity = collisionControlData.AffectedTarget;
 
                         if (EntityManager.Exists(targetEntity))
                         {
@@ -98,36 +86,32 @@ public class EnemyCollisionSystem : SystemBase
 
                         SpawnEntities(spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
 
-                        OnEnemyHit(this, EventArgs.Empty); //SAME AS WITH PLAYER, WE NEED TO SEND LOCATION TO SPAWN FX
-                        
+                        OnEnemyHit(this, EventArgs.Empty);
+                        GameObject.Instantiate(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
+
                         var currentLives = ufoLivesData.CurrentLives - 1;
                         if (currentLives > 0)
                         {
                             ufoLivesData.CurrentLives = currentLives;
-                            ufoLivesData.UpdateDelayTimer = ufoLivesData.UpdateDelaySeconds;
                         }
                         else
                         {
                             ecb.DestroyEntity(thisEntity);
-                            OnBigShipDestroyed(this, EventArgs.Empty);//SAME AS WITH PLAYER, WE NEED TO SEND LOCATION TO SPAWN FX
+                            OnBigShipDestroyed(this, EventArgs.Empty);
                         }
-                    }
-                } 
-                ufoLivesData.UpdateDelayTimer -= deltaTime;
+                    ecb.RemoveComponent<HasCollidedTag>(thisEntity);
             }).WithoutBurst().Run();
 
 
-        Entities.WithAll<EnemyBulletTag>().ForEach((Entity thisEntity,
-            in CollisionControlData collisionControlData) =>
+        Entities.WithAll<EnemyBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity,
+            in CollisionControlData collisionControlData, in OnHitParticlesData particlesData, in Translation trans) =>
         {
-            if (collisionControlData.HasCollided)
-            {
-                ecb.DestroyEntity(thisEntity);
-            }
-        }).Schedule();
+            ecb.RemoveComponent<HasCollidedTag>(thisEntity);
+           GameObject.Instantiate(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity); 
+            ecb.DestroyEntity(thisEntity);
+        }).WithoutBurst().Run();
         
-        
-        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
     
     static void AddPointsToPlayer(Entity targetEntity, PlayerPointsData playerPointsData, EntityCommandBuffer ecb, int playerPoints)

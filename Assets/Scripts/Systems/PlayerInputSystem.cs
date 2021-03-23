@@ -16,6 +16,7 @@ public class PlayerInputSystem : SystemBase
     public EventHandler OnStart;
     public EventHandler OnRestart;
     public EventHandler OnPlayer2Join;
+    private bool _player2Spawned = false;
     
     protected override void OnStartRunning()
     {
@@ -42,9 +43,10 @@ public class PlayerInputSystem : SystemBase
                         EntityManager.Instantiate(player1SpawnData.Player1Prefab);
                     }).WithoutBurst().WithStructuralChanges().Run();
                 }
-                if (_playersActions.Player2.Fire.triggered)
+                if (_playersActions.Player2.Fire.triggered && !_player2Spawned)
                 {
                     OnPlayer2Join(this,EventArgs.Empty);
+                    _player2Spawned = true;
                     Entities.ForEach((in Player2SpawnData player2SpawnData) =>
                     {
                         var player2 = EntityManager.Instantiate(player2SpawnData.Player2Prefab);
@@ -62,6 +64,7 @@ public class PlayerInputSystem : SystemBase
                     }).WithoutBurst().WithStructuralChanges().Run();
                     gameState.GameState = GameStateData.State.Playing;
                     SetSingleton(gameState);
+                    _player2Spawned = false;
                     OnRestart(this, EventArgs.Empty);
                 }
 
@@ -117,10 +120,10 @@ public class PlayerInputSystem : SystemBase
 
         if (_playersActions.Player2.Move.ReadValue<Vector2>().y > 0)
         {
-            Entities.WithAll<Player2Tag>()
+            Entities.
+                WithAll<Player2Tag>()
                 .ForEach((ref MoveSpeedData speedData, in MoveAccelerationData accelerationData,
-                    in Rotation rot,
-                    in MoveMaxSpeedData maxSpeedData) =>
+                    in Rotation rot, in MoveMaxSpeedData maxSpeedData) =>
                 {
                     if (GetFloat3Magnitude(speedData.movementSpeed) < maxSpeedData.MaxSpeed)
                     {
@@ -133,8 +136,9 @@ public class PlayerInputSystem : SystemBase
         var player2ActionValueX = _playersActions.Player2.Move.ReadValue<Vector2>().x;
         if (player2ActionValueX != 0)
         {
-            Entities.WithAll<Player2Tag>().ForEach(
-                (ref MoveRotationData rotationData, in LocalToWorld localToWorld,
+            Entities.
+                WithAll<Player2Tag>()
+                .ForEach((ref MoveRotationData rotationData, in LocalToWorld localToWorld,
                     in MoveRotationModifierData rotationModifier) =>
                 {
                     rotationData.rotation =
@@ -145,8 +149,9 @@ public class PlayerInputSystem : SystemBase
 
         if (_playersActions.Player1.Fire.triggered)
         {
-            Entities.WithAll<Player1Tag>().ForEach((ref BulletFireData bulletFireData) =>
-            {
+            Entities.WithAll<Player1Tag>()
+                .ForEach((ref BulletFireData bulletFireData) =>
+            { 
                 bulletFireData.TryFire = true;
             }).WithStructuralChanges().WithoutBurst().Run();
         }
@@ -154,16 +159,19 @@ public class PlayerInputSystem : SystemBase
         if (_playersActions.Player2.Fire.triggered)
         {
             Entities.WithAll<Player2Tag>()
-                .ForEach((ref BulletFireData bulletFireData) => { bulletFireData.TryFire = true; })
-                .WithStructuralChanges().WithoutBurst().Run();
+                .ForEach((ref BulletFireData bulletFireData) =>
+                {
+                    bulletFireData.TryFire = true;
+                }).WithStructuralChanges().WithoutBurst().Run();
             
             var playerAmount = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).CalculateEntityCount();
-            if (playerAmount == 1)
+            if (!_player2Spawned)
             {
+                _player2Spawned = true;
                 OnPlayer2Join(this,EventArgs.Empty);
                 Entities.ForEach((in Player2SpawnData player2SpawnData) =>
-                {
-                    var player2 = EntityManager.Instantiate(player2SpawnData.Player2Prefab);
+                { 
+                    EntityManager.Instantiate(player2SpawnData.Player2Prefab);
                 }).WithStructuralChanges().WithoutBurst().Run();
             }
         }

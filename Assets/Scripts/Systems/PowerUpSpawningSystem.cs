@@ -3,19 +3,18 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 
 public class PowerUpSpawningSystem : SystemBase
 {
-    EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
-    private NativeArray<Entity> powerUpArray;
+    EndFixedStepSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
+    private NativeArray<Entity> _powerUpArray;
 
 
     protected override void OnCreate()
     {
-        _endSimulationEcbSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+        _endSimulationEcbSystem = World.GetExistingSystem<EndFixedStepSimulationEntityCommandBufferSystem>();
     }
 
     
@@ -28,7 +27,7 @@ public class PowerUpSpawningSystem : SystemBase
 
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
-        Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity, ref PowerUpPrefab powerUpPrefab) =>
+        Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity,PowerUpParticleData powerUpParticleData, ref PowerUpData powerUpData, ref PowerUpPrefab powerUpPrefab) =>
       {
           powerUpPrefab.AppearanceTimer -= deltaTime;
           
@@ -38,23 +37,32 @@ public class PowerUpSpawningSystem : SystemBase
 
                   if (Random.value > 0.5)
                   {
-                      var spawnLocation = Random.insideUnitCircle * 180;
+                      var spawnLocation = new float3(Random.insideUnitCircle * 180, -50);
                       var newEntity = ecb.Instantiate(thisEntity);
                       ecb.RemoveComponent<PowerUpPrefab>(newEntity);
-                      ecb.SetComponent(newEntity, new Translation {Value = new float3(spawnLocation, -50)});
+                      ecb.SetComponent(newEntity, new Translation {Value = spawnLocation});
+                      Object.Instantiate(powerUpParticleData.PowerUpParticle,spawnLocation, quaternion.identity);
                   }
           }
-      }).Run(); 
+      }).WithoutBurst().Run(); 
         
-       powerUpArray = GetEntityQuery(ComponentType.ReadOnly<PowerUpPrefab>()).ToEntityArray(Allocator.Temp);
-  
-      Entities.WithAll<RandomPowerUpTag>().ForEach((Entity thisEntity, in Translation trans) =>
+       _powerUpArray = GetEntityQuery(ComponentType.ReadOnly<PowerUpPrefab>()).ToEntityArray(Allocator.Temp);
+
+       Entities.WithAll<RandomPowerUpTag>().ForEach((Entity thisEntity, in Translation trans) =>
       {
-          int value = Random.Range(0, powerUpArray.Length);
-          var newEntity = ecb.Instantiate(powerUpArray[value]);
-          ecb.RemoveComponent<PowerUpPrefab>(newEntity); 
+          int value = Random.Range(0, _powerUpArray.Length);
+          var newEntity = ecb.Instantiate(_powerUpArray[value]);
+          ecb.RemoveComponent<PowerUpPrefab>(newEntity);
+          ecb.AddComponent(newEntity, new ToInitializeTag());
           ecb.SetComponent(newEntity, new Translation {Value =  trans.Value});
           ecb.DestroyEntity(thisEntity);
+      }).WithoutBurst().Run();
+      
+      Entities.WithAll<PowerUpTag>().WithAll<ToInitializeTag>().ForEach((Entity thisEntity, in Translation trans, in PowerUpParticleData powerUpParticleData) =>
+      {
+          ecb.RemoveComponent<ToInitializeTag>(thisEntity);
+          var newParticles = GameObject.Instantiate(powerUpParticleData.PowerUpParticle, trans.Value,Quaternion.identity);
+          powerUpParticleData.PowerUpParticle = newParticles;
       }).WithoutBurst().Run();
       
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);

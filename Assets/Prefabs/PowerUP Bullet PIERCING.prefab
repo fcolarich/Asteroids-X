@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87ba8dd78736ed4795702bff32553d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTimeSeconds: 0
+  lifeTimeSeconds: 10
 --- !u!1001 &3793949832836484048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7539000908664725180, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
       propertyPath: m_Name
-      value: BulletPowerUP PIERCING
+      value: PowerUP Bullet PIERCING
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}

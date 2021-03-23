@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
 public class PlayerCollisionSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
+    private BeginSimulationEntityCommandBufferSystem _beginSimulationEcbSystem;
     public EventHandler OnLivesUpdatePlayer1;
     public EventHandler OnLivesUpdatePlayer2;
     public EventHandler OnPlayersDestroyed;
@@ -17,7 +18,7 @@ public class PlayerCollisionSystem : SystemBase
 
     protected override void OnCreate()
     {
-        _endSimulationEcbSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+        _beginSimulationEcbSystem = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
     }
 
     protected override void OnUpdate()
@@ -26,55 +27,45 @@ public class PlayerCollisionSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
         
-        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
-        var deltaTime = Time.DeltaTime;
+        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer();
 
-        Entities.ForEach((Entity thisEntity, ref PlayerLivesData playerLivesData,
-            ref CollisionControlData collisionControlData, ref Translation trans, ref MoveSpeedData moveSpeedData) =>
+        Entities.WithAll<HasCollidedTag>().ForEach((Entity thisEntity, ref PlayerLivesData playerLivesData,
+            ref CollisionControlData collisionControlData, ref Translation trans, ref MoveSpeedData moveSpeedData, in OnHitParticlesData particlesData) =>
         {
-            if (collisionControlData.HasCollided)
+            if (playerLivesData.CanTakeDamage)
             {
-                collisionControlData.HasCollided = false;
-                if (playerLivesData.UpdateDelayTimer <= 0)
+                playerLivesData.CurrentLives -= 1;
+                if (HasComponent<Player1Tag>(thisEntity))
                 {
-                    playerLivesData.CurrentLives -= 1;
-                    if (HasComponent<Player1Tag>(thisEntity))
-                    {
-                        OnLivesUpdatePlayer1(playerLivesData.CurrentLives, EventArgs.Empty);
-                    }
-                    else
-                    {
-                        OnLivesUpdatePlayer2(playerLivesData.CurrentLives, EventArgs.Empty);
-                    }
-                    OnPlayerShot(this,EventArgs.Empty);
-                    
-                    //TO INSTANTIATE EXPLOSION FX WE NEED THE LOCATION, WILL HAVE TO EDIT EVENT TO SEND LOCATION
-                    
-                    if (playerLivesData.CurrentLives < 1)
-                    {
-                        ecb.DestroyEntity(thisEntity);
-                    }
-                    else
-                    {
-                        playerLivesData.UpdateDelayTimer = playerLivesData.UpdateDelaySeconds;
-                        trans.Value = playerLivesData.OriginPosition;
-                        moveSpeedData.movementSpeed = 0;
-                    }
+                    OnLivesUpdatePlayer1(playerLivesData.CurrentLives, EventArgs.Empty);
+                }
+                else
+                {
+                    OnLivesUpdatePlayer2(playerLivesData.CurrentLives, EventArgs.Empty);
+                }
+
+                OnPlayerShot(this, EventArgs.Empty);
+                GameObject.Instantiate(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
+
+                if (playerLivesData.CurrentLives < 1)
+                {
+                    ecb.DestroyEntity(thisEntity);
+                }
+                else
+                {
+                    trans.Value = playerLivesData.OriginPosition;
+                    moveSpeedData.movementSpeed = 0;
                 }
             }
-
-            playerLivesData.UpdateDelayTimer -= deltaTime;
-
+            ecb.RemoveComponent<HasCollidedTag>(thisEntity);
         }).WithoutBurst().Run();
         
-        Entities.WithAll<PlayerBulletTag>().ForEach((Entity thisEntity,
-            in CollisionControlData collisionControlData) =>
+        Entities.WithAll<PlayerBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity,
+            in CollisionControlData collisionControlData, in Translation trans, in OnHitParticlesData particlesData) =>
         {
-            if (collisionControlData.HasCollided)
-            {
+                GameObject.Instantiate(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
                 ecb.DestroyEntity(thisEntity);
-            }
-        }).Schedule();
+        }).WithoutBurst().Run();
         
         
         var playerCount = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).CalculateEntityCount();
@@ -85,7 +76,7 @@ public class PlayerCollisionSystem : SystemBase
             OnPlayersDestroyed(this, EventArgs.Empty);
         }
         
-        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
 
     }
 }
