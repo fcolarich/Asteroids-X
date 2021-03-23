@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleDespawn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private float secondsUntilDeSpawn = 2f;
+    
+    void OnEnable()
     {
-        
+        StartCoroutine(DespawnAfterTime());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DespawnAfterTime()
     {
-        
+        yield return new WaitForSeconds(secondsUntilDeSpawn);
+        print("DESPAWN");
+        Pooler.Instance.DeSpawn(this.gameObject);
     }
 }

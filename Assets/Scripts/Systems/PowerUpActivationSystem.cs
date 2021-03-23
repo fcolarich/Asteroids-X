@@ -36,7 +36,7 @@ public class PowerUpActivationSystem : SystemBase
         Entities.WithAll<PowerUpTag>().WithNone<PowerUpPrefab>().WithAll<HasCollidedTag>()
             .ForEach((Entity thisEntity, ref PowerUpData powerUpEffectData,
                 ref CollisionControlData collisionControlData, ref LifeTimeData lifeTimeData,
-                in OnHitParticlesData particlesData, in PowerUpParticleData powerUpParticleData) =>
+                in OnHitParticlesData particlesData, in GameObjectParticleData powerUpParticleData) =>
             {
                 powerUpParticleData.PowerUpParticle.SetActive(false);
                 

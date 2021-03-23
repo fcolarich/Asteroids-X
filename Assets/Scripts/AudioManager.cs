@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
@@ -28,19 +29,46 @@ public class AudioManager : MonoBehaviour
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += AudioManagerOnRestart;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += AudioManagerOnPlayer2Join;
-
-        
-        
+        music.SetActive(false);
+        GetComponent<UIManager>().OnLogoOut += AudioManagerOnLogoOut;
+        GetComponent<UIManager>().OnVideoFinished += AudioManagerOnVideoFinished;
         _pooler = Pooler.Instance;
-        {
-            _pooler.Spawn(player2Joined);
-        }
-        
     }
 
+    private void AudioManagerOnVideoFinished(object sender, EventArgs e)
+    {
+        StartCoroutine(MusicFadeIn());
+    }
+
+    IEnumerator MusicFadeIn()
+    {
+        music.GetComponent<AudioSource>().volume = 0;
+        music.SetActive(true);
+        var dissolving = true;
+        while (dissolving)
+        {
+            yield return new WaitForFixedUpdate();
+            music.GetComponent<AudioSource>().volume += 1;
+            if (music.GetComponent<AudioSource>().volume >= 123)
+            {
+                dissolving = false;
+            }
+        }
+    }
+    
+
+    private void AudioManagerOnLogoOut(object sender, EventArgs e)
+    {
+//
+    }
+
+    
+    
     private void AudioManagerOnPlayer2Join(object sender, EventArgs e)
     {
-    }
+        _pooler.Spawn(player2Joined);
+        
+        }
 
     private void AudioManagerOnRestart(object sender, EventArgs e)
     {

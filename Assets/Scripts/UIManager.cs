@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using TMPro;
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +18,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text defeatLine1;
     [SerializeField] private TMP_Text defeatLine2;
     [SerializeField] private RectTransform welcomeMessage;
+    [SerializeField] private GameObject backGround;
+    [SerializeField] private RawImage videoScreen;
+    
+    public EventHandler OnLogoOut;
+    public EventHandler OnVideoFinished;
+    
     
     private string _player1Points = "0";
     private string _player2Points = "0";
@@ -33,7 +42,43 @@ public class UIManager : MonoBehaviour
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerCollisionSystem>().OnLivesUpdatePlayer2 += UIManagerOnLivesUpdatePlayer2;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerCollisionSystem>().OnPlayersDestroyed += UIManagerOnPlayersDestroyed;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += UIManagerOnPlayer2Joined;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnSkipVideo += UIManagerOnSkipVideo;
 
+        StartCoroutine(ShowLogo());
+    }
+
+    IEnumerator ShowLogo()
+    {
+        yield return new WaitForSeconds(100);
+        StartCoroutine(DissolveScreen());
+    }
+
+
+    private void UIManagerOnSkipVideo(object sender, EventArgs e)
+    {
+        StartCoroutine(DissolveScreen());
+    }
+
+    IEnumerator DissolveScreen()
+    {
+        var color = videoScreen.color;
+        float volume = 1;
+        var dissolving = true;
+        backGround.SetActive(true);
+        while (dissolving)
+        {
+            yield return new WaitForFixedUpdate();
+            color.a -= 0.1f;
+            volume -= 0.1f;
+            videoScreen.GetComponentInChildren<VideoPlayer>().SetDirectAudioVolume(0, volume);
+            if (color.a <= 0.01)
+            {
+                dissolving = false;
+                videoScreen.gameObject.SetActive(false);
+            }
+        }
+        OnVideoFinished(this, EventArgs.Empty);
+        
     }
 
     private void UIManagerOnReStart(object sender, EventArgs e)

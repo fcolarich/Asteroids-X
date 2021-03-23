@@ -193,6 +193,19 @@ MonoBehaviour:
     Tag05: 0
     Tag06: 0
     Tag07: 0
+--- !u!114 &7352646373395215562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7478383023609369758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56a43e5538c6834ca777b185110cff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerUpParticle: {fileID: 174076, guid: cda1dafbd8a5c4b459b1fbac5d769f5f, type: 3}
 --- !u!114 &8237725786739521269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +481,10 @@ PrefabInstance:
       propertyPath: m_Material.m_CollidesWithCategories.m_Value.Category31
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2079229049790724427, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
+      propertyPath: SpawnEntity
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 771839802678472394, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: LinkedParticleEntity
       value: 
@@ -551,6 +568,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -7614104756142146799, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
     - {fileID: -5532864607612200695, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
+    - {fileID: -2079229049790724427, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
 --- !u!1 &7478383023609369758 stripped
 GameObject:

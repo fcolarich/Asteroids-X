@@ -14,7 +14,7 @@ public class AudioDespawn : MonoBehaviour
         _waitForSeconds = new WaitForSeconds(time);
     }
 
-    void Awake()
+    void OnEnable()
     {
         StartCoroutine(DespawnTimer());
     }

@@ -28,7 +28,7 @@ public class PowerUpSpawningSystem : SystemBase
 
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
-        Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity, PowerUpParticleData powerUpParticleData, ref PowerUpData powerUpData, ref PowerUpPrefab powerUpPrefab) =>
+        Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity, GameObjectParticleData powerUpParticleData, ref PowerUpData powerUpData, ref PowerUpPrefab powerUpPrefab) =>
       {
           powerUpPrefab.AppearanceTimer -= deltaTime;
           
@@ -43,7 +43,7 @@ public class PowerUpSpawningSystem : SystemBase
                       ecb.RemoveComponent<PowerUpPrefab>(newEntity);
                       ecb.SetComponent(newEntity, new Translation {Value = spawnLocation});
                       var newParticles = Pooler.Instance.Spawn(powerUpParticleData.PowerUpParticle,spawnLocation, quaternion.identity);
-                      ecb.SetComponent(newEntity, new PowerUpParticleData() {PowerUpParticle = newParticles});
+                      ecb.SetComponent(newEntity, new GameObjectParticleData() {PowerUpParticle = newParticles});
                   }
           }
       }).WithoutBurst().Run(); 
@@ -60,11 +60,11 @@ public class PowerUpSpawningSystem : SystemBase
           ecb.DestroyEntity(thisEntity);
       }).WithoutBurst().Run();
       
-      Entities.WithAll<PowerUpTag>().WithAll<ToInitializeTag>().ForEach((Entity thisEntity, PowerUpParticleData powerUpParticleData, in Translation trans) =>
+      Entities.WithAll<PowerUpTag>().WithAll<ToInitializeTag>().ForEach((Entity thisEntity, GameObjectParticleData powerUpParticleData, in Translation trans) =>
       {
           ecb.RemoveComponent<ToInitializeTag>(thisEntity);
           var newParticles = Pooler.Instance.Spawn(powerUpParticleData.PowerUpParticle, trans.Value,Quaternion.identity);
-          ecb.SetComponent(thisEntity, new PowerUpParticleData() {PowerUpParticle = newParticles});
+          ecb.SetComponent(thisEntity, new GameObjectParticleData() {PowerUpParticle = newParticles});
 
       }).WithoutBurst().Run();
       

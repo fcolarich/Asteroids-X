@@ -35,7 +35,7 @@ public class LifeTimeSystem : SystemBase
                 }
             }).ScheduleParallel();
         
-        Entities.WithNone<PowerUpPrefab>().WithAll<PowerUpTag>().ForEach((PowerUpParticleData powerUpParticleData, 
+        Entities.WithNone<PowerUpPrefab>().WithAll<PowerUpTag>().ForEach((GameObjectParticleData powerUpParticleData, 
             ref LifeTimeData lifeTime, in Entity thisEntity) =>
             {
                 lifeTime.lifeTimeSeconds -= deltaTime;

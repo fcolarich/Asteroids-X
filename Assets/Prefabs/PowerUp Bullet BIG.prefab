@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7539000908664725180, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
       propertyPath: m_Name
-      value: BulletPowerUP BIG
+      value: PowerUp Bullet BIG
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}

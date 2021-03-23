@@ -16,6 +16,8 @@ public class PlayerInputSystem : SystemBase
     public EventHandler OnStart;
     public EventHandler OnRestart;
     public EventHandler OnPlayer2Join;
+    public EventHandler OnSkipVideo;
+
     private bool _player2Spawned = false;
     
     protected override void OnStartRunning()
@@ -33,6 +35,11 @@ public class PlayerInputSystem : SystemBase
         {
             case GameStateData.State.WaitingToStart:
             {
+                if (_playersActions.Player1.PauseGame.triggered)
+                {
+                    OnSkipVideo(this, EventArgs.Empty);
+                }
+
                 if (_playersActions.Player1.StartGame.triggered)
                 {
                     OnStart(this,EventArgs.Empty);
@@ -179,23 +186,28 @@ public class PlayerInputSystem : SystemBase
         if (_playersActions.Player1.Hyperspace.triggered)
         {
             Entities.WithAll<Player1Tag>()
-                .ForEach((ref MoveSpeedData speedData, ref Translation trans) =>
+                .ForEach((GameObjectParticleData gameObjectParticleData, ref MoveSpeedData speedData, ref Translation trans) =>
                 {
                     speedData.movementSpeed = 0;
-                    var hyperJumpLocation = Random.insideUnitCircle.normalized * 75;
+                    var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
+                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                     trans.Value = new float3(hyperJumpLocation, -50);
-                }).Run();
+                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+
+                }).WithoutBurst().Run();
         }
 
         if (_playersActions.Player2.Hyperspace.triggered)
         {
             Entities.WithAll<Player2Tag>()
-                .ForEach((ref MoveSpeedData speedData, ref Translation trans) =>
+                .ForEach((GameObjectParticleData gameObjectParticleData, ref MoveSpeedData speedData, ref Translation trans) =>
                 {
                     speedData.movementSpeed = 0;
-                    var hyperJumpLocation = Random.insideUnitCircle.normalized * 75;
+                    var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
+                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                     trans.Value = new float3(hyperJumpLocation, -50);
-                }).Run();
+                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                }).WithoutBurst().Run();
         }
 
     }

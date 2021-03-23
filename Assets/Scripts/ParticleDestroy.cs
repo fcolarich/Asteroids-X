@@ -6,14 +6,14 @@ using UnityEngine;
 public class ParticleDestroy : MonoBehaviour
 {
 
-    private void Awake()
+    private void OnEnable()
     {
         StartCoroutine(WaitParticleEnd());
     }
 
     IEnumerator WaitParticleEnd()
     {
-        yield return new WaitForSeconds(5);
-        Destroy(this.gameObject);
+        yield return new WaitForSeconds(10);
+        Pooler.Instance.DeSpawn(this.gameObject);
     }
 }
