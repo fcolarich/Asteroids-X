@@ -7,6 +7,4 @@ using Unity.Mathematics;
 public struct UFOLivesData : IComponentData
 {
     public int CurrentLives;
-    public float UpdateDelayTimer;
-    public float UpdateDelaySeconds;
 }

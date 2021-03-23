@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 5694132976342649959}
   - component: {fileID: 5157627827946324983}
   - component: {fileID: 6413984956407225321}
+  - component: {fileID: 3444407931715589165}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -53,7 +54,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a077889c2da3a7438c0c81ca7a6ebe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasCollided: 0
   AffectedTarget: {fileID: 0}
 --- !u!33 &7822408600576877888
 MeshFilter:
@@ -378,3 +378,17 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &3444407931715589165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401130646095200284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08321a35569b0740af21d260a39c279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedParticleEntity: {fileID: 5046066178861531201, guid: 2debb459fde3f784dade5ecb04d9fdb7, type: 3}
+  ParticlePrefabObject: {fileID: 105270, guid: bc6d156303358da4e82d4e7d0cb50e5d, type: 3}

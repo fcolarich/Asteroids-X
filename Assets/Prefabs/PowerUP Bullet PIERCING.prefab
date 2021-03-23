@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &9211205084493832294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6645404467524130156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87ba8dd78736ed4795702bff32553d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTimeSeconds: 10
+--- !u!1001 &3793949832836484048
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 660149491276805000, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: AppearanceTimer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 660149491276805000, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: AppearanceTimeSeconds
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725175, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: NewBulletEntity
+      value: 
+      objectReference: {fileID: 6401130646095200284, guid: 25b31cccc19b97147bc1aa1034d877bd, type: 3}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 660.42163
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -50.638634
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725177, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539000908664725180, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+      propertyPath: m_Name
+      value: PowerUP Bullet PIERCING
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+--- !u!1 &6645404467524130156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7539000908664725180, guid: b1b2dd91e38328c4e89989c1c31d46ce, type: 3}
+  m_PrefabInstance: {fileID: 3793949832836484048}
+  m_PrefabAsset: {fileID: 0}

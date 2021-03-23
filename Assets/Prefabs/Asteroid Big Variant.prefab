@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: prefabObject
       value: 
       objectReference: {fileID: 5829904287980774611, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+    - target: {fileID: 5550190013446683185, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
+      propertyPath: ParticlePrefabObject
+      value: 
+      objectReference: {fileID: 171226, guid: 4f3ae9a9ea2848f428d013e2a283ecb6, type: 3}
     - target: {fileID: 5829904287980774611, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
       propertyPath: m_Name
       value: Asteroid Big Variant

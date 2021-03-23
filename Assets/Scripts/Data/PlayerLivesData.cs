@@ -7,7 +7,7 @@ using Unity.Mathematics;
 public struct PlayerLivesData : IComponentData
 {
   public int CurrentLives;
-  public float UpdateDelayTimer;
+  public bool CanTakeDamage;
   public float UpdateDelaySeconds;
   public float3 OriginPosition;
   public int EarnedLives;

@@ -25,6 +25,7 @@ public class InitializeAsteroidsSystem : SystemBase
                 ecb.RemoveComponent<ToInitializeTag>(thisEntity);
                 rot.Value = Random.rotation;
             }).WithoutBurst().Run();
+        
         _endSimulationECBSystem.AddJobHandleForProducer(this.Dependency);
 
     }

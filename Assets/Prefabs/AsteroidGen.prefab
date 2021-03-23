@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 6681678521077348240}
   - component: {fileID: -4618073866968366144}
   - component: {fileID: 1130238397300112724}
+  - component: {fileID: -4058922033394153682}
   m_Layer: 0
   m_Name: AsteroidGen
   m_TagString: Untagged
@@ -55,7 +56,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a077889c2da3a7438c0c81ca7a6ebe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasCollided: 0
   AffectedTarget: {fileID: 0}
 --- !u!33 &2850788598364620135
 MeshFilter:
@@ -406,3 +406,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RandomPowerUp: {fileID: 3358116459786254392, guid: e384d4f10d5b7394b8be0e66399c3c31, type: 3}
   AppearanceChance: 0.05
+--- !u!114 &-4058922033394153682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506022011637012940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08321a35569b0740af21d260a39c279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedParticleEntity: {fileID: 5046066178861531201, guid: 2debb459fde3f784dade5ecb04d9fdb7, type: 3}
+  ParticlePrefabObject: {fileID: 141964, guid: 2c3dfba26ea87394b9c46fedcdfb3dfd, type: 3}

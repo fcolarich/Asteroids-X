@@ -6,7 +6,5 @@ public struct PowerUpBulletData : IComponentData
 {
     public Entity NewBulletEntity;
     public Entity OldBulletEntity;
-    public float PowerUpTimer;
-    public float PowerUpDurationSeconds;
 }
   

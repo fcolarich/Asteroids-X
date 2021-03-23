@@ -1,20 +1,21 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Rendering;
 using Unity.Transforms;
-using Random = UnityEngine.Random;
+using UnityEngine;
 
 
 public class PowerUpActivationSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
+    private BeginSimulationEntityCommandBufferSystem _beginSimulationEcbSystem;
 
-
+    
+    
     protected override void OnCreate()
     {
-        _endSimulationEcbSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+        _beginSimulationEcbSystem = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
     }
-
 
     protected override void OnUpdate()
     {
@@ -22,160 +23,165 @@ public class PowerUpActivationSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
 
-        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
+        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer();
+
         var deltaTime = Time.DeltaTime;
-        Entities.WithAll<PowerUpEffectFireBoosterData>().ForEach((Entity thisEntity,
-            ref PowerUpEffectData powerUpEffectData,
-            ref CollisionControlData collisionControlData, ref Translation trans, ref LifeTimeData lifeTimeData,
+        
+      
+        var _moveAccelerationData = GetComponentDataFromEntity<MoveAccelerationData>();
+        var _playerLivesData = GetComponentDataFromEntity<PlayerLivesData>();
+        var _bulletFireData = GetComponentDataFromEntity<BulletFireData>();
+        
+        
+        Entities.WithAll<PowerUpTag>().WithNone<PowerUpPrefab>().WithAll<HasCollidedTag>()
+            .ForEach((Entity thisEntity, ref PowerUpData powerUpEffectData,
+                ref CollisionControlData collisionControlData, ref LifeTimeData lifeTimeData,
+                in OnHitParticlesData particlesData, in PowerUpParticleData powerUpParticleData) =>
+            {
+                powerUpParticleData.PowerUpParticle.SetActive(false);
+                
+                ecb.RemoveComponent<HasCollidedTag>(thisEntity);
+                if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
+                {
+                    ecb.RemoveComponent<PhysicsCollider>(thisEntity);
+                    ecb.AddComponent(thisEntity, new ActivePowerUpTag {});
+                    var affectedTarget = collisionControlData.AffectedTarget;
+                    var particleObject = Pooler.Instance.Spawn(particlesData.ParticlePrefabObject);
+                    var linkedParticleEntity = ecb.CreateEntity();
+                    ecb.AddComponent(linkedParticleEntity, new LinkedParticleData()
+                    {
+                        Target = affectedTarget,
+                        ParticleObject = particleObject,
+                        TimerToDestroy = powerUpEffectData.PowerUpDurationSeconds
+                    });
+                    ecb.AddComponent(linkedParticleEntity, new ParticleLinkTag() { });
+                    lifeTimeData.lifeTimeSeconds += powerUpEffectData.PowerUpDurationSeconds+0.001f;
+                    powerUpEffectData.PowerUpTimer = powerUpEffectData.PowerUpDurationSeconds+0.001f;
+                }
+                else
+                {                    
+                    ecb.DestroyEntity(thisEntity);
+                }
+            }).WithoutBurst().Run();
+    
+        Entities.WithAll<PowerUpEffectFireBoosterData>().WithAll<ActivePowerUpTag>().ForEach((Entity thisEntity,
+            ref PowerUpData powerUpData,
+            ref CollisionControlData collisionControlData,
             in PowerUpEffectFireBoosterData powerUpEffectFireBoosterData) =>
         {
-            if (collisionControlData.HasCollided)
+            if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
             {
-                ecb.RemoveComponent<PhysicsCollider>(thisEntity);
-                if (EntityManager.Exists(collisionControlData.AffectedTarget))
-                {
-                    var affectedTarget = collisionControlData.AffectedTarget;
-                    var targetForward = EntityManager.GetComponentData<Rotation>(collisionControlData.AffectedTarget);
-                    trans.Value =
-                        EntityManager.GetComponentData<Translation>(collisionControlData.AffectedTarget).Value -
-                        math.forward(targetForward.Value) * 20;
-                    var bulletFireData = GetComponent<BulletFireData>(affectedTarget);
+                var affectedTarget = collisionControlData.AffectedTarget;
+                var bulletFireData = _bulletFireData[affectedTarget];
 
-                    if (powerUpEffectData.PowerUpTimer == 0)
-                    {
-                        bulletFireData.SecondsBetweenBullets -= powerUpEffectFireBoosterData.FireRateSecondsReduction;
-                        bulletFireData.SecondsBetweenBulletGroups -=
-                            powerUpEffectFireBoosterData.FireRateSecondsReduction*4;
-                        powerUpEffectData.PowerUpTimer = powerUpEffectData.PowerUpDurationSeconds;
-                        ecb.SetComponent(affectedTarget, bulletFireData);
-                        lifeTimeData.lifeTimeSeconds += powerUpEffectData.PowerUpDurationSeconds;
-                    }
-                    else if (powerUpEffectData.PowerUpTimer < 0)
-                    {
-                        bulletFireData.SecondsBetweenBullets += powerUpEffectFireBoosterData.FireRateSecondsReduction;
-                        bulletFireData.SecondsBetweenBulletGroups +=
-                            powerUpEffectFireBoosterData.FireRateSecondsReduction*4;
-                        ecb.SetComponent(affectedTarget, bulletFireData);
-                        ecb.DestroyEntity(thisEntity);
-                    }
-                }
-                else
+                if (powerUpData.PowerUpTimer >= powerUpData.PowerUpDurationSeconds)
                 {
+                    bulletFireData.SecondsBetweenBullets -= powerUpEffectFireBoosterData.FireRateSecondsReduction;
+                    bulletFireData.SecondsBetweenBulletGroups -=
+                        powerUpEffectFireBoosterData.FireRateSecondsReduction * 8;
+                    _bulletFireData[affectedTarget] = bulletFireData;
+                }
+                else if (powerUpData.PowerUpTimer < 0)
+                {
+                    bulletFireData.SecondsBetweenBullets += powerUpEffectFireBoosterData.FireRateSecondsReduction;
+                    bulletFireData.SecondsBetweenBulletGroups +=
+                        powerUpEffectFireBoosterData.FireRateSecondsReduction /8;
+                    _bulletFireData[affectedTarget] = bulletFireData;
                     ecb.DestroyEntity(thisEntity);
                 }
-                powerUpEffectData.PowerUpTimer -= deltaTime;
             }
-        }).WithoutBurst().Run();
-        
-        Entities.WithAll<PowerUpEffectEngineBoosterData>().ForEach((Entity thisEntity,
-            ref PowerUpEffectData powerUpEffectData,
-            ref CollisionControlData collisionControlData, ref Translation trans, ref LifeTimeData lifeTimeData,
+            else
+            {
+                ecb.DestroyEntity(thisEntity);
+            }
+            powerUpData.PowerUpTimer -= deltaTime;
+        }).Schedule();
+
+
+
+        Entities.WithAll<PowerUpEffectEngineBoosterData>().WithAll<ActivePowerUpTag>().ForEach((Entity thisEntity,
+            ref PowerUpData powerUpData, in CollisionControlData collisionControlData, 
             in PowerUpEffectEngineBoosterData powerUpEffectEngineBoosterData) =>
         {
-            if (collisionControlData.HasCollided)
+            if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
             {
-                ecb.RemoveComponent<PhysicsCollider>(thisEntity);
-                if (EntityManager.Exists(collisionControlData.AffectedTarget))
+                var affectedTarget = collisionControlData.AffectedTarget;
+                var moveAccelerationData = _moveAccelerationData[affectedTarget];
+                if (powerUpData.PowerUpTimer >= powerUpData.PowerUpDurationSeconds)
                 {
-                    var affectedTarget = collisionControlData.AffectedTarget;
-                    var targetForward = EntityManager.GetComponentData<Rotation>(collisionControlData.AffectedTarget);
-                    trans.Value =
-                        EntityManager.GetComponentData<Translation>(collisionControlData.AffectedTarget).Value -
-                        math.forward(targetForward.Value) * 20;
-                    var moveAccelerationData = GetComponent<MoveAccelerationData>(affectedTarget);
-
-                    if (powerUpEffectData.PowerUpTimer == 0)
-                    {
-                        moveAccelerationData.acceleration *= powerUpEffectEngineBoosterData.EngineBoosterMultiplier;
-                        powerUpEffectData.PowerUpTimer = powerUpEffectData.PowerUpDurationSeconds;
-                        ecb.SetComponent(affectedTarget, moveAccelerationData);
-                        lifeTimeData.lifeTimeSeconds += powerUpEffectData.PowerUpDurationSeconds;
-                    }
-                    else if (powerUpEffectData.PowerUpTimer < 0)
-                    {
-                        moveAccelerationData.acceleration /= powerUpEffectEngineBoosterData.EngineBoosterMultiplier;
-                        ecb.SetComponent(affectedTarget, moveAccelerationData);
-                        ecb.DestroyEntity(thisEntity);
-                    }
+                    moveAccelerationData.acceleration *= powerUpEffectEngineBoosterData.EngineBoosterMultiplier;
+                    _moveAccelerationData[affectedTarget] = moveAccelerationData;
                 }
-                else
+                else if (powerUpData.PowerUpTimer < 0)
                 {
+                    moveAccelerationData.acceleration /= powerUpEffectEngineBoosterData.EngineBoosterMultiplier;
+                    _moveAccelerationData[affectedTarget] = moveAccelerationData;
                     ecb.DestroyEntity(thisEntity);
                 }
-
-                powerUpEffectData.PowerUpTimer -= deltaTime;
             }
-        }).WithoutBurst().Run();
-        
-        Entities.WithAll<PowerUpEffectShieldData>().ForEach((Entity thisEntity,ref PowerUpEffectData powerUpEffectData,
-            ref CollisionControlData collisionControlData, ref Translation trans, ref LifeTimeData lifeTimeData) =>
+            else
+            {
+                ecb.DestroyEntity(thisEntity);
+            }
+            powerUpData.PowerUpTimer -= deltaTime;
+        }).Schedule();
+
+
+
+        Entities.WithAll<PowerUpEffectShieldData>().WithAll<ActivePowerUpTag>().ForEach((Entity thisEntity,
+            ref PowerUpData powerUpData, in CollisionControlData collisionControlData) =>
         {
-            if (collisionControlData.HasCollided)
+            if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
             {
-                ecb.RemoveComponent<PhysicsCollider>(thisEntity);
-                if (EntityManager.Exists(collisionControlData.AffectedTarget))
+                var affectedTarget = collisionControlData.AffectedTarget;
+                var playerLivesData = _playerLivesData[affectedTarget];
+                if (powerUpData.PowerUpTimer >= powerUpData.PowerUpDurationSeconds)
                 {
-                    var affectedTarget = collisionControlData.AffectedTarget;
-                    var targetForward = EntityManager.GetComponentData<Rotation>(collisionControlData.AffectedTarget);
-                    trans.Value = EntityManager.GetComponentData<Translation>(collisionControlData.AffectedTarget).Value - math.forward(targetForward.Value)*20;
-                    var playerLivesData = GetComponent<PlayerLivesData>(affectedTarget);
-                    
-                    if (powerUpEffectData.PowerUpTimer == 0)
-                    {
-                        playerLivesData.UpdateDelayTimer += powerUpEffectData.PowerUpDurationSeconds;
-                        powerUpEffectData.PowerUpTimer = powerUpEffectData.PowerUpDurationSeconds;
-                        ecb.SetComponent(affectedTarget, playerLivesData);
-                        lifeTimeData.lifeTimeSeconds += powerUpEffectData.PowerUpDurationSeconds;
-                    }
-                    else if (powerUpEffectData.PowerUpTimer < 0)
-                    {
-                        ecb.DestroyEntity(thisEntity);
-                    }
+                    playerLivesData.CanTakeDamage = false;
+                    _playerLivesData[affectedTarget] = playerLivesData;
                 }
-                else
+                else if (powerUpData.PowerUpTimer < 0)
                 {
+                    playerLivesData.CanTakeDamage = true;
+                    _playerLivesData[affectedTarget] = playerLivesData;
                     ecb.DestroyEntity(thisEntity);
                 }
-                powerUpEffectData.PowerUpTimer -= deltaTime;
             }
-        }).WithoutBurst().Run();
-        
-        
-        Entities.WithAll<PowerUpBulletData>().ForEach((Entity thisEntity,ref PowerUpBulletData powerUpBulletData,
-            ref CollisionControlData collisionControlData, ref Translation trans, ref LifeTimeData lifeTimeData) =>
-        {
-            if (collisionControlData.HasCollided)
+            else
             {
-                ecb.RemoveComponent<PhysicsCollider>(thisEntity);
-                if (EntityManager.Exists(collisionControlData.AffectedTarget))
-                {
-                    var affectedTarget = collisionControlData.AffectedTarget;
-                    var bulletFireData = GetComponent<BulletFireData>(affectedTarget);
-                    var targetForward = EntityManager.GetComponentData<Rotation>(affectedTarget);
-                    trans.Value = EntityManager.GetComponentData<Translation>(affectedTarget).Value - math.forward(targetForward.Value)*15;
+                ecb.DestroyEntity(thisEntity);
+            }
+            powerUpData.PowerUpTimer -= deltaTime;
+        }).Schedule();
 
-                    if (powerUpBulletData.PowerUpTimer == 0)
-                    {
-                        powerUpBulletData.PowerUpTimer = powerUpBulletData.PowerUpDurationSeconds;
-                        bulletFireData.BulletPrefab = powerUpBulletData.NewBulletEntity;
-                        ecb.SetComponent(affectedTarget, bulletFireData);
-                        lifeTimeData.lifeTimeSeconds += powerUpBulletData.PowerUpDurationSeconds;
-                    }
-                    else if (powerUpBulletData.PowerUpTimer < 0)
-                    {
-                        bulletFireData.BulletPrefab = powerUpBulletData.OldBulletEntity;
-                        ecb.SetComponent(affectedTarget, bulletFireData);
-                        ecb.DestroyEntity(thisEntity);
-                    }
-                }
-                else
+        Entities.WithAll<PowerUpBulletData>().WithAll<ActivePowerUpTag>().ForEach((Entity thisEntity,
+            ref PowerUpBulletData powerUpBulletData,
+            ref PowerUpData powerUpData, in CollisionControlData collisionControlData) =>
+        {
+            if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
+            {
+                var affectedTarget = collisionControlData.AffectedTarget;
+                var bulletFireData = _bulletFireData[affectedTarget];
+                if (powerUpData.PowerUpTimer >= powerUpData.PowerUpDurationSeconds)
                 {
+                    bulletFireData.BulletPrefab = powerUpBulletData.NewBulletEntity;
+                    _bulletFireData[affectedTarget] =  bulletFireData;
+                }
+                else if (powerUpData.PowerUpTimer < 0)
+                {
+                    bulletFireData.BulletPrefab = powerUpBulletData.OldBulletEntity;
+                    _bulletFireData[affectedTarget] =  bulletFireData;
                     ecb.DestroyEntity(thisEntity);
                 }
-                powerUpBulletData.PowerUpTimer -= deltaTime;
             }
-        }).WithoutBurst().Run();
-        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+            else
+            {
+                ecb.DestroyEntity(thisEntity);
+            }
+            powerUpData.PowerUpTimer -= deltaTime;
+        }).Schedule();
+        
+        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
 }
 

@@ -53,7 +53,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a077889c2da3a7438c0c81ca7a6ebe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasCollided: 0
   AffectedTarget: {fileID: 0}
 --- !u!33 &5362222672431971649
 MeshFilter:
