@@ -9,7 +9,6 @@
         <e p="Input" t="Include">
           <e p="PlayersActions.cs" t="Include" />
         </e>
-        <e p="ParticleDestroy.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AudioDespawn.cs" t="Include" />
           <e p="AudioManager.cs" t="Include" />
@@ -46,6 +45,7 @@
           </e>
           <e p="ParticleCleanup.cs" t="Include" />
           <e p="ParticleDespawn.cs" t="Include" />
+          <e p="ParticleDestroy.cs" t="Include" />
           <e p="Pooler.cs" t="Include" />
           <e p="Systems" t="Include">
             <e p="EnemyCollisionSystem.cs" t="Include" />

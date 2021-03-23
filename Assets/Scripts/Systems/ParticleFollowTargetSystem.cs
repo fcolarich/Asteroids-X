@@ -37,7 +37,7 @@ public partial class ParticleFollowTargetSystem : SystemBase
        linkedParticleData.TimerToDestroy -= deltaTime;
          if (linkedParticleData.TimerToDestroy < 0)
          {
-            Object.Destroy(linkedParticleData.ParticleObject);
+            Pooler.Instance.DeSpawn(linkedParticleData.ParticleObject);
             ecb.DestroyEntity(thisEntity);
          }
       }).WithoutBurst().Run();

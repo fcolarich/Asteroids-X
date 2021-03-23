@@ -12,9 +12,11 @@ public class EnemyCollisionSystem : SystemBase
     public EventHandler OnPointsUpdatePlayer2;
     public EventHandler OnEnemyHit;
     public EventHandler OnBigShipDestroyed;
+    private Pooler _pooler;
 
     protected override void OnCreate()
     {
+        _pooler = Pooler.Instance;
         _beginSimulationEcbSystem = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
     }
 
@@ -57,7 +59,7 @@ public class EnemyCollisionSystem : SystemBase
                     OnEnemyHit(this, EventArgs.Empty);
                    
                     
-                    GameObject.Instantiate(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
+                    _pooler.Spawn(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
                     ecb.DestroyEntity(thisEntity);
                     
             }).WithoutBurst().Run();
@@ -87,7 +89,7 @@ public class EnemyCollisionSystem : SystemBase
                         SpawnEntities(spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
 
                         OnEnemyHit(this, EventArgs.Empty);
-                        GameObject.Instantiate(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
+                        _pooler.Spawn(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
 
                         var currentLives = ufoLivesData.CurrentLives - 1;
                         if (currentLives > 0)
@@ -104,10 +106,8 @@ public class EnemyCollisionSystem : SystemBase
 
 
         Entities.WithAll<EnemyBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity,
-            in CollisionControlData collisionControlData, in OnHitParticlesData particlesData, in Translation trans) =>
+            in CollisionControlData collisionControlData,in Translation trans) =>
         {
-            ecb.RemoveComponent<HasCollidedTag>(thisEntity);
-           GameObject.Instantiate(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity); 
             ecb.DestroyEntity(thisEntity);
         }).WithoutBurst().Run();
         

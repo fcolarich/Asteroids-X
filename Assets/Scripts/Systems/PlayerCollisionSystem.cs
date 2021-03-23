@@ -13,12 +13,13 @@ public class PlayerCollisionSystem : SystemBase
     public EventHandler OnLivesUpdatePlayer2;
     public EventHandler OnPlayersDestroyed;
     public EventHandler OnPlayerShot;
-
+    private Pooler _pooler; 
 
 
     protected override void OnCreate()
     {
         _beginSimulationEcbSystem = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
+        _pooler = Pooler.Instance;
     }
 
     protected override void OnUpdate()
@@ -45,7 +46,7 @@ public class PlayerCollisionSystem : SystemBase
                 }
 
                 OnPlayerShot(this, EventArgs.Empty);
-                GameObject.Instantiate(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
+                _pooler.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
 
                 if (playerLivesData.CurrentLives < 1)
                 {
@@ -63,7 +64,7 @@ public class PlayerCollisionSystem : SystemBase
         Entities.WithAll<PlayerBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity,
             in CollisionControlData collisionControlData, in Translation trans, in OnHitParticlesData particlesData) =>
         {
-                GameObject.Instantiate(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
+                _pooler.Spawn(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
                 ecb.DestroyEntity(thisEntity);
         }).WithoutBurst().Run();
         

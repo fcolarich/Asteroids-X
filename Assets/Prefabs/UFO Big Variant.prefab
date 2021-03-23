@@ -46,8 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLives: 8
-  UpdateDelayTimer: 0
-  UpdateDelaySeconds: 1
 --- !u!1 &5850659319803946400
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +193,7 @@ PrefabInstance:
     - target: {fileID: -194652867232440523, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: ParticlePrefabObject
       value: 
-      objectReference: {fileID: 145830, guid: b68143166a8e288438c316a7f7b0191b, type: 3}
+      objectReference: {fileID: 141964, guid: 2c3dfba26ea87394b9c46fedcdfb3dfd, type: 3}
     - target: {fileID: 15798501, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: SpawnEntity
       value: 
