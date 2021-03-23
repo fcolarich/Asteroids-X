@@ -740,7 +740,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
-  m_AspectRatio: 1
+  m_AspectRatio: 2
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -1192,7 +1192,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -1240,7 +1240,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &969211977
 MonoBehaviour:
@@ -1553,7 +1553,7 @@ RectTransform:
   - {fileID: 307150760}
   - {fileID: 1829454175}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2013,6 +2013,8 @@ MonoBehaviour:
     size: 20
   - prefab: {fileID: 7756688909959351760, guid: c1233f30dd0268d47827a21d5785aa12, type: 3}
     size: 1
+  - prefab: {fileID: 174076, guid: cda1dafbd8a5c4b459b1fbac5d769f5f, type: 3}
+    size: 10
 --- !u!114 &1617055886
 MonoBehaviour:
   m_ObjectHideFlags: 0
