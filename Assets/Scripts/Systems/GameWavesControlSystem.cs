@@ -62,19 +62,19 @@ public class GameWavesControlSystem : SystemBase
 
                 for (int i = 0; i < tempAmountToSpawn; i++)
                 {
-                    var spawnLocation = Random.insideUnitCircle.normalized * 200;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 300;
                     var newEntity = ecb.Instantiate(waveManagerData.AsteroidPrefab);
                     ecb.SetComponent(newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});
+                        new Translation() {Value = new float3(spawnLocation.x+100, spawnLocation.y, -50)});
                 }
 
                 var modWaves = waveManagerData.CurrentWave % waveManagerData.BigUFOWaveIntervals;
                 if (modWaves == 0)
                 {
-                    var spawnLocation = Random.insideUnitCircle.normalized * 90;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 150;
                     var newEntity = ecb.Instantiate(waveManagerData.BigUFOPrefab);
                     ecb.SetComponent(newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
+                        new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});
                     OnEnemyBigShipCreated(this,EventArgs.Empty);
                 }
 
@@ -91,7 +91,7 @@ public class GameWavesControlSystem : SystemBase
             {
                 if (Random.value > 0.5)
                 {
-                    var spawnLocation = Random.insideUnitCircle.normalized * 90;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 150;
                     var newEntity = ecb.Instantiate(waveManagerData.SmallUFOPrefab);
                     ecb.SetComponent(newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
@@ -101,10 +101,10 @@ public class GameWavesControlSystem : SystemBase
 
                 if (Random.value > 0.7)
                 {
-                    var spawnLocation = Random.insideUnitCircle.normalized * 90;
+                    var spawnLocation = Random.insideUnitCircle.normalized * 40;
                     var newEntity = ecb.Instantiate(waveManagerData.MediumUFOPrefab);
                     ecb.SetComponent(newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
+                        new Translation() {Value = new float3(spawnLocation.x + 150, spawnLocation.y, -50)});
                     waveManagerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
                     OnEnemyShipCreated(this, EventArgs.Empty);
                 }

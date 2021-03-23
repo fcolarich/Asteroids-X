@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private GameObject enemyShipCreated;
     [SerializeField] private GameObject enemyBigShipCreated;
     [SerializeField] private GameObject music;
+    [SerializeField] private GameObject player2Joined;
     private Pooler _pooler;
 
 
@@ -26,8 +27,19 @@ public class AudioManager : MonoBehaviour
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnEnemyHit += AudioManagerOnAsteroidExplode;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += AudioManagerOnRestart;
-        _pooler = Pooler.Instance;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += AudioManagerOnPlayer2Join;
+
         
+        
+        _pooler = Pooler.Instance;
+        {
+            _pooler.Spawn(player2Joined);
+        }
+        
+    }
+
+    private void AudioManagerOnPlayer2Join(object sender, EventArgs e)
+    {
     }
 
     private void AudioManagerOnRestart(object sender, EventArgs e)

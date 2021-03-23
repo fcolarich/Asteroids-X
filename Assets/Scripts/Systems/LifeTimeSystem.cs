@@ -8,13 +8,11 @@ using Unity.Transforms;
 public class LifeTimeSystem : SystemBase
 {
     EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
-    private DynamicBuffer<Entity> _buffer;
 
     protected override void OnCreate()
     {
         _endSimulationEcbSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
     }
-
     
     protected override void OnUpdate()
     {
@@ -23,20 +21,22 @@ public class LifeTimeSystem : SystemBase
         if (gameState.GameState != GameStateData.State.Playing) return;
         
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
+        var ecb2 = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
+
         var deltaTime = Time.DeltaTime;
 
         Entities.WithNone<PowerUpPrefab>().WithAll<BulletSourceData>().ForEach(
-            (ref LifeTimeData lifeTime, in Entity thisEntity) =>
+            (int entityInQueryIndex, ref LifeTimeData lifeTime, in Entity thisEntity) =>
             {
                 lifeTime.lifeTimeSeconds -= deltaTime;
                 if (lifeTime.lifeTimeSeconds < 0)
                 {
-                    ecb.DestroyEntity(thisEntity);
+                    ecb2.DestroyEntity(entityInQueryIndex, thisEntity);
                 }
-            }).Schedule();
+            }).ScheduleParallel();
         
-        Entities.WithNone<PowerUpPrefab>().WithAll<PowerUpTag>().ForEach(
-            (ref LifeTimeData lifeTime, in Entity thisEntity, in PowerUpParticleData powerUpParticleData) =>
+        Entities.WithNone<PowerUpPrefab>().WithAll<PowerUpTag>().ForEach((PowerUpParticleData powerUpParticleData, 
+            ref LifeTimeData lifeTime, in Entity thisEntity) =>
             {
                 lifeTime.lifeTimeSeconds -= deltaTime;
                 if (lifeTime.lifeTimeSeconds < 0)
@@ -45,10 +45,6 @@ public class LifeTimeSystem : SystemBase
                     ecb.DestroyEntity(thisEntity);
                 }
             }).WithoutBurst().Run();
-        
-        
-        
-        
         
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }

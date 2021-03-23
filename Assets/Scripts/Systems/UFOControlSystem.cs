@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class UFOControlSystem : SystemBase
 {
-    private NativeArray<Entity> targetEntities;
+    private NativeArray<Entity> _targetEntities;
 
 
     protected override void OnUpdate()
@@ -16,24 +16,20 @@ public class UFOControlSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
         
-        targetEntities = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).ToEntityArray(Allocator.Temp);
-
-
-        var localTargetEntities = targetEntities;
+        _targetEntities = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).ToEntityArray(Allocator.Temp);
+        
+        var localTargetEntities = _targetEntities;
+        var _localTranslation = GetComponentDataFromEntity<Translation>();
+        
         Entities.ForEach((Entity thisEntity, ref UFOGeneralData ufoGeneralData, ref Rotation rot,
-            ref MoveSpeedData moveSpeedData, in MoveSpeedModifierData moveSpeedModifier, in Translation trans,
-            in LocalToWorld localToWorld) =>
+            ref MoveSpeedData moveSpeedData, in MoveSpeedModifierData moveSpeedModifier, in Translation trans) =>
         {
-
-            if (EntityManager.Exists(ufoGeneralData.targetEntity))
+            if (HasComponent<PlayerTag>(ufoGeneralData.targetEntity))
             {
-                var targetPosition = EntityManager.GetComponentData<LocalToWorld>(ufoGeneralData.targetEntity)
-                    .Position;
-
-                var targetDirection = targetPosition - localToWorld.Position;
+                var targetPosition = _localTranslation[ufoGeneralData.targetEntity].Value;
+                var targetDirection = targetPosition-trans.Value;
                 ufoGeneralData.targetDirection = targetDirection;
-                rot.Value = quaternion.LookRotation(targetDirection, math.up());
-
+                rot.Value = quaternion.LookRotationSafe(targetDirection, math.down());
 
                 if (HasComponent<UFOSmallTag>(thisEntity))
                 {
@@ -45,7 +41,7 @@ public class UFOControlSystem : SystemBase
                 }
                 else if (HasComponent<UFOBigTag>(thisEntity))
                 {
-                    if (Vector3.Distance(localToWorld.Position, targetPosition) > 100)
+                    if (Vector3.Distance(trans.Value, targetPosition) > 60)
                     {
                         moveSpeedData.movementSpeed = math.forward(rot.Value) * moveSpeedModifier.SpeedModifier;
                     }
@@ -63,6 +59,6 @@ public class UFOControlSystem : SystemBase
                     ufoGeneralData.targetEntity = localTargetEntities[randomInt];
                 }
             }
-        }).WithoutBurst().Run();
+        }).Run();
     }
 }

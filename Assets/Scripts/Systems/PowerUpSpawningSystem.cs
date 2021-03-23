@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using Random = UnityEngine.Random;
 
 
@@ -27,7 +28,7 @@ public class PowerUpSpawningSystem : SystemBase
 
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
-        Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity,PowerUpParticleData powerUpParticleData, ref PowerUpData powerUpData, ref PowerUpPrefab powerUpPrefab) =>
+        Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity, PowerUpParticleData powerUpParticleData, ref PowerUpData powerUpData, ref PowerUpPrefab powerUpPrefab) =>
       {
           powerUpPrefab.AppearanceTimer -= deltaTime;
           
@@ -41,7 +42,8 @@ public class PowerUpSpawningSystem : SystemBase
                       var newEntity = ecb.Instantiate(thisEntity);
                       ecb.RemoveComponent<PowerUpPrefab>(newEntity);
                       ecb.SetComponent(newEntity, new Translation {Value = spawnLocation});
-                      Object.Instantiate(powerUpParticleData.PowerUpParticle,spawnLocation, quaternion.identity);
+                      var newParticles = Pooler.Instance.Spawn(powerUpParticleData.PowerUpParticle,spawnLocation, quaternion.identity);
+                      ecb.SetComponent(newEntity, new PowerUpParticleData() {PowerUpParticle = newParticles});
                   }
           }
       }).WithoutBurst().Run(); 
@@ -58,11 +60,12 @@ public class PowerUpSpawningSystem : SystemBase
           ecb.DestroyEntity(thisEntity);
       }).WithoutBurst().Run();
       
-      Entities.WithAll<PowerUpTag>().WithAll<ToInitializeTag>().ForEach((Entity thisEntity, in Translation trans, in PowerUpParticleData powerUpParticleData) =>
+      Entities.WithAll<PowerUpTag>().WithAll<ToInitializeTag>().ForEach((Entity thisEntity, PowerUpParticleData powerUpParticleData, in Translation trans) =>
       {
           ecb.RemoveComponent<ToInitializeTag>(thisEntity);
           var newParticles = Pooler.Instance.Spawn(powerUpParticleData.PowerUpParticle, trans.Value,Quaternion.identity);
-          powerUpParticleData.PowerUpParticle = newParticles;
+          ecb.SetComponent(thisEntity, new PowerUpParticleData() {PowerUpParticle = newParticles});
+
       }).WithoutBurst().Run();
       
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);

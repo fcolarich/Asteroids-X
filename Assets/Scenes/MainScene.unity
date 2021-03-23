@@ -979,7 +979,7 @@ MonoBehaviour:
   BigUFOPrefab: {fileID: 1769620657821589629, guid: 701dd55656dda7b41b1d026a0d8f9418, type: 3}
   SpawnTimer: 0
   TimeBetweenTrySpawnsSeconds: 10
-  BigUFOWaveIntervals: 1
+  BigUFOWaveIntervals: 3
 --- !u!114 &969211978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1685,6 +1685,7 @@ MonoBehaviour:
   enemyShipCreated: {fileID: 3915793973761560854, guid: 6a984518d1a22ff41bebb7e1a608da82, type: 3}
   enemyBigShipCreated: {fileID: 7855196084500472711, guid: 29ad9f914d1960741bb13756b9d56222, type: 3}
   music: {fileID: 1731192412}
+  player2Joined: {fileID: 7756688909959351760, guid: c1233f30dd0268d47827a21d5785aa12, type: 3}
 --- !u!114 &1617055885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,6 +1751,8 @@ MonoBehaviour:
     size: 20
   - prefab: {fileID: 144806, guid: 8bb6b359f7975df47b0f32bc4904549e, type: 3}
     size: 20
+  - prefab: {fileID: 7756688909959351760, guid: c1233f30dd0268d47827a21d5785aa12, type: 3}
+    size: 1
 --- !u!114 &1617055886
 MonoBehaviour:
   m_ObjectHideFlags: 0

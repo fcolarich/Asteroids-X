@@ -457,6 +457,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletPowerUP PIERCING
       objectReference: {fileID: 0}
+    - target: {fileID: 6645404467524130156, guid: 274fa5c76c70c3949bd313ba480360bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9211205084493832294, guid: 274fa5c76c70c3949bd313ba480360bb, type: 3}
       propertyPath: lifeTimeSeconds
       value: 15

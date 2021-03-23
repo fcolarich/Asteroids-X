@@ -22,16 +22,14 @@ public partial class ParticleFollowTargetSystem : SystemBase
       
       var deltaTime = Time.DeltaTime;
       var ecb = _beginSimulationEcbSystem.CreateCommandBuffer();
+
+
+      var translation = GetComponentDataFromEntity<Translation>(true);
       
       Entities.WithAll<ParticleLinkTag>()
          .ForEach((Entity thisEntity, in LinkedParticleData linkedParticleData) =>
       {
-         var targetTranslation = GetComponent<Translation>(linkedParticleData.Target).Value;
-         if (!linkedParticleData.ParticleObject.activeInHierarchy)
-         {
-            var newObject = Object.Instantiate(linkedParticleData.ParticleObject);
-            linkedParticleData.ParticleObject = newObject;
-         } 
+         var targetTranslation = translation[linkedParticleData.Target].Value;
          linkedParticleData.ParticleObject.transform.position = targetTranslation;
          
        linkedParticleData.TimerToDestroy -= deltaTime;
