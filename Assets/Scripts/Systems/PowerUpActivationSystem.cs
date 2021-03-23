@@ -9,13 +9,10 @@ using UnityEngine;
 public class PowerUpActivationSystem : SystemBase
 {
     private BeginSimulationEntityCommandBufferSystem _beginSimulationEcbSystem;
-    private Pooler _pooler;
-
 
     protected override void OnCreate()
     {
         _beginSimulationEcbSystem = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
-        _pooler = Pooler.Instance;
     }
 
 
@@ -41,7 +38,7 @@ public class PowerUpActivationSystem : SystemBase
                     ecb.RemoveComponent<HasCollidedTag>(thisEntity);
                     ecb.AddComponent(thisEntity, new ActivePowerUpTag {});
                     var affectedTarget = collisionControlData.AffectedTarget;
-                    var particleObject = _pooler.Spawn(particlesData.ParticlePrefabObject);
+                    var particleObject = Pooler.Instance.Spawn(particlesData.ParticlePrefabObject);
                     var linkedParticleEntity = ecb.CreateEntity();
                     ecb.AddComponent(linkedParticleEntity, new LinkedParticleData()
                     {

@@ -107,7 +107,6 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameStateData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/FireRateSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/MainUFOControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerFrictionSpeedSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
@@ -145,17 +144,18 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerPointsAndLivesManagerSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ParticleLinkTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ParticleManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOLivesData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ParticleCleanup.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AudioDespawn.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Pooler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ParticleFollowTargetSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Pooler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -208,7 +208,7 @@
       <workItem from="1616244594271" duration="33009000" />
       <workItem from="1616327776360" duration="622000" />
       <workItem from="1616334199072" duration="47993000" />
-      <workItem from="1616415751258" duration="44333000" />
+      <workItem from="1616415751258" duration="47399000" />
     </task>
     <servers />
   </component>

@@ -61,7 +61,7 @@ public class PowerUpSpawningSystem : SystemBase
       Entities.WithAll<PowerUpTag>().WithAll<ToInitializeTag>().ForEach((Entity thisEntity, in Translation trans, in PowerUpParticleData powerUpParticleData) =>
       {
           ecb.RemoveComponent<ToInitializeTag>(thisEntity);
-          var newParticles = GameObject.Instantiate(powerUpParticleData.PowerUpParticle, trans.Value,Quaternion.identity);
+          var newParticles = Pooler.Instance.Spawn(powerUpParticleData.PowerUpParticle, trans.Value,Quaternion.identity);
           powerUpParticleData.PowerUpParticle = newParticles;
       }).WithoutBurst().Run();
       

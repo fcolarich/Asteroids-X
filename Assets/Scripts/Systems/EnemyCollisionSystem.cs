@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using Random = UnityEngine.Random;
 
 public class EnemyCollisionSystem : SystemBase
@@ -12,11 +13,10 @@ public class EnemyCollisionSystem : SystemBase
     public EventHandler OnPointsUpdatePlayer2;
     public EventHandler OnEnemyHit;
     public EventHandler OnBigShipDestroyed;
-    private Pooler _pooler;
 
     protected override void OnCreate()
     {
-        _pooler = Pooler.Instance;
+        
         _beginSimulationEcbSystem = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
     }
 
@@ -55,11 +55,9 @@ public class EnemyCollisionSystem : SystemBase
                     {
                         SpawnEntities(1, powerUpRandomAppearData.RandomPowerUp, trans, ecb, false);
                     }
-                    
+
                     OnEnemyHit(this, EventArgs.Empty);
-                   
-                    
-                    _pooler.Spawn(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
+                    Pooler.Instance.Spawn(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
                     ecb.DestroyEntity(thisEntity);
                     
             }).WithoutBurst().Run();
@@ -89,7 +87,7 @@ public class EnemyCollisionSystem : SystemBase
                         SpawnEntities(spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
 
                         OnEnemyHit(this, EventArgs.Empty);
-                        _pooler.Spawn(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
+                        Pooler.Instance.Spawn(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
 
                         var currentLives = ufoLivesData.CurrentLives - 1;
                         if (currentLives > 0)

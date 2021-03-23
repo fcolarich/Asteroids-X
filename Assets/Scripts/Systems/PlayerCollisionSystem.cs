@@ -46,7 +46,7 @@ public class PlayerCollisionSystem : SystemBase
                 }
 
                 OnPlayerShot(this, EventArgs.Empty);
-                _pooler.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
+                Pooler.Instance.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
 
                 if (playerLivesData.CurrentLives < 1)
                 {
@@ -64,7 +64,6 @@ public class PlayerCollisionSystem : SystemBase
         Entities.WithAll<PlayerBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity,
             in CollisionControlData collisionControlData, in Translation trans, in OnHitParticlesData particlesData) =>
         {
-                _pooler.Spawn(particlesData.ParticlePrefabObject,trans.Value,quaternion.identity);
                 ecb.DestroyEntity(thisEntity);
         }).WithoutBurst().Run();
         

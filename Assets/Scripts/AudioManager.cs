@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private GameObject enemyHit;
     [SerializeField] private GameObject enemyShipCreated;
     [SerializeField] private GameObject enemyBigShipCreated;
+    [SerializeField] private GameObject music;
     private Pooler _pooler;
 
 
@@ -35,7 +36,7 @@ public class AudioManager : MonoBehaviour
             (var audio in FindObjectsOfType<AudioSource>())
         {
             _pooler.DeSpawn(audio.gameObject);   
-        }    
+        }  music.SetActive(true);
     }
     
     private void AudioManagerOnEnemyBigShipCreated(object sender, EventArgs e)

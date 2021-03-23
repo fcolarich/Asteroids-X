@@ -235,6 +235,10 @@ PrefabInstance:
       propertyPath: LinkedParticleEntity
       value: 
       objectReference: {fileID: 5046066178861531201, guid: 2debb459fde3f784dade5ecb04d9fdb7, type: 3}
+    - target: {fileID: 771839802678472394, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
+      propertyPath: ParticlePrefabObject
+      value: 
+      objectReference: {fileID: 144806, guid: 8bb6b359f7975df47b0f32bc4904549e, type: 3}
     - target: {fileID: 779554906554447531, guid: 52289ab02b822594aa8ff45a414c026b, type: 3}
       propertyPath: CurrentLives
       value: 3

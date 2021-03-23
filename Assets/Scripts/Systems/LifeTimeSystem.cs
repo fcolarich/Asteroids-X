@@ -8,7 +8,7 @@ using Unity.Transforms;
 public class LifeTimeSystem : SystemBase
 {
     EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
-
+    private DynamicBuffer<Entity> _buffer;
 
     protected override void OnCreate()
     {
@@ -22,19 +22,34 @@ public class LifeTimeSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
         
-        var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
+        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
 
-        Entities.WithNone<PowerUpPrefab>().ForEach(
-            (int entityInQueryIndex, ref LifeTimeData lifeTime, in Entity thisEntity,
-                in BulletSourceData bulletSource) =>
+        Entities.WithNone<PowerUpPrefab>().WithAll<BulletSourceData>().ForEach(
+            (ref LifeTimeData lifeTime, in Entity thisEntity) =>
             {
                 lifeTime.lifeTimeSeconds -= deltaTime;
                 if (lifeTime.lifeTimeSeconds < 0)
                 {
-                    ecb.DestroyEntity(entityInQueryIndex, thisEntity);
+                    ecb.DestroyEntity(thisEntity);
                 }
-            }).ScheduleParallel();
+            }).Schedule();
+        
+        Entities.WithNone<PowerUpPrefab>().WithAll<PowerUpTag>().ForEach(
+            (ref LifeTimeData lifeTime, in Entity thisEntity, in PowerUpParticleData powerUpParticleData) =>
+            {
+                lifeTime.lifeTimeSeconds -= deltaTime;
+                if (lifeTime.lifeTimeSeconds < 0)
+                {
+                    Pooler.Instance.DeSpawn(powerUpParticleData.PowerUpParticle);
+                    ecb.DestroyEntity(thisEntity);
+                }
+            }).WithoutBurst().Run();
+        
+        
+        
+        
+        
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
 }

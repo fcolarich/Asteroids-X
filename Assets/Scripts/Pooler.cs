@@ -34,7 +34,6 @@ public class Pooler : MonoBehaviour
                 newObject.SetActive(false);
                 objectPool.Enqueue(newObject);
             }
-            print(pool.prefab.name);
             poolDictionary.Add(pool.prefab.name, objectPool);
         }
     }
@@ -45,6 +44,7 @@ public class Pooler : MonoBehaviour
         if (poolDictionary.ContainsKey(tag))
         {
             GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+            objectToSpawn.SetActive(false);
             objectToSpawn.SetActive(true);
             objectToSpawn.transform.position = position;
             objectToSpawn.transform.rotation = rotation;
@@ -56,6 +56,7 @@ public class Pooler : MonoBehaviour
             return null;    
         }
     }
+
     public GameObject Spawn(GameObject gameObject)
     {
         var tag = gameObject.name;
