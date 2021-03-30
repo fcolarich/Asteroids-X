@@ -2,15 +2,11 @@ using System;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using Random = UnityEngine.Random;
+using Random = Unity.Mathematics.Random;
 
 public class EnemyCollisionSystem : SystemBase
 {
     private BeginSimulationEntityCommandBufferSystem _beginSimulationEcbSystem;
-    public EventHandler OnPointsUpdatePlayer1;
-    public EventHandler OnPointsUpdatePlayer2;
-    public EventHandler OnEnemyHit;
-    public EventHandler OnBigShipDestroyed;
 
     protected override void OnCreate()
     {
@@ -25,89 +21,59 @@ public class EnemyCollisionSystem : SystemBase
         if (gameState.GameState != GameStateData.State.Playing) return;
 
 
-        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer();
+        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
 
-        var localCurrentPlayerPoints = GetComponentDataFromEntity<PlayerPointsData>(); 
-        var localUfoLivesData = GetComponentDataFromEntity<UFOLivesData>(); 
 
-        
-        Entities.WithChangeFilter<CollisionControlData>().WithAll<HasCollidedTag>().WithAny<AsteroidsTag>()
+        Entities.WithChangeFilter<OnCollision>().WithAny<AsteroidsTag>()
             .WithAny<UFOSmallTag>().WithAny<UFOMediumTag>().WithAny<UFOBigTag>().ForEach(
-                (Entity thisEntity, ref CollisionControlData collisionControlData, in Translation trans,
-                    in PlayerPointsData playerPointsData, in SpawnEntityData spawnEntityData,
-                    in PowerUpRandomAppearData powerUpRandomAppearData, in OnHitParticlesData particlesData) =>
+                (int entityInQueryIndex, Entity thisEntity, ref OnCollision onCollision, ref OnEnemyHit onEnemyHit, in Translation trans,
+                    in SpawnEntityData spawnEntityData,
+                    in PowerUpRandomAppearData powerUpRandomAppearData) =>
                 {
-                    
-                    ecb.RemoveComponent<HasCollidedTag>(thisEntity);
-                    var targetEntity = collisionControlData.AffectedTarget;
-                    if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
+                    if (onCollision.Value)
                     {
-                       var currentPlayerPoints = localCurrentPlayerPoints[targetEntity].points;
-                       var pointsToAdd =  playerPointsData.points + currentPlayerPoints;
-                       localCurrentPlayerPoints[targetEntity] = new PlayerPointsData(){points = pointsToAdd};
-
-                       if (HasComponent<Player1Tag>(targetEntity))
-                        {
-                            OnPointsUpdatePlayer1(pointsToAdd, EventArgs.Empty);
-                        }
-                        else
-                        {
-                            OnPointsUpdatePlayer2(pointsToAdd, EventArgs.Empty);
-                        }
-                    }
-                    SpawnEntities(spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
-                    OnEnemyHit(this, EventArgs.Empty);
-                    Pooler.Instance.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
-                    
-                    if (HasComponent<UFOBigTag>(thisEntity))
-                    {
+                        onCollision.Value = false;
+                        SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
                         
-                        var currentLives = localUfoLivesData[thisEntity].CurrentLives - 1;
-                        if (currentLives > 0)
+                        if (Random.CreateFromIndex(1).NextFloat(1) < powerUpRandomAppearData.AppearanceChance)
                         {
-                            localUfoLivesData[thisEntity] = new UFOLivesData() {CurrentLives = currentLives};
+                            SpawnEntities(entityInQueryIndex, 1, powerUpRandomAppearData.RandomPowerUp, trans, ecb, false);
                         }
-                        else
-                        {
-                            ecb.DestroyEntity(thisEntity);
-                            OnBigShipDestroyed(this, EventArgs.Empty);
-                        }
+
+                        onEnemyHit.Value = true;
                     }
-                    else
-                    {
-                        if (Random.value < powerUpRandomAppearData.AppearanceChance)
-                        {
-                            SpawnEntities(1, powerUpRandomAppearData.RandomPowerUp, trans, ecb, false);
-                        }
-                        ecb.DestroyEntity(thisEntity);
-                    }
-                }).WithoutBurst().Run();
+                }).ScheduleParallel();
 
 
-        Entities.WithAll<EnemyBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity) =>
+        Entities.WithChangeFilter<OnCollision>().WithAny<EnemyBulletTag>().ForEach((int entityInQueryIndex, Entity thisEntity, ref OnDestroyed onDestroyed, in OnCollision onCollision) =>
         {
-            ecb.DestroyEntity(thisEntity);
-        }).Schedule();
+            if (onCollision.Value)
+            {
+                onDestroyed.Value = true;
+            }
+        }).ScheduleParallel();
 
         _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
     
-    static void SpawnEntities(int amountToSpawn, Entity entityToSpawn, Translation trans, EntityCommandBuffer ecb,
+    static void SpawnEntities(int entityInQueryIndex, int amountToSpawn, Entity entityToSpawn, Translation trans, EntityCommandBuffer.ParallelWriter ecb,
         bool spawnInRandomPosition)
     {
         for (int i = 0; i < amountToSpawn; i++)
         {
-            var newEntity = ecb.Instantiate(entityToSpawn);
-            float2 spawnLocation = 0;
+            float2 spawnLocationModifier = 0;
+            
             if (spawnInRandomPosition)
             {
-                spawnLocation = Random.insideUnitCircle.normalized * 10;
+                var randomPointInCircleX = math.cos(Random.CreateFromIndex(1).NextFloat());
+                var randomPointInCircleY = math.sin(Random.CreateFromIndex(1).NextFloat());
+                spawnLocationModifier = new float2(randomPointInCircleX, randomPointInCircleY) * 10;
             }
-
-            ecb.SetComponent(newEntity, new Translation
+            var newEntity = ecb.Instantiate(entityInQueryIndex,entityToSpawn);
+            ecb.SetComponent(entityInQueryIndex,newEntity, new Translation
             {
-                Value = new float3(trans.Value.x + spawnLocation.x,
-                    trans.Value.y + spawnLocation.y, -50)
+                Value = new float3(trans.Value.x + spawnLocationModifier.x,
+                    trans.Value.y + spawnLocationModifier.y, -50)
             });
         }
     }

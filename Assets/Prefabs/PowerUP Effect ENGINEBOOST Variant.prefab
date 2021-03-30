@@ -13,6 +13,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EngineBoosterMultiplier: 1.5
+--- !u!114 &8968824466331578680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952111604481248476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c740b40ba9f4a8a4d891f14fba2b7811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
 --- !u!1001 &7073760292979864894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22,7 +35,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6121433211514796514, guid: f540c94bca217ff4994df52ec3b730e1, type: 3}
       propertyPath: m_Name
-      value: PowerUP Effect (01)
+      value: PowerUP Effect ENGINEBOOST Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6121433211514796519, guid: f540c94bca217ff4994df52ec3b730e1, type: 3}
       propertyPath: m_RootOrder

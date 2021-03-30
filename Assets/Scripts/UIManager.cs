@@ -19,8 +19,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text defeatLine2;
     [SerializeField] private RectTransform welcomeMessage;
     [SerializeField] private GameObject backGround;
-    [SerializeField] private RawImage videoScreen;
-    [SerializeField] private GameObject playerUI;
 
     
     public EventHandler OnVideoFinished;
@@ -37,66 +35,32 @@ public class UIManager : MonoBehaviour
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnResume += UIManagerOnResume;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnStart += UIManagerOnStart;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += UIManagerOnReStart;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnPointsUpdatePlayer1 += UIManagerOnPointsUpdatePlayer1;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnPointsUpdatePlayer2 += UIManagerOnPointsUpdatePlayer2;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerCollisionSystem>().OnLivesUpdatePlayer1 += UIManagerOnLivesUpdatePlayer1;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerCollisionSystem>().OnLivesUpdatePlayer2 += UIManagerOnLivesUpdatePlayer2;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<UIUpdateSystem>().OnPointsUpdatePlayer1 += UIManagerOnPointsUpdatePlayer1;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<UIUpdateSystem>().OnPointsUpdatePlayer2 += UIManagerOnPointsUpdatePlayer2;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<UIUpdateSystem>().OnLivesUpdatePlayer1 += UIManagerOnLivesUpdatePlayer1;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<UIUpdateSystem>().OnLivesUpdatePlayer2 += UIManagerOnLivesUpdatePlayer2;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerCollisionSystem>().OnPlayersDestroyed += UIManagerOnPlayersDestroyed;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += UIManagerOnPlayer2Joined;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnSkipVideo += UIManagerOnSkipVideo;
-
-        StartCoroutine(ShowLogo());
+        StartCoroutine(ShowScreen());
     }
 
-    IEnumerator ShowLogo()
+    IEnumerator ShowScreen()
     {
-        yield return new WaitForSeconds(65);
-        StartCoroutine(DissolveScreen());
-    }
-
-
-    private void UIManagerOnSkipVideo(object sender, EventArgs e)
-    {
-        StopCoroutine(ShowLogo());
-        StartCoroutine(DissolveScreen());
-        OnVideoFinished(this, EventArgs.Empty);
-    }
-
-    IEnumerator DissolveScreen()
-    {
-        var color = videoScreen.color;
-        float volume = 1;
-        var dissolving = true;
-        backGround.SetActive(true);
-        backGround.GetComponentInChildren<Light>().intensity = 0;
-        while (dissolving)
-        {
-            yield return new WaitForFixedUpdate();
-            color.a -= 0.005f;
-            videoScreen.color = color;
-            volume -= 0.01f;
-            videoScreen.GetComponentInChildren<VideoPlayer>().SetDirectAudioVolume(0, volume);
-            if (color.a <= 0.01)
-            {
-                dissolving = false;
-            }
-        }
+        var backgroundImage = backGround.GetComponent<Image>();
+        var color = backgroundImage.color;
         var appearing = true;
-        float intensity = 0;
         while (appearing)
         {
-            intensity += 0.01f;
-            backGround.GetComponentInChildren<Light>().intensity = intensity;
+            color.a -= 0.005f;
+            backgroundImage.color = color;
             yield return new WaitForFixedUpdate();
             
-            if (intensity >= 1.5)
+            if (color.a <= 0.1f)
             {
                 appearing = false;
-                videoScreen.gameObject.SetActive(false);
-                OnVideoFinished(this, EventArgs.Empty);
+                backgroundImage.gameObject.SetActive(false);
             }
         }
-        playerUI.SetActive(true);
     }
 
     private void UIManagerOnReStart(object sender, EventArgs e)

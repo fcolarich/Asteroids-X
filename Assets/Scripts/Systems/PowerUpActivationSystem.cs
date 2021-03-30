@@ -33,14 +33,14 @@ public class PowerUpActivationSystem : SystemBase
         var _bulletFireData = GetComponentDataFromEntity<BulletFireData>();
         
         
-        Entities.WithAll<PowerUpTag>().WithNone<PowerUpPrefab>().WithAll<HasCollidedTag>()
+        Entities.WithAll<PowerUpTag>().WithNone<PowerUpPrefab>().WithAll<OnCollision>()
             .ForEach((Entity thisEntity, ref PowerUpData powerUpEffectData,
                 ref CollisionControlData collisionControlData, ref LifeTimeData lifeTimeData,
                 in OnHitParticlesData particlesData, in GameObjectParticleData powerUpParticleData) =>
             {
                 powerUpParticleData.PowerUpParticle.SetActive(false);
                 
-                ecb.RemoveComponent<HasCollidedTag>(thisEntity);
+                ecb.RemoveComponent<OnCollision>(thisEntity);
                 if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
                 {
                     ecb.RemoveComponent<PhysicsCollider>(thisEntity);

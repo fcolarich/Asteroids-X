@@ -23,6 +23,10 @@ GameObject:
   - component: {fileID: -4618073866968366144}
   - component: {fileID: 1130238397300112724}
   - component: {fileID: -4058922033394153682}
+  - component: {fileID: -2718704037143766421}
+  - component: {fileID: 3926300852286729933}
+  - component: {fileID: -7987607061216154989}
+  - component: {fileID: 1089021379405412846}
   m_Layer: 0
   m_Name: AsteroidGen
   m_TagString: Untagged
@@ -420,3 +424,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LinkedParticleEntity: {fileID: 5046066178861531201, guid: 2debb459fde3f784dade5ecb04d9fdb7, type: 3}
   ParticlePrefabObject: {fileID: 141964, guid: 2c3dfba26ea87394b9c46fedcdfb3dfd, type: 3}
+--- !u!114 &-2718704037143766421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506022011637012940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3a5a30008a0764885b0cc9ffe43e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &3926300852286729933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506022011637012940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ba8453a8867af469fb2138a480d509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &-7987607061216154989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506022011637012940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18190fe9708bf6646ac9340c7694b725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &1089021379405412846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506022011637012940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c740b40ba9f4a8a4d891f14fba2b7811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0

@@ -13,6 +13,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTimeSeconds: 15
+--- !u!114 &-6665488903595345917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630080469835537499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c740b40ba9f4a8a4d891f14fba2b7811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
 --- !u!1001 &9079499767525376743
 PrefabInstance:
   m_ObjectHideFlags: 0

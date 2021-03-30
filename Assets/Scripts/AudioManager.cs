@@ -21,34 +21,29 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<GeneralFireRateSystem>().OnBulletFire += AudioManagerOnFire;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerCollisionSystem>().OnPlayerShot += AudioManagerOnPlayerShipExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivateSystem>().OnBulletFire += AudioManagerOnFire;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivateSystem>().OnPlayerShot += AudioManagerOnPlayerShipExplode;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<GameWavesControlSystem>().OnEnemyShipCreated += AudioManagerOnEnemyShipCreated;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<GameWavesControlSystem>().OnEnemyBigShipCreated += AudioManagerOnEnemyBigShipCreated;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnEnemyHit += AudioManagerOnAsteroidExplode;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EnemyCollisionSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivateSystem>().OnEnemyHit += AudioManagerOnEnemyExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivateSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += AudioManagerOnRestart;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += AudioManagerOnPlayer2Join;
-        music.SetActive(false);
-        GetComponent<UIManager>().OnVideoFinished += AudioManagerOnVideoFinished;
         _pooler = Pooler.Instance;
-    }
-
-    private void AudioManagerOnVideoFinished(object sender, EventArgs e)
-    {
         StartCoroutine(MusicFadeIn());
     }
 
     IEnumerator MusicFadeIn()
     {
+        var audioSource = music.GetComponent<AudioSource>(); 
         music.SetActive(true);
-        music.GetComponent<AudioSource>().volume = 0;
+        audioSource.volume = 0;
         var fadingIn = true;
         while (fadingIn)
         {
             yield return new WaitForFixedUpdate();
-            music.GetComponent<AudioSource>().volume += 0.01f;
-            if (music.GetComponent<AudioSource>().volume >= 0.5f)
+            audioSource.volume += 0.001f;
+            if (audioSource.volume >= 0.5f)
             {
                 fadingIn = false;
             }
@@ -88,7 +83,7 @@ public class AudioManager : MonoBehaviour
         _pooler.Spawn(bulletFire);
     }
     
-    private void AudioManagerOnAsteroidExplode(object sender, EventArgs e)
+    private void AudioManagerOnEnemyExplode(object sender, EventArgs e)
     {
         _pooler.Spawn(enemyHit);
     }

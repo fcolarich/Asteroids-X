@@ -7,9 +7,7 @@ public class GeneralFireRateSystem : SystemBase
 {
     EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
     
-    public EventHandler OnBulletFire;
-
-    
+  
     protected override void OnCreate()
     {
         _endSimulationEcbSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
@@ -21,9 +19,8 @@ public class GeneralFireRateSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
         
-        var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
+        var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
         var deltaTime = Time.DeltaTime;
-
 
         Entities.ForEach((int entityInQueryIndex, Entity thisEntity, ref BulletFireData bulletFireData,
             in Translation trans, in Rotation rot, in MoveSpeedData moveSpeed) =>
@@ -41,18 +38,22 @@ public class GeneralFireRateSystem : SystemBase
                     }
 
                     bulletFireData.BulletTimer = bulletFireData.SecondsBetweenBullets;
-                    var bulletEntity = ecb.Instantiate(bulletFireData.BulletPrefab);
-                    OnBulletFire(this, EventArgs.Empty);
-                    ecb.SetComponent(bulletEntity,
+
+                    
+                    var bulletEntity = ecb.Instantiate(entityInQueryIndex,bulletFireData.BulletPrefab);
+                   
+                    ecb.SetComponent(entityInQueryIndex,thisEntity, new OnBulletFired() {Value = true});
+                    
+                    ecb.SetComponent(entityInQueryIndex,bulletEntity,
                         new Translation() {Value = trans.Value + (10 * math.forward(rot.Value))});
-                    ecb.SetComponent(bulletEntity, new Rotation() {Value = rot.Value});
-                    ecb.SetComponent(bulletEntity,
+                    ecb.SetComponent(entityInQueryIndex,bulletEntity, new Rotation() {Value = rot.Value});
+                    ecb.SetComponent(entityInQueryIndex,bulletEntity,
                         new MoveSpeedData()
                         {
                             movementSpeed = math.forward(rot.Value) * bulletFireData.BulletSpeed +
                                             moveSpeed.movementSpeed
                         });
-                    ecb.SetComponent(bulletEntity, new BulletSourceData() {Source = thisEntity});
+                    ecb.SetComponent(entityInQueryIndex,bulletEntity, new BulletSourceData() {Source = thisEntity});
                 }
             }
             else
@@ -73,7 +74,7 @@ public class GeneralFireRateSystem : SystemBase
             {
                 bulletFireData.TryFire = false;
             }
-        }).WithoutBurst().Run();
+        }).ScheduleParallel();
 
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
