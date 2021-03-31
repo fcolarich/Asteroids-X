@@ -25,7 +25,7 @@ public class PlayerInputSystem : SystemBase
         _playersActions = new PlayersActions();
         _playersActions.Enable();
     }
-
+    
 
     protected override void OnUpdate()
     {
@@ -35,11 +35,6 @@ public class PlayerInputSystem : SystemBase
         {
             case GameStateData.State.WaitingToStart:
             {
-                if (_playersActions.Player1.PauseGame.triggered)
-                {
-                    OnSkipVideo(this, EventArgs.Empty);
-                }
-
                 if (_playersActions.Player1.StartGame.triggered)
                 {
                     OnStart(this,EventArgs.Empty);
@@ -74,7 +69,6 @@ public class PlayerInputSystem : SystemBase
                     _player2Spawned = false;
                     OnRestart(this, EventArgs.Empty);
                 }
-
                 break;
             }
         }

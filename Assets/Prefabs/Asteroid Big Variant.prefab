@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6203678480313207439, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
       propertyPath: points
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7402551386854368891, guid: cf0ab5b51fdf31649bb2c7b8d164b056, type: 3}
       propertyPath: SpeedModifier

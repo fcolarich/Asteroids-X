@@ -9,17 +9,12 @@ using UnityEngine;
 public class PlayerCollisionSystem : SystemBase
 {
     private BeginSimulationEntityCommandBufferSystem _beginSimulationEcbSystem;
-    public EventHandler OnLivesUpdatePlayer1;
-    public EventHandler OnLivesUpdatePlayer2;
     public EventHandler OnPlayersDestroyed;
-    public EventHandler OnPlayerShot;
-    private Pooler _pooler; 
 
 
     protected override void OnCreate()
     {
         _beginSimulationEcbSystem = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
-        _pooler = Pooler.Instance;
     }
 
     protected override void OnUpdate()
@@ -28,44 +23,36 @@ public class PlayerCollisionSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
         
-        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer();
+        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
 
-        Entities.WithAll<HasCollidedTag>().ForEach((Entity thisEntity, ref PlayerLivesData playerLivesData,
-            ref CollisionControlData collisionControlData, ref Translation trans, ref MoveSpeedData moveSpeedData, in OnHitParticlesData particlesData) =>
+        Entities.WithChangeFilter<OnCollision>().WithAny<PlayerTag>().ForEach((Entity thisEntity, ref OnCollision onCollision, ref PlayerLivesData playerLivesData,
+            ref OnDestroyed onDestroyed, ref OnPlayerShot onPlayerShot, ref Translation trans, 
+            ref MoveSpeedData moveSpeedData) =>
         {
-            if (playerLivesData.CanTakeDamage)
+            if (onCollision.Value)
             {
-                playerLivesData.CurrentLives -= 1;
-                OnPlayerShot(this, EventArgs.Empty);
-                Pooler.Instance.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
-
-                if (playerLivesData.CurrentLives < 1)
+                onCollision.Value = false;
+                onPlayerShot.value = true;
+                
+                if (playerLivesData.CanTakeDamage)
                 {
-                    ecb.DestroyEntity(thisEntity);
-                }
-                else
-                {
-                    trans.Value = playerLivesData.OriginPosition;
-                    moveSpeedData.movementSpeed = 0;
-                }
-                if (HasComponent<Player1Tag>(thisEntity))
-                {
-                    OnLivesUpdatePlayer1(playerLivesData.CurrentLives, EventArgs.Empty);
-                }
-                else
-                {
-                    OnLivesUpdatePlayer2(playerLivesData.CurrentLives, EventArgs.Empty);
+                    playerLivesData.CurrentLives -= 1;
+                    if (playerLivesData.CurrentLives < 1)
+                    {
+                        onDestroyed.Value = true;
+                    }
+                    else
+                    {
+                        trans.Value = playerLivesData.OriginPosition;
+                        moveSpeedData.movementSpeed = 0;
+                    }
                 }
             }
-            ecb.RemoveComponent<HasCollidedTag>(thisEntity);
-        }).WithoutBurst().Run();
+        }).ScheduleParallel();
         
-        Entities.WithAll<PlayerBulletTag>().WithAll<HasCollidedTag>().ForEach((Entity thisEntity) =>
-        {
-                ecb.DestroyEntity(thisEntity);
-        }).WithoutBurst().Run();
-        
-        
+        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+
+       
         var playerCount = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).CalculateEntityCount();
         if (playerCount == 0)
         {
@@ -74,7 +61,6 @@ public class PlayerCollisionSystem : SystemBase
             OnPlayersDestroyed(this, EventArgs.Empty);
         }
         
-        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
 
     }
 }

@@ -16,7 +16,6 @@ public class ParticleDespawn : MonoBehaviour
     IEnumerator DespawnAfterTime()
     {
         yield return new WaitForSeconds(secondsUntilDeSpawn);
-        print("DESPAWN");
         Pooler.Instance.DeSpawn(this.gameObject);
     }
 }

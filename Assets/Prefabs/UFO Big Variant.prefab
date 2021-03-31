@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7134573933896403618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769620657821589629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18190fe9708bf6646ac9340c7694b725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &-5527394941779528835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769620657821589629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ba8453a8867af469fb2138a480d509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
 --- !u!114 &428897949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,7 +58,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 9093282602040498205, guid: b29792c75d705f64e9e116fbd4c97cba, type: 3}
   BulletGroupTimer: 0
   SecondsBetweenBulletGroups: 3
-  BulletSpeed: 150
+  BulletSpeed: 120
 --- !u!114 &428897954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +72,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLives: 8
+--- !u!114 &3099040883689126047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769620657821589629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45a4e6ea8653a24395018760233b5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &5057789027373539874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769620657821589629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3a5a30008a0764885b0cc9ffe43e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &-1534922333692312276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769620657821589629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231f25735c6c558439fe9a7c76996827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
 --- !u!1 &5850659319803946400
 GameObject:
   m_ObjectHideFlags: 0

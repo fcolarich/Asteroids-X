@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2069082157698887243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854560133446509801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ba8453a8867af469fb2138a480d509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
 --- !u!114 &1170268081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,6 +25,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b045bdaa09b0b7445a4534b330eee4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4241990789494779176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854560133446509801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3a5a30008a0764885b0cc9ffe43e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &5210660251168070507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854560133446509801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18190fe9708bf6646ac9340c7694b725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &8993970145663789026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854560133446509801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97ab13f745c28242a07060520c1d68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &1876960439890195079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854560133446509801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212f0f9a75bbc3143b9279b7545aa3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
 --- !u!1 &8899413509774848221
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1434118352203810613, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: points
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2219947956897247052, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: AppearanceChance

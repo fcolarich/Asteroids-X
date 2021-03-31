@@ -19,6 +19,9 @@ GameObject:
   - component: {fileID: 5348403711452944082}
   - component: {fileID: 5157627827946324983}
   - component: {fileID: 6413984956407225321}
+  - component: {fileID: -1539877231464375304}
+  - component: {fileID: 2987217890509444494}
+  - component: {fileID: -4738364367579118990}
   m_Layer: 0
   m_Name: BulletPiercing
   m_TagString: Untagged
@@ -364,3 +367,41 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &-1539877231464375304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401130646095200284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ba8453a8867af469fb2138a480d509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &2987217890509444494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401130646095200284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c740b40ba9f4a8a4d891f14fba2b7811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &-4738364367579118990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401130646095200284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6ab9b02aeb4c247bd21630dcb60ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

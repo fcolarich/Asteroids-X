@@ -85,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5181139423440399968, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
       propertyPath: points
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6698754828887842526, guid: d974c72611f3d0440b1f12935d6d5e69, type: 3}
       propertyPath: ParticlePrefabObject

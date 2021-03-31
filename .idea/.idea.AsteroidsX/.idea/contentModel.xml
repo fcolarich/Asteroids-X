@@ -16,7 +16,7 @@
             <e p="BulletFireData.cs" t="Include" />
             <e p="BulletSourceData.cs" t="Include" />
             <e p="CollisionControlData.cs" t="Include" />
-            <e p="EntityBuffer.cs" t="Include" />
+            <e p="CompanionData.cs" t="Include" />
             <e p="GameObjectParticleData.cs" t="Include" />
             <e p="GameStateData.cs" t="Include" />
             <e p="LifeTimeData.cs" t="Include" />
@@ -27,7 +27,6 @@
             <e p="MoveRotationModifierData.cs" t="Include" />
             <e p="MoveSpeedData.cs" t="Include" />
             <e p="MoveSpeedModifierData.cs" t="Include" />
-            <e p="OnHitParticlesData.cs" t="Include" />
             <e p="Player1SpawnData.cs" t="Include" />
             <e p="Player2SpawnData.cs" t="Include" />
             <e p="PlayerLivesData.cs" t="Include" />
@@ -38,17 +37,36 @@
             <e p="PowerUpEffectFireBoosterData.cs" t="Include" />
             <e p="PowerUpEffectShieldData.cs" t="Include" />
             <e p="PowerUpRandomAppearData.cs" t="Include" />
+            <e p="RandomNumberData.cs" t="Include" />
             <e p="SpawnEntityData.cs" t="Include" />
             <e p="TriggerEventData.cs" t="Include" />
             <e p="UFOGeneralData.cs" t="Include" />
             <e p="UFOLivesData.cs" t="Include" />
+            <e p="WaveManagerData.cs" t="Include" />
+            <e p="WaveManagerTimerData.cs" t="Include" />
+          </e>
+          <e p="EventData" t="Include">
+            <e p="OnBulletFired.cs" t="Include" />
+            <e p="OnCollision.cs" t="Include" />
+            <e p="OnCollisionRegistered.cs" t="Include" />
+            <e p="OnDestroyed.cs" t="Include" />
+            <e p="OnEnemyBigShipCreated.cs" t="Include" />
+            <e p="OnEnemyHit.cs" t="Include" />
+            <e p="OnEnemyShipCreated.cs" t="Include" />
+            <e p="OnHitParticlesData.cs" t="Include" />
+            <e p="OnLivesUpdated.cs" t="Include" />
+            <e p="OnPlayerShot.cs" t="Include" />
           </e>
           <e p="ParticleCleanup.cs" t="Include" />
           <e p="ParticleDespawn.cs" t="Include" />
           <e p="ParticleDestroy.cs" t="Include" />
           <e p="Pooler.cs" t="Include" />
           <e p="Systems" t="Include">
+            <e p="AudioEventActivationSystem.cs" t="Include" />
+            <e p="BulletCollisionDetectionSystem.cs" t="Include" />
+            <e p="DestroyEntitiesSystem.cs" t="Include" />
             <e p="EnemyCollisionSystem.cs" t="Include" />
+            <e p="EnemyCollisionSystem1.cs" t="Include" />
             <e p="GameWavesControlSystem.cs" t="Include" />
             <e p="GeneralFireRateSystem.cs" t="Include" />
             <e p="GeneralMovementSystem.cs" t="Include" />
@@ -56,21 +74,22 @@
             <e p="InitializeAsteroidsSystem.cs" t="Include" />
             <e p="LifeTimeSystem.cs" t="Include" />
             <e p="ParticleFollowTargetSystem.cs" t="Include" />
+            <e p="PlayerCollisionDetectionSystem.cs" t="Include" />
             <e p="PlayerCollisionSystem.cs" t="Include" />
             <e p="PlayerFrictionSpeedSystem.cs" t="Include" />
             <e p="PlayerInputSystem.cs" t="Include" />
-            <e p="PlayerPointsAndLivesManagerSystem.cs" t="Include" />
+            <e p="PlayerPointsToLivesManagerSystem.cs" t="Include" />
             <e p="PowerUpActivationSystem.cs" t="Include" />
             <e p="PowerUpSpawningSystem.cs" t="Include" />
             <e p="ScreenWrappingSystem.cs" t="Include" />
-            <e p="TriggerDetectionSystem.cs" t="Include" />
+            <e p="TestingSystem.cs" t="Include" />
             <e p="UFOControlSystem.cs" t="Include" />
+            <e p="UIUpdateSystem.cs" t="Include" />
           </e>
           <e p="Tags" t="Include">
             <e p="ActivePowerUpTag.cs" t="Include" />
             <e p="AsteroidsTag.cs" t="Include" />
             <e p="EnemyBulletTag.cs" t="Include" />
-            <e p="HasCollidedTag.cs" t="Include" />
             <e p="ParticleLinkTag.cs" t="Include" />
             <e p="Player1Tag.cs" t="Include" />
             <e p="Player2Tag.cs" t="Include" />
@@ -80,14 +99,13 @@
             <e p="PowerUpTag.cs" t="Include" />
             <e p="RandomPowerUpTag.cs" t="Include" />
             <e p="SmallAsteroidDestroyedTag.cs" t="Include" />
-            <e p="ToDestroyTag.cs" t="Include" />
-            <e p="ToInitializeTag.cs" t="Include" />
+            <e p="ToInitialize.cs" t="Include" />
             <e p="UFOBigTag.cs" t="Include" />
             <e p="UFOMediumTag.cs" t="Include" />
             <e p="UFOSmallTag.cs" t="Include" />
             <e p="UFOTag.cs" t="Include" />
-            <e p="WaveManagerData.cs" t="Include" />
           </e>
+          <e p="TitleSkip.cs" t="Include" />
           <e p="UIManager.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
