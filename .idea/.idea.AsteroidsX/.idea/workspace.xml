@@ -24,7 +24,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralFireRateSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ComponentSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/Components/CompanionLink.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ToInitialize.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Into the Endless Sea 2019/Assets/Ez/Pooly/Scripts/Pooly.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/AsteroidsTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -33,6 +33,7 @@
     <setting file="file://$PROJECT_DIR$/../../../Into the Endless Sea 2019/Assets/Ez/Pooly/Scripts/PoolyDespawner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/CodeGeneratedJobForEach/LambdaJobDescription.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Player2SpawnData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/GameObjectParticleData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -112,14 +113,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/ParticleManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOLivesData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ParticleCleanup.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ParticleFollowTargetSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Pooler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralRotationSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
@@ -156,13 +149,21 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnCollisionRegistered.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UIUpdateSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerPointsToLivesManagerSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionDetectionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UIUpdateSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionDetectionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/WaveManagerData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerData1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerTimerData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -223,7 +224,8 @@
       <workItem from="1616716998599" duration="1407000" />
       <workItem from="1616782151402" duration="2009000" />
       <workItem from="1616786320044" duration="8889000" />
-      <workItem from="1617136233804" duration="3491000" />
+      <workItem from="1617136233804" duration="11915000" />
+      <workItem from="1617200861663" duration="1424000" />
     </task>
     <servers />
   </component>

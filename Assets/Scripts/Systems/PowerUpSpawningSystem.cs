@@ -55,14 +55,14 @@ public class PowerUpSpawningSystem : SystemBase
           int value = Random.Range(0, _powerUpArray.Length);
           var newEntity = ecb.Instantiate(_powerUpArray[value]);
           ecb.RemoveComponent<PowerUpPrefab>(newEntity);
-          ecb.AddComponent(newEntity, new ToInitializeTag());
+          ecb.AddComponent(newEntity, new ToInitialize());
           ecb.SetComponent(newEntity, new Translation {Value =  trans.Value});
           ecb.DestroyEntity(thisEntity);
       }).WithoutBurst().Run();
       
-      Entities.WithAll<PowerUpTag>().WithAll<ToInitializeTag>().ForEach((Entity thisEntity, GameObjectParticleData powerUpParticleData, in Translation trans) =>
+      Entities.WithAll<PowerUpTag>().WithAll<ToInitialize>().ForEach((Entity thisEntity, GameObjectParticleData powerUpParticleData, in Translation trans) =>
       {
-          ecb.RemoveComponent<ToInitializeTag>(thisEntity);
+          ecb.RemoveComponent<ToInitialize>(thisEntity);
           var newParticles = Pooler.Instance.Spawn(powerUpParticleData.PowerUpParticle, trans.Value,Quaternion.identity);
           ecb.SetComponent(thisEntity, new GameObjectParticleData() {PowerUpParticle = newParticles});
 

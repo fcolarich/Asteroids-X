@@ -16,8 +16,7 @@ public class UIUpdateSystem : SystemBase
         _beginSimulationEcbSystem = World.GetExistingSystem<BeginFixedStepSimulationEntityCommandBufferSystem>();
     }
 
-   
-    protected override void OnUpdate()
+   protected override void OnUpdate()
     {
         if (!HasSingleton<GameStateData>()) return;
         var gameState = GetSingleton<GameStateData>();

@@ -37,10 +37,13 @@
             <e p="PowerUpEffectFireBoosterData.cs" t="Include" />
             <e p="PowerUpEffectShieldData.cs" t="Include" />
             <e p="PowerUpRandomAppearData.cs" t="Include" />
+            <e p="RandomNumberData.cs" t="Include" />
             <e p="SpawnEntityData.cs" t="Include" />
             <e p="TriggerEventData.cs" t="Include" />
             <e p="UFOGeneralData.cs" t="Include" />
             <e p="UFOLivesData.cs" t="Include" />
+            <e p="WaveManagerData.cs" t="Include" />
+            <e p="WaveManagerTimerData.cs" t="Include" />
           </e>
           <e p="EventData" t="Include">
             <e p="OnBulletFired.cs" t="Include" />
@@ -94,12 +97,11 @@
             <e p="PowerUpTag.cs" t="Include" />
             <e p="RandomPowerUpTag.cs" t="Include" />
             <e p="SmallAsteroidDestroyedTag.cs" t="Include" />
-            <e p="ToInitializeTag.cs" t="Include" />
+            <e p="ToInitialize.cs" t="Include" />
             <e p="UFOBigTag.cs" t="Include" />
             <e p="UFOMediumTag.cs" t="Include" />
             <e p="UFOSmallTag.cs" t="Include" />
             <e p="UFOTag.cs" t="Include" />
-            <e p="WaveManagerData.cs" t="Include" />
           </e>
           <e p="TitleSkip.cs" t="Include" />
           <e p="UIManager.cs" t="Include" />

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3113847177096892917}
   - component: {fileID: 8170279200285709026}
   - component: {fileID: 7158136502105656514}
+  - component: {fileID: -8200892349572257338}
   m_Layer: 0
   m_Name: DestroyedSmallAsteroidCount
   m_TagString: Untagged
@@ -57,3 +58,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f467b6682933883419944b355dd42038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8200892349572257338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031484636254428367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212f0f9a75bbc3143b9279b7545aa3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0

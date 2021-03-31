@@ -22,6 +22,7 @@ public class EnemyCollisionSystem : SystemBase
 
 
         var ecb = _beginSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
+        var elapsedTime = Time.ElapsedTime;
 
 
         Entities.WithChangeFilter<OnCollision>().WithAny<AsteroidsTag>()
@@ -34,10 +35,14 @@ public class EnemyCollisionSystem : SystemBase
                     {
                         onCollision.Value = false;
                         SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
-                        
-                        if (Random.CreateFromIndex(1).NextFloat(1) < powerUpRandomAppearData.AppearanceChance)
+
+                        var index = Random.CreateFromIndex(Convert.ToUInt32(entityInQueryIndex*elapsedTime)).NextUInt();
+
+                        if (Random.CreateFromIndex(index).NextFloat(1) < powerUpRandomAppearData.AppearanceChance)
                         {
-                            SpawnEntities(entityInQueryIndex, 1, powerUpRandomAppearData.RandomPowerUp, trans, ecb, false);
+                            var newEntity = ecb.Instantiate(entityInQueryIndex,powerUpRandomAppearData.RandomPowerUp);
+                            ecb.SetComponent(entityInQueryIndex,newEntity, new Translation
+                            { Value = new float3(trans.Value.x, trans.Value.y, -50)});
                         }
 
                         onEnemyHit.Value = true;
@@ -64,9 +69,10 @@ public class EnemyCollisionSystem : SystemBase
             float2 spawnLocationModifier = 0;
             
             if (spawnInRandomPosition)
-            {
-                var randomPointInCircleX = math.cos(Random.CreateFromIndex(1).NextFloat());
-                var randomPointInCircleY = math.sin(Random.CreateFromIndex(1).NextFloat());
+            {                        
+                var index = Random.CreateFromIndex(Convert.ToUInt32(entityInQueryIndex)).NextUInt();
+                var randomPointInCircleX = math.cos(Random.CreateFromIndex(index).NextFloat());
+                var randomPointInCircleY = math.sin(Random.CreateFromIndex(index).NextFloat());
                 spawnLocationModifier = new float2(randomPointInCircleX, randomPointInCircleY) * 10;
             }
             var newEntity = ecb.Instantiate(entityInQueryIndex,entityToSpawn);
@@ -75,6 +81,8 @@ public class EnemyCollisionSystem : SystemBase
                 Value = new float3(trans.Value.x + spawnLocationModifier.x,
                     trans.Value.y + spawnLocationModifier.y, -50)
             });
+            ecb.SetComponent(entityInQueryIndex, newEntity, new ToInitialize {Value = true});
+
         }
     }
 }

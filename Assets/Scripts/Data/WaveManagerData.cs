@@ -8,6 +8,7 @@ public struct WaveManagerData : IComponentData
     public int StartingAmountToSpawn;
     public int IncrementPerWave;
     public int CurrentWave;
+    public int CurrentAmountToSpawn;
     public Entity AsteroidPrefab;
     public Entity SmallUFOPrefab;
     public Entity MediumUFOPrefab;
