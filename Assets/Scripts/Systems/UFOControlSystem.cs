@@ -1,13 +1,12 @@
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class UFOControlSystem : SystemBase
 {
-    private NativeArray<Entity> _targetEntities;
 
 
     protected override void OnUpdate()
@@ -16,21 +15,19 @@ public class UFOControlSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
         
-        _targetEntities = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).ToEntityArray(Allocator.Temp);
+        var localTargetEntities = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).ToEntityArray(Allocator.TempJob);
+        var localTranslation = GetComponentDataFromEntity<Translation>(true);
         
-        var localTargetEntities = _targetEntities;
-        var _localTranslation = GetComponentDataFromEntity<Translation>();
-        
-        Entities.ForEach((Entity thisEntity, ref UFOGeneralData ufoGeneralData, ref Rotation rot,
-            ref MoveSpeedData moveSpeedData, in MoveSpeedModifierData moveSpeedModifier, in Translation trans) =>
+        Entities.WithReadOnly(localTranslation).WithReadOnly(localTargetEntities).WithDisposeOnCompletion(localTargetEntities).ForEach((Entity thisEntity, 
+            ref UFOGeneralData ufoGeneralData, ref Rotation rot, ref MoveSpeedData moveSpeedData, 
+            in MoveSpeedModifierData moveSpeedModifier, in Translation trans) =>
         {
-            if (HasComponent<PlayerTag>(ufoGeneralData.targetEntity))
+            if (HasComponent<PlayerTag>(ufoGeneralData.TargetEntity))
             {
-                var targetPosition = _localTranslation[ufoGeneralData.targetEntity].Value;
+                var targetPosition = localTranslation[ufoGeneralData.TargetEntity].Value;
                 var targetDirection = targetPosition-trans.Value;
-                ufoGeneralData.targetDirection = targetDirection;
+                ufoGeneralData.TargetDirection = targetDirection;
                 rot.Value = quaternion.LookRotationSafe(targetDirection, math.down());
-
                 if (HasComponent<UFOSmallTag>(thisEntity))
                 {
                     moveSpeedData.movementSpeed = math.forward(rot.Value) * moveSpeedModifier.SpeedModifier;
@@ -55,10 +52,10 @@ public class UFOControlSystem : SystemBase
             {
                 if (localTargetEntities.Length > 0)
                 {
-                    int randomInt = Random.Range(0, localTargetEntities.Length);
-                    ufoGeneralData.targetEntity = localTargetEntities[randomInt];
+                    int randomInt = Unity.Mathematics.Random.CreateFromIndex(1).NextInt(0, localTargetEntities.Length);
+                    ufoGeneralData.TargetEntity = localTargetEntities[randomInt];
                 }
             }
-        }).Run();
+        }).ScheduleParallel();
     }
 }

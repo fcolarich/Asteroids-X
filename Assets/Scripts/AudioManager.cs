@@ -21,12 +21,12 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivateSystem>().OnBulletFire += AudioManagerOnFire;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivateSystem>().OnPlayerShot += AudioManagerOnPlayerShipExplode;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<GameWavesControlSystem>().OnEnemyShipCreated += AudioManagerOnEnemyShipCreated;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<GameWavesControlSystem>().OnEnemyBigShipCreated += AudioManagerOnEnemyBigShipCreated;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivateSystem>().OnEnemyHit += AudioManagerOnEnemyExplode;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivateSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnBulletFire += AudioManagerOnFire;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnPlayerShot += AudioManagerOnPlayerShipExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnEnemyShipCreated += AudioManagerOnEnemyShipCreated;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnEnemyBigShipCreated += AudioManagerOnEnemyBigShipCreated;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnEnemyHit += AudioManagerOnEnemyExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += AudioManagerOnRestart;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += AudioManagerOnPlayer2Join;
         _pooler = Pooler.Instance;
@@ -62,9 +62,9 @@ public class AudioManager : MonoBehaviour
     private void AudioManagerOnRestart(object sender, EventArgs e)
     {
         foreach
-            (var audio in FindObjectsOfType<AudioSource>())
+            (var audioSource in FindObjectsOfType<AudioSource>())
         {
-            _pooler.DeSpawn(audio.gameObject);   
+            _pooler.DeSpawn(audioSource.gameObject);   
         }  music.SetActive(true);
     }
     

@@ -96,7 +96,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveAccelerationData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOBigTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/EventActivateSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/AudioEventActivationSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/RandomPowerUpTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Player1SpawnData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/ConvertToEntity.cs" root0="SKIP_HIGHLIGHTING" />
@@ -113,11 +113,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ParticleDestroy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AudioDespawn.cs" />
       <option value="$PROJECT_DIR$/Assets/TitleSkip.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TitleSkip.cs" />
@@ -146,7 +141,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnPlayerShot.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EventActivateSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnCollisionRegistered.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TriggerDetectionSystem.cs" />
@@ -158,12 +152,18 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionDetectionSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/WaveManagerData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerData1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerTimerData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit2.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AudioEventActivationSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -225,7 +225,8 @@
       <workItem from="1616782151402" duration="2009000" />
       <workItem from="1616786320044" duration="8889000" />
       <workItem from="1617136233804" duration="11915000" />
-      <workItem from="1617200861663" duration="1424000" />
+      <workItem from="1617200861663" duration="2021000" />
+      <workItem from="1617214816555" duration="2564000" />
     </task>
     <servers />
   </component>

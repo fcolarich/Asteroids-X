@@ -25,16 +25,14 @@ public class EnemyCollisionSystem : SystemBase
         var elapsedTime = Time.ElapsedTime;
 
 
-        Entities.WithChangeFilter<OnCollision>().WithAny<AsteroidsTag>()
-            .WithAny<UFOSmallTag>().WithAny<UFOMediumTag>().WithAny<UFOBigTag>().ForEach(
-                (int entityInQueryIndex, Entity thisEntity, ref OnCollision onCollision, ref OnEnemyHit onEnemyHit, in Translation trans,
-                    in SpawnEntityData spawnEntityData,
+        Entities.WithChangeFilter<OnCollision>().WithAny<UFOSmallTag>().WithAny<UFOMediumTag>().
+            ForEach((int entityInQueryIndex, Entity thisEntity, ref OnCollision onCollision, 
+                    ref OnEnemyHit onEnemyHit, in Translation trans, in SpawnEntityData spawnEntityData,
                     in PowerUpRandomAppearData powerUpRandomAppearData) =>
                 {
                     if (onCollision.Value)
                     {
                         onCollision.Value = false;
-                        SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
 
                         var index = Random.CreateFromIndex(Convert.ToUInt32(entityInQueryIndex*elapsedTime)).NextUInt();
 
@@ -49,7 +47,54 @@ public class EnemyCollisionSystem : SystemBase
                     }
                 }).ScheduleParallel();
 
+        //ASTEROIDS dont spawn PowerUps, only UFOS
+        Entities.WithChangeFilter<OnCollision>().WithAll<AsteroidsTag>()
+            .ForEach(
+                (int entityInQueryIndex, Entity thisEntity, ref OnCollision onCollision, ref OnEnemyHit onEnemyHit, in Translation trans,
+                    in SpawnEntityData spawnEntityData,
+                    in PowerUpRandomAppearData powerUpRandomAppearData) =>
+                {
+                    if (onCollision.Value)
+                    {
+                        onCollision.Value = false;
+                        SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
+                        onEnemyHit.Value = true;
+                    }
+                }).ScheduleParallel();
+        
+        
+        Entities.WithChangeFilter<OnCollision>().WithAny<UFOBigTag>().ForEach(
+                (int entityInQueryIndex, ref OnCollision onCollision,ref UFOLivesData ufoLivesData,
+                    ref OnEnemyHit onEnemyHit, ref OnDestroyed onDestroyed, in Translation trans, 
+                    in SpawnEntityData spawnEntityData, in PowerUpRandomAppearData powerUpRandomAppearData) =>
+                {
+                    if (onCollision.Value)
+                    {
+                        onCollision.Value = false;
+                        SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true);
+                        
+                        if (ufoLivesData.CurrentLives - 1 > 0)
+                        {
+                            ufoLivesData.CurrentLives -= 1;
+                        }
+                        else
+                        {
+                            var index = Random.CreateFromIndex(Convert.ToUInt32(entityInQueryIndex*elapsedTime)).NextUInt();
+                            if (Random.CreateFromIndex(index).NextFloat(1) < powerUpRandomAppearData.AppearanceChance)
+                            {
+                                var newEntity = ecb.Instantiate(entityInQueryIndex,powerUpRandomAppearData.RandomPowerUp);
+                                ecb.SetComponent(entityInQueryIndex,newEntity, new Translation
+                                    { Value = new float3(trans.Value.x, trans.Value.y, -50)});
+                            }
+                            onDestroyed.Value = true;
+                        }
+                        onEnemyHit.Value = true;
+                    }
+                }).ScheduleParallel();
 
+        
+        
+        
         Entities.WithChangeFilter<OnCollision>().WithAny<EnemyBulletTag>().ForEach((int entityInQueryIndex, Entity thisEntity, ref OnDestroyed onDestroyed, in OnCollision onCollision) =>
         {
             if (onCollision.Value)

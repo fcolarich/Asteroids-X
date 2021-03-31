@@ -166,6 +166,19 @@ MonoBehaviour:
   BulletGroupTimer: 0
   SecondsBetweenBulletGroups: 3
   BulletSpeed: 120
+--- !u!114 &2320644677299950553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166732560204271009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97ab13f745c28242a07060520c1d68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
 --- !u!1001 &3576439249240229125
 PrefabInstance:
   m_ObjectHideFlags: 0

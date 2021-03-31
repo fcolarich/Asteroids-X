@@ -50,7 +50,9 @@
             <e p="OnCollision.cs" t="Include" />
             <e p="OnCollisionRegistered.cs" t="Include" />
             <e p="OnDestroyed.cs" t="Include" />
+            <e p="OnEnemyBigShipCreated.cs" t="Include" />
             <e p="OnEnemyHit.cs" t="Include" />
+            <e p="OnEnemyShipCreated.cs" t="Include" />
             <e p="OnHitParticlesData.cs" t="Include" />
             <e p="OnLivesUpdated.cs" t="Include" />
             <e p="OnPlayerShot.cs" t="Include" />
@@ -60,11 +62,11 @@
           <e p="ParticleDestroy.cs" t="Include" />
           <e p="Pooler.cs" t="Include" />
           <e p="Systems" t="Include">
+            <e p="AudioEventActivationSystem.cs" t="Include" />
             <e p="BulletCollisionDetectionSystem.cs" t="Include" />
             <e p="DestroyEntitiesSystem.cs" t="Include" />
             <e p="EnemyCollisionSystem.cs" t="Include" />
             <e p="EnemyCollisionSystem1.cs" t="Include" />
-            <e p="EventActivateSystem.cs" t="Include" />
             <e p="GameWavesControlSystem.cs" t="Include" />
             <e p="GeneralFireRateSystem.cs" t="Include" />
             <e p="GeneralMovementSystem.cs" t="Include" />

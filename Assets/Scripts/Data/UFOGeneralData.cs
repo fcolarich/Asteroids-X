@@ -4,6 +4,6 @@ using Unity.Mathematics;
 [GenerateAuthoringComponent]
 public struct UFOGeneralData : IComponentData
 {
- public Entity targetEntity;
- public float3 targetDirection;
+ public Entity TargetEntity;
+ public float3 TargetDirection;
 }

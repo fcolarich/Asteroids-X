@@ -11,8 +11,6 @@ public class GameWavesControlSystem : SystemBase
     private bool _newWave = true;
     private bool _resetGame = true;
     private bool _startNewWave = false;
-    public EventHandler OnEnemyShipCreated;
-    public EventHandler OnEnemyBigShipCreated;
 
 
     protected override void OnCreate()
@@ -80,7 +78,7 @@ public class GameWavesControlSystem : SystemBase
                     var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.BigUFOPrefab);
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});
-                    //OnEnemyBigShipCreated(this,EventArgs.Empty);
+                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyBigShipCreated {Value = true});
                 }
             }).ScheduleParallel();
         }
@@ -88,7 +86,7 @@ public class GameWavesControlSystem : SystemBase
         var destroyedAsteroidsAmount = GetEntityQuery(ComponentType.ReadOnly<SmallAsteroidDestroyedTag>())
             .CalculateEntityCount();
 
-        Entities.ForEach((WaveManagerData waveManagerData) =>
+        Entities.ForEach((in WaveManagerData waveManagerData) =>
         {
             if (destroyedAsteroidsAmount >= waveManagerData.CurrentAmountToSpawn * 4)
             {
@@ -108,7 +106,7 @@ public class GameWavesControlSystem : SystemBase
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
                     waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
-                  // OnEnemyShipCreated(this, EventArgs.Empty);
+                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
                 }
 
                 if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(elapsedTime)).NextFloat() > 0.7)
@@ -118,7 +116,7 @@ public class GameWavesControlSystem : SystemBase
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 150, spawnLocation.y, -50)});
                     waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
-                   // OnEnemyShipCreated(this, EventArgs.Empty);
+                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
                 }
             }
             else
