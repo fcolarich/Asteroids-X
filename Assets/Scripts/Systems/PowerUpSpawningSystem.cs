@@ -10,8 +10,10 @@ using Random = UnityEngine.Random;
 public class PowerUpSpawningSystem : SystemBase
 {
     EndFixedStepSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
-    private NativeArray<Entity> _powerUpArray;
+    private BlobAssetReference<BlobArray<Entity>> _powerUpArray;
 
+    private Entity _gameManager;
+    
 
     protected override void OnCreate()
     {
@@ -28,7 +30,8 @@ public class PowerUpSpawningSystem : SystemBase
 
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer();
         var deltaTime = Time.DeltaTime;
-        Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity, GameObjectParticleData powerUpParticleData, ref PowerUpData powerUpData, ref PowerUpPrefab powerUpPrefab) =>
+        
+        /*Entities.WithAll<PowerUpPrefab>().ForEach((Entity thisEntity, GameObjectParticleData powerUpParticleData, ref PowerUpData powerUpData, ref PowerUpPrefab powerUpPrefab) =>
       {
           powerUpPrefab.AppearanceTimer -= deltaTime;
           
@@ -46,14 +49,25 @@ public class PowerUpSpawningSystem : SystemBase
                       ecb.SetComponent(newEntity, new GameObjectParticleData() {PowerUpParticle = newParticles});
                   }
           }
-      }).WithoutBurst().Run(); 
+      }).WithoutBurst().Run();*/ 
         
-       _powerUpArray = GetEntityQuery(ComponentType.ReadOnly<PowerUpPrefab>()).ToEntityArray(Allocator.Temp);
+        
+       //_powerUpArray = GetEntityQuery(ComponentType.ReadOnly<PowerUpPrefab>()).ToEntityArray(Allocator.Temp);
+
+       Entity[] localArray = new Entity[5];
+       Entities.ForEach((in PowerUpArrayData powerUpArrayData) =>
+       {
+           localArray = new Entity[powerUpArrayData.PowerUpArray.Value.Length];
+           for (int i = 0; i < powerUpArrayData.PowerUpArray.Value.Length; i++)
+           {
+               localArray[i] = powerUpArrayData.PowerUpArray.Value[i];
+           }
+       }).WithoutBurst().Run();
 
        Entities.WithAll<RandomPowerUpTag>().ForEach((Entity thisEntity, in Translation trans) =>
       {
-          int value = Random.Range(0, _powerUpArray.Length);
-          var newEntity = ecb.Instantiate(_powerUpArray[value]);
+          int value = Random.Range(0, localArray.Length);
+          var newEntity = ecb.Instantiate(localArray[value]);
           ecb.RemoveComponent<PowerUpPrefab>(newEntity);
           ecb.AddComponent(newEntity, new ToInitialize());
           ecb.SetComponent(newEntity, new Translation {Value =  trans.Value});

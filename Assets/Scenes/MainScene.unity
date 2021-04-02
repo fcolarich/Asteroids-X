@@ -1074,6 +1074,8 @@ GameObject:
   - component: {fileID: 969211980}
   - component: {fileID: 969211981}
   - component: {fileID: 969211982}
+  - component: {fileID: 969211984}
+  - component: {fileID: 969211983}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1188,6 +1190,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnTimer: 0
   TimeBetweenTrySpawnsSeconds: 15
+--- !u!114 &969211983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969211975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e414f3e2ed42441bc340a426ecac8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerUpArray:
+  - {fileID: 3952111604481248476, guid: 33ab899d7487ac74ba1a3e109900b4a2, type: 3}
+  - {fileID: 1630080469835537499, guid: 81327f14b11afc8419470daadd382014, type: 3}
+  - {fileID: 6645404467524130156, guid: 274fa5c76c70c3949bd313ba480360bb, type: 3}
+  - {fileID: 4088583490859322417, guid: 093512518c7efba4ab33f0edbccc8ebc, type: 3}
+  - {fileID: 7656943586735648706, guid: d7e28b8f5a4dfc546ac3d6d4b9d38f20, type: 3}
+--- !u!114 &969211984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969211975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bb884ba53456241bc0d343308b3964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1064972226
 GameObject:
   m_ObjectHideFlags: 0

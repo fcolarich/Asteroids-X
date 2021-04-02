@@ -24,7 +24,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralFireRateSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ComponentSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/Components/CompanionLink.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ToInitialize.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Into the Endless Sea 2019/Assets/Ez/Pooly/Scripts/Pooly.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/AsteroidsTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -77,6 +76,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ParticleFollowTargetSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ComponentDependencyManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/DestroyEntitiesSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/EntityBlobAssetConstructor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/SpawnEntityData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/ComponentData/MoveForwardComponent.cs" root0="SKIP_HIGHLIGHTING" />
@@ -106,22 +106,16 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/EntityManagerExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/EnemyBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ActivePowerUpTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Stubs/Unity/Debug.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/OnActivePowerUp.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Input/PlayersActions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionDetectionSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics/Dynamics/Simulation/TriggerEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayData.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/AudioDespawn.cs" />
-      <option value="$PROJECT_DIR$/Assets/TitleSkip.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TitleSkip.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ParticleDespawn.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/CompanionData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/TestingSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/EventOnBulletFireTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/OnBulletFired.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" />
@@ -151,7 +145,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionDetectionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/WaveManagerData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerData1.cs" />
@@ -164,6 +157,16 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AudioEventActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionDetectionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ActivePowerUpTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/OnActivePowerUp.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpData1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpManagerData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EntityBlobAssetConstructor.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -226,7 +229,9 @@
       <workItem from="1616786320044" duration="8889000" />
       <workItem from="1617136233804" duration="11915000" />
       <workItem from="1617200861663" duration="2021000" />
-      <workItem from="1617214816555" duration="2564000" />
+      <workItem from="1617214816555" duration="4558000" />
+      <workItem from="1617236345481" duration="4564000" />
+      <workItem from="1617241687170" duration="3633000" />
     </task>
     <servers />
   </component>
