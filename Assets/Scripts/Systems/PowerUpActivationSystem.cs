@@ -1,6 +1,5 @@
 using Unity.Entities;
 using Unity.Physics;
-using UnityEngine;
 
 public class PowerUpActivationSystem : SystemBase
 {

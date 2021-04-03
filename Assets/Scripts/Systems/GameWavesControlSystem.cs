@@ -81,10 +81,7 @@ public class GameWavesControlSystem : SystemBase
                 }
             }).ScheduleParallel();
         }
-        
 
-        
-        
         Entities.ForEach((int entityInQueryIndex,ref WaveManagerTimerData waveManagerTimerData,in WaveManagerData waveManagerData) =>
         {
             if (waveManagerTimerData.SpawnTimer <= 0)

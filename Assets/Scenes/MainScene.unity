@@ -1076,6 +1076,7 @@ GameObject:
   - component: {fileID: 969211982}
   - component: {fileID: 969211984}
   - component: {fileID: 969211983}
+  - component: {fileID: 969211985}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1220,6 +1221,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bb884ba53456241bc0d343308b3964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &969211985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969211975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765f25168a1e94148ac55755db5b14c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerUpTimer: 0
+  PowerUpSpawnIntervalSeconds: 20
 --- !u!1 &1064972226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,6 +2017,7 @@ MonoBehaviour:
   enemyBigShipCreated: {fileID: 7855196084500472711, guid: 29ad9f914d1960741bb13756b9d56222, type: 3}
   music: {fileID: 1731192412}
   player2Joined: {fileID: 7756688909959351760, guid: c1233f30dd0268d47827a21d5785aa12, type: 3}
+  powerUpActivated: {fileID: 0}
 --- !u!114 &1617055885
 MonoBehaviour:
   m_ObjectHideFlags: 0

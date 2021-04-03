@@ -119,7 +119,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnBulletFired.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnLivesUpdated.cs" />
@@ -154,7 +153,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EntityBlobAssetConstructor.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnDeactivateParticles.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameObjectParticleData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/LinkedParticleData.cs" />
@@ -163,12 +161,14 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnHitParticlesGameObjectClass.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ParticleFollowTargetSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ParticleLinkTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnLifeTimeEnd.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EventActivationSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpSpawnData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpSpawnData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EventActivationSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpRadomSpawnSystem.cs" />
     </changedPaths>
   </component>
@@ -237,7 +237,9 @@
       <workItem from="1617241687170" duration="3633000" />
       <workItem from="1617363390379" duration="2008000" />
       <workItem from="1617390908008" duration="4830000" />
-      <workItem from="1617409933241" duration="7643000" />
+      <workItem from="1617409933241" duration="7791000" />
+      <workItem from="1617478336846" duration="1013000" />
+      <workItem from="1617479375885" duration="1550000" />
     </task>
     <servers />
   </component>

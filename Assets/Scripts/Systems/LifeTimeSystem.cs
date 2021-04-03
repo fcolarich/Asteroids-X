@@ -1,10 +1,4 @@
-using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
-using Unity.Jobs;
-using Unity.Mathematics;
-using Unity.Transforms;
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 
 public class LifeTimeSystem : SystemBase
 {

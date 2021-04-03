@@ -6,5 +6,5 @@ using UnityEngine;
 public struct PowerUpSpawnData : IComponentData
 {
     public float PowerUpTimer;
-    public float PowerUpDurationSeconds;
+    public float PowerUpSpawnIntervalSeconds;
 }

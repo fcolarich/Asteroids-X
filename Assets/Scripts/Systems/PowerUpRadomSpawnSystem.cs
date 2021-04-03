@@ -3,7 +3,6 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 using Unity.Mathematics;
-using Unity.Rendering;
 using Random = Unity.Mathematics.Random;
 
 public class PowerUpRadomSpawnSystem : SystemBase
@@ -29,6 +28,7 @@ public class PowerUpRadomSpawnSystem : SystemBase
         var ecb2 = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
 
         var elapsedTime = Time.ElapsedTime;
+        var deltaTime = Time.DeltaTime;
 
         var powerUpArrayEntity = GetSingletonEntity<PowerUpArrayData>();
         var powerUpArrayData = GetComponentDataFromEntity<PowerUpArrayData>(true)[powerUpArrayEntity];
@@ -42,6 +42,30 @@ public class PowerUpRadomSpawnSystem : SystemBase
           ecb2.DestroyEntity(entityInQueryIndex,thisEntity);
       }).ScheduleParallel();
       
+        Entities.ForEach((int entityInQueryIndex, ref PowerUpSpawnData powerUpSpawnData) =>
+        {
+         if (powerUpSpawnData.PowerUpTimer < 0)
+         {
+             powerUpSpawnData.PowerUpTimer = powerUpSpawnData.PowerUpSpawnIntervalSeconds;
+             int value = Random.CreateFromIndex(Convert.ToUInt32(entityInQueryIndex*elapsedTime)).NextInt(0, powerUpArrayData.PowerUpArray.Value.Length);
+             var newEntity = ecb2.Instantiate(entityInQueryIndex,powerUpArrayData.PowerUpArray.Value[value]);
+             ecb2.SetComponent(entityInQueryIndex,newEntity, new ToInitialize {Value = true});
+             var index = Convert.ToUInt32(elapsedTime*deltaTime);
+             var randomPointInCircleX = math.cos(Random.CreateFromIndex(index).NextFloat());
+             var randomPointInCircleY = math.sin(Random.CreateFromIndex(index).NextFloat());
+             var trans = new float2(randomPointInCircleX, randomPointInCircleY)*50;
+             ecb2.SetComponent(entityInQueryIndex,newEntity, new Translation {Value =  new float3(trans, -50)});
+
+         }
+         else
+         {
+             powerUpSpawnData.PowerUpTimer -= deltaTime;
+         }
+        }).ScheduleParallel();
+        
+        
+        
+        
       Entities.WithAll<PowerUpTag>().WithChangeFilter<ToInitialize>().ForEach((Entity thisEntity, GameObjectParticleData powerUpParticleData,ref ToInitialize toInitialize,in Translation trans) =>
       {
           if (toInitialize.Value)
