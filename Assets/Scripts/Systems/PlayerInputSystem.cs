@@ -184,9 +184,9 @@ public class PlayerInputSystem : SystemBase
                 {
                     speedData.movementSpeed = 0;
                     var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
-                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                     trans.Value = new float3(hyperJumpLocation, -50);
-                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
 
                 }).WithoutBurst().Run();
         }
@@ -198,9 +198,9 @@ public class PlayerInputSystem : SystemBase
                 {
                     speedData.movementSpeed = 0;
                     var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
-                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                     trans.Value = new float3(hyperJumpLocation, -50);
-                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                 }).WithoutBurst().Run();
         }
 

@@ -4,6 +4,7 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 
 public class LifeTimeSystem : SystemBase
 {
@@ -25,7 +26,7 @@ public class LifeTimeSystem : SystemBase
 
         var deltaTime = Time.DeltaTime;
 
-        Entities.WithNone<PowerUpPrefab>().WithAll<BulletSourceData>().ForEach(
+        Entities.WithAll<BulletSourceData>().ForEach(
             (int entityInQueryIndex, ref LifeTimeData lifeTime, in Entity thisEntity) =>
             {
                 lifeTime.lifeTimeSeconds -= deltaTime;
@@ -34,17 +35,34 @@ public class LifeTimeSystem : SystemBase
                     ecb2.DestroyEntity(entityInQueryIndex, thisEntity);
                 }
             }).ScheduleParallel();
+
+        var onDestroyed = GetComponentDataFromEntity<OnDestroyed>();
+        var onDeactivateParticles = GetComponentDataFromEntity<OnDeactivateParticles>();
         
-        Entities.WithNone<PowerUpPrefab>().WithAll<PowerUpTag>().ForEach((GameObjectParticleData powerUpParticleData, 
-            ref LifeTimeData lifeTime, in Entity thisEntity) =>
+        Entities.WithNone<PowerUpPrefab>().WithAll<PowerUpTag>().ForEach(( 
+            ref LifeTimeData lifeTime) =>
             {
                 lifeTime.lifeTimeSeconds -= deltaTime;
-                if (lifeTime.lifeTimeSeconds < 0)
+
+            }).ScheduleParallel();
+        
+            
+        Entities.WithNone<PowerUpPrefab>().WithAll<PowerUpTag>().ForEach(( 
+            ref LifeTimeData lifeTime, in Entity thisEntity) =>
+        {
+            if (lifeTime.lifeTimeSeconds < 0)
+            {
+                if (onDeactivateParticles[thisEntity].Value)
                 {
-                    Pooler.Instance.DeSpawn(powerUpParticleData.PowerUpParticle);
-                    ecb.DestroyEntity(thisEntity);
+                    onDestroyed[thisEntity] = new OnDestroyed() {Value = true};
                 }
-            }).WithoutBurst().Run();
+                else if (!onDestroyed[thisEntity].Value)
+                {
+                    onDeactivateParticles[thisEntity] = new OnDeactivateParticles() {Value = true};
+                }
+            }
+        }).Schedule();
+   
         
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }

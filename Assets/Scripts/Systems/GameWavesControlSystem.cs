@@ -55,7 +55,6 @@ public class GameWavesControlSystem : SystemBase
             _resetGame = true;
             Entities.ForEach((int entityInQueryIndex, ref WaveManagerData waveManagerData) =>
             {
-                Debug.Log("new WAVE");
                 waveManagerData.CurrentWave += 1;
                 waveManagerData.CurrentAmountToSpawn = waveManagerData.StartingAmountToSpawn +
                                                        (waveManagerData.CurrentWave * waveManagerData.IncrementPerWave);
@@ -83,16 +82,7 @@ public class GameWavesControlSystem : SystemBase
             }).ScheduleParallel();
         }
         
-        var destroyedAsteroidsAmount = GetEntityQuery(ComponentType.ReadOnly<SmallAsteroidDestroyedTag>())
-            .CalculateEntityCount();
 
-        Entities.ForEach((in WaveManagerData waveManagerData) =>
-        {
-            if (destroyedAsteroidsAmount >= waveManagerData.CurrentAmountToSpawn * 4)
-            {
-                _startNewWave = true;
-            };
-        }).WithoutBurst().Run();
         
         
         Entities.ForEach((int entityInQueryIndex,ref WaveManagerTimerData waveManagerTimerData,in WaveManagerData waveManagerData) =>
@@ -125,7 +115,17 @@ public class GameWavesControlSystem : SystemBase
             }
         }).ScheduleParallel();
 
+        var destroyedAsteroidsAmount = GetEntityQuery(ComponentType.ReadOnly<SmallAsteroidDestroyedTag>())
+            .CalculateEntityCount();
 
+        Entities.ForEach((in WaveManagerData waveManagerData) =>
+        {
+            if (destroyedAsteroidsAmount >= waveManagerData.CurrentAmountToSpawn * 4)
+            {
+                _startNewWave = true;
+            };
+        }).WithoutBurst().Run();
+        
         if (_startNewWave)
         {
             _newWave = true;

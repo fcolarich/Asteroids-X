@@ -1,10 +1,6 @@
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Physics;
-using Unity.Rendering;
-using Unity.Transforms;
 using UnityEngine;
-
 
 public class PowerUpActivationSystem : SystemBase
 {
@@ -33,37 +29,33 @@ public class PowerUpActivationSystem : SystemBase
         var _bulletFireData = GetComponentDataFromEntity<BulletFireData>();
         
         
-        Entities.WithChangeFilter<OnCollision>().WithAll<PowerUpTag>().WithNone<PowerUpPrefab>()
+        Entities.WithChangeFilter<OnCollision>().WithAll<PowerUpTag>()
             .ForEach((Entity thisEntity, ref PowerUpData powerUpEffectData, ref OnCollision onCollision,
-                ref CollisionControlData collisionControlData, ref LifeTimeData lifeTimeData,
-                in OnHitParticlesData particlesData, in GameObjectParticleData powerUpParticleData) =>
+                ref CollisionControlData collisionControlData, ref LifeTimeData lifeTimeData, ref OnDeactivateParticles onDeactivateParticles,
+                in OnHitParticlesGameObjectClass particlesData, in GameObjectParticleData gameObjectParticleData) =>
             {
                 if (onCollision.Value)
                 {
                     onCollision.Value = false;
-                    
-                    //DEACTIVATE PARTICLE - CHANGE THIS
-                    powerUpParticleData.PowerUpParticle.SetActive(false);
-                    
-                    
+                    onDeactivateParticles.Value = true;
                     if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
                     {
-                        // DEACTIVATE COLLIDER - CHANGE THIS WITHOUT REMOVING COMPONENT
-                        ecb.RemoveComponent<PhysicsCollider>(thisEntity);
                         
-                        // ACTIVATE POWERUP TAG TO START COUNTING TIME FOR POWER UP AND APPLY EFFECTS IN OTHER WITHALL
-                        ecb.AddComponent(thisEntity, new OnActivePowerUp { });
+                        ecb.RemoveComponent<PhysicsCollider>(thisEntity);
+                        ecb.RemoveComponent<LifeTimeData>(thisEntity);
+                        ecb.AddComponent(thisEntity, new ActivePowerUp());
+                        
+                        //We create the entity that will follow the target and will move the particle effect with the target
+                        //We assign the target, then which particle effect to spawn and lastly the duration
+                        //In another system, the entity will spawn the gameObject particle effect and in yet another one, move it around.
                         var affectedTarget = collisionControlData.AffectedTarget;
-                        var particleObject = Pooler.Instance.Spawn(particlesData.ParticlePrefabObject);
                         var linkedParticleEntity = ecb.CreateEntity();
                         ecb.AddComponent(linkedParticleEntity, new LinkedParticleData()
                         {
                             Target = affectedTarget,
-                            ParticleObject = particleObject,
+                            ParticleObject = particlesData.ParticlePrefabObject,
                             TimerToDestroy = powerUpEffectData.PowerUpDurationSeconds
                         });
-                        ecb.AddComponent(linkedParticleEntity, new ParticleLinkTag() { });
-                        lifeTimeData.lifeTimeSeconds += powerUpEffectData.PowerUpDurationSeconds + 0.001f;
                         powerUpEffectData.PowerUpTimer = powerUpEffectData.PowerUpDurationSeconds + 0.001f;
                     }
                     else
@@ -73,7 +65,7 @@ public class PowerUpActivationSystem : SystemBase
                 }
             }).WithoutBurst().Run();
     
-        Entities.WithAll<PowerUpEffectFireBoosterData>().WithAll<OnActivePowerUp>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpEffectFireBoosterData>().WithAll<ActivePowerUp>().ForEach((Entity thisEntity,
             ref PowerUpData powerUpData,
             ref CollisionControlData collisionControlData,
             in PowerUpEffectFireBoosterData powerUpEffectFireBoosterData) =>
@@ -108,7 +100,7 @@ public class PowerUpActivationSystem : SystemBase
 
 
 
-        Entities.WithAll<PowerUpEffectEngineBoosterData>().WithAll<OnActivePowerUp>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpEffectEngineBoosterData>().WithAll<ActivePowerUp>().ForEach((Entity thisEntity,
             ref PowerUpData powerUpData, in CollisionControlData collisionControlData, 
             in PowerUpEffectEngineBoosterData powerUpEffectEngineBoosterData) =>
         {
@@ -137,7 +129,7 @@ public class PowerUpActivationSystem : SystemBase
 
 
 
-        Entities.WithAll<PowerUpEffectShieldData>().WithAll<OnActivePowerUp>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpEffectShieldData>().WithAll<ActivePowerUp>().ForEach((Entity thisEntity,
             ref PowerUpData powerUpData, in CollisionControlData collisionControlData) =>
         {
             if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
@@ -163,7 +155,7 @@ public class PowerUpActivationSystem : SystemBase
             powerUpData.PowerUpTimer -= deltaTime;
         }).Schedule();
 
-        Entities.WithAll<PowerUpBulletData>().WithAll<OnActivePowerUp>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpBulletData>().WithAll<ActivePowerUp>().ForEach((Entity thisEntity,
             ref PowerUpBulletData powerUpBulletData,
             ref PowerUpData powerUpData, in CollisionControlData collisionControlData) =>
         {

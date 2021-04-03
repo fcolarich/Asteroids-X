@@ -2,7 +2,7 @@ using Unity.Entities;
 
 
 [GenerateAuthoringComponent]
-public struct OnActivePowerUp : IComponentData
+public struct ActivePowerUp : IComponentData
 {
     public bool Value;
 }

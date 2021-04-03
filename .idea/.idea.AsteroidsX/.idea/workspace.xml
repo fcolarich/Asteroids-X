@@ -19,115 +19,106 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Scenes/GameObjectSceneManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpSpawnData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventData/OnLifeTimeEnd.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PlayerPointsData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralFireRateSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ComponentSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/Components/CompanionLink.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../Into the Endless Sea 2019/Assets/Ez/Pooly/Scripts/Pooly.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/AsteroidsTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpRandomAppearData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../Into the Endless Sea 2019/Assets/Ez/Pooly/Scripts/PoolyDespawner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/CodeGeneratedJobForEach/LambdaJobDescription.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Player2SpawnData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/GameObjectParticleData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TitleSkip.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ParticleCleanup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Up/Assets/Ez/Pooly/Scripts/Pooly.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Types/Entity.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/PlayerTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Types/TypeManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/IJobChunk.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics.Hybrid/Components/PhysicsShapeAuthoring.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerPointsToLivesManagerSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityComponentStoreDebug.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Pooler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventData/OnPlayerShot.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/TriggerEventData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/TestingSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Transforms/LocalToWorld.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics.Hybrid/Conversion/PhysicsShapeConversionSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@1.2.1/Unity.Mathematics/float4x4.gen.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityCommandBufferSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventData/OnLivesUpdated.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Iterators/ComponentDataFromEntity.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Player/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AudioDespawn.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Player/PlayerMover.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityCommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpBulletData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityDataAccess.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/DestroyEntitiesSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/UIUpdateSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/PlayerBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOMediumTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveAccelerationData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOBigTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ScriptBehaviourUpdateOrder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Input/PlayersActions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Blobs.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Scenes/GameObjectSceneManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ComponentSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Into the Endless Sea 2019/Assets/Ez/Pooly/Scripts/Pooly.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/AsteroidsTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Into the Endless Sea 2019/Assets/Ez/Pooly/Scripts/PoolyDespawner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/CodeGeneratedJobForEach/LambdaJobDescription.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ParticleCleanup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/IJobChunk.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PlayerPointsToLivesManagerSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/EntityBlobAssetConstructor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityComponentStoreDebug.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/TriggerEventData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/TestingSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Transforms/LocalToWorld.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ActivePowerUp.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityCommandBufferSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Player/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AudioDespawn.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventData/OnDeactivateParticles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Player/PlayerMover.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpRadomSpawnSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Managers/FXManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralRotationSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityDataAccess.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Managers/EnemySpawner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ParticleFollowTargetSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ComponentDependencyManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/DestroyEntitiesSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/EntityBlobAssetConstructor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/SpawnEntityData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/ComponentData/MoveForwardComponent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/UIUpdateSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/ComponentData/LifetimeComponent.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/Systems/MovementSystem.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveRotationModifierData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOTag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSFinal/Assets/RW/Scripts/ECS/Systems/FacePlayerSystem.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/PlayerBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOMediumTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ParticleLinkTag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveAccelerationData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOBigTag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/AudioEventActivationSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/EventActivationSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/RandomPowerUpTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Player1SpawnData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/ConvertToEntity.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics/Dynamics/Simulation/ITriggerEventsJob.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ScriptBehaviourUpdateOrder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities.Hybrid/EntityManagerExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/EnemyBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/Stubs/Unity/Debug.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/OnActivePowerUp.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Input/PlayersActions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionDetectionSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.physics@0.6.0-preview.3/Unity.Physics/Dynamics/Simulation/TriggerEvent.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayData.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/EventOnBulletFireTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/OnBulletFired.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralFireRateSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToDestroyTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/OnDestroyed.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/DestroyEntitiesSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionSystem1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/OnBulletFired1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/OnCollision.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnHitParticlesData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnBulletFired.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" />
@@ -153,12 +144,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit2.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AudioEventActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionDetectionSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ActivePowerUpTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/OnActivePowerUp.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpData1.cs" />
@@ -166,7 +154,22 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EntityBlobAssetConstructor.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnDeactivateParticles.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameObjectParticleData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/LinkedParticleData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnHitParticlesData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnHitParticlesGameObjectClass.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ParticleFollowTargetSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ParticleLinkTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnLifeTimeEnd.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EventActivationSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpSpawnData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpRadomSpawnSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -232,6 +235,9 @@
       <workItem from="1617214816555" duration="4558000" />
       <workItem from="1617236345481" duration="4564000" />
       <workItem from="1617241687170" duration="3633000" />
+      <workItem from="1617363390379" duration="2008000" />
+      <workItem from="1617390908008" duration="4830000" />
+      <workItem from="1617409933241" duration="7643000" />
     </task>
     <servers />
   </component>
