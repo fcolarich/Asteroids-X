@@ -73,6 +73,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ParticleCleanup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Transforms/Translation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/IJobChunk.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -119,8 +120,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnBulletFired.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnLivesUpdated.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnPlayerShot.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EventActivateSystem.cs" />
@@ -135,16 +134,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/WaveManagerData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerData1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerTimerData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit2.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AudioEventActivationSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionDetectionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ActivePowerUpTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/OnActivePowerUp.cs" />
@@ -163,13 +159,18 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ParticleLinkTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnLifeTimeEnd.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpSpawnData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EventActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpRadomSpawnSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -240,6 +241,7 @@
       <workItem from="1617409933241" duration="7791000" />
       <workItem from="1617478336846" duration="1013000" />
       <workItem from="1617479375885" duration="1550000" />
+      <workItem from="1617569560165" duration="14345000" />
     </task>
     <servers />
   </component>

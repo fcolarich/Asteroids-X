@@ -35,7 +35,7 @@ public class PowerUpRadomSpawnSystem : SystemBase
 
         Entities.WithAll<RandomPowerUpTag>().ForEach((int entityInQueryIndex, Entity thisEntity, in Translation trans) =>
        {
-          int value = Random.CreateFromIndex(Convert.ToUInt32(entityInQueryIndex*elapsedTime)).NextInt(0, powerUpArrayData.PowerUpArray.Value.Length);
+          int value = Random.CreateFromIndex(Convert.ToUInt32((1+entityInQueryIndex)*elapsedTime)).NextInt(0, powerUpArrayData.PowerUpArray.Value.Length);
           var newEntity = ecb2.Instantiate(entityInQueryIndex,powerUpArrayData.PowerUpArray.Value[value]);
           ecb2.SetComponent(entityInQueryIndex,newEntity, new ToInitialize {Value = true});
           ecb2.SetComponent(entityInQueryIndex,newEntity, new Translation {Value =  trans.Value});
@@ -47,12 +47,12 @@ public class PowerUpRadomSpawnSystem : SystemBase
          if (powerUpSpawnData.PowerUpTimer < 0)
          {
              powerUpSpawnData.PowerUpTimer = powerUpSpawnData.PowerUpSpawnIntervalSeconds;
-             int value = Random.CreateFromIndex(Convert.ToUInt32(entityInQueryIndex*elapsedTime)).NextInt(0, powerUpArrayData.PowerUpArray.Value.Length);
+             int value = Random.CreateFromIndex(Convert.ToUInt32((1+entityInQueryIndex)*elapsedTime)).NextInt(0, powerUpArrayData.PowerUpArray.Value.Length);
              var newEntity = ecb2.Instantiate(entityInQueryIndex,powerUpArrayData.PowerUpArray.Value[value]);
              ecb2.SetComponent(entityInQueryIndex,newEntity, new ToInitialize {Value = true});
              var index = Convert.ToUInt32(elapsedTime*deltaTime);
-             var randomPointInCircleX = math.cos(Random.CreateFromIndex(index).NextFloat());
-             var randomPointInCircleY = math.sin(Random.CreateFromIndex(index).NextFloat());
+             var randomPointInCircleX = math.cos(Random.CreateFromIndex(index).NextFloat(360));
+             var randomPointInCircleY = math.sin(Random.CreateFromIndex(index).NextFloat(360));
              var trans = new float2(randomPointInCircleX, randomPointInCircleY)*50;
              ecb2.SetComponent(entityInQueryIndex,newEntity, new Translation {Value =  new float3(trans, -50)});
 

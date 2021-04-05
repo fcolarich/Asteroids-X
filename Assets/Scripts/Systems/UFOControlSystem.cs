@@ -15,9 +15,18 @@ public class UFOControlSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
         
+        var screenWrappingSystem = World.GetExistingSystem<ScreenWrappingSystem>();
+        var cameraMaxHeight = screenWrappingSystem._cameraMaxHeight;
+        var cameraMinHeight = screenWrappingSystem._cameraMinHeight;
+        var cameraMaxWidth  = screenWrappingSystem._cameraMaxWidth;
+        var cameraMinWidth = screenWrappingSystem._cameraMinWidth;
+        var cameraWidth = cameraMaxWidth - cameraMinWidth;
+        var cameraHeight = cameraMaxHeight - cameraMinHeight;
+        
+        
         var localTargetEntities = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).ToEntityArray(Allocator.TempJob);
         var localTranslation = GetComponentDataFromEntity<Translation>(true);
-        
+
         Entities.WithReadOnly(localTranslation).WithReadOnly(localTargetEntities).WithDisposeOnCompletion(localTargetEntities).ForEach((Entity thisEntity, 
             ref UFOGeneralData ufoGeneralData, ref Rotation rot, ref MoveSpeedData moveSpeedData, 
             in MoveSpeedModifierData moveSpeedModifier, in Translation trans) =>
@@ -25,9 +34,51 @@ public class UFOControlSystem : SystemBase
             if (HasComponent<PlayerTag>(ufoGeneralData.TargetEntity))
             {
                 var targetPosition = localTranslation[ufoGeneralData.TargetEntity].Value;
-                var targetDirection = targetPosition-trans.Value;
+                
+                var x = targetPosition.x - trans.Value.x;
+                var y = targetPosition.y - trans.Value.y;
+                float directionX;
+                float directionY;
+                if (Mathf.Abs(x) > cameraWidth / 2)
+                {
+                    if (x > 0)
+                    {
+                        directionX = - cameraWidth + x;
+                    }
+                    else
+                    {
+                        directionX = cameraWidth - x;    
+                    }
+                    
+                }
+                else
+                {
+                    directionX = x;
+                }
+                if (Mathf.Abs(y) > cameraHeight / 2)
+                {
+                    if (y > 0)
+                    {
+                        directionY = - cameraHeight + y;
+                    }
+                    else
+                    {
+                        directionY = cameraHeight - y;
+                    }
+                }
+                else
+                {
+                    directionY = y;
+                }
+
+                var targetDirection = new float3(directionX, directionY, 0);
+
+
                 ufoGeneralData.TargetDirection = targetDirection;
                 rot.Value = quaternion.LookRotationSafe(targetDirection, math.down());
+                
+                //MAKE ROTATION MORE GRADUAL
+                
                 if (HasComponent<UFOSmallTag>(thisEntity))
                 {
                     moveSpeedData.movementSpeed = math.forward(rot.Value) * moveSpeedModifier.SpeedModifier;

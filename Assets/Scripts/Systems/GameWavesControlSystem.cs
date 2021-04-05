@@ -62,7 +62,7 @@ public class GameWavesControlSystem : SystemBase
                 var tempAmountToSpawn = waveManagerData.CurrentAmountToSpawn;
                 for (int i = 0; i < tempAmountToSpawn; i++)
                 {
-                    var spawnLocation = RandomPointInCircle(elapsedTime*i) * 300;
+                    var spawnLocation = RandomPointInCircle(elapsedTime*(i+1)) * 300;
                     var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.AsteroidPrefab);
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x+100, spawnLocation.y, -50)});
@@ -86,9 +86,9 @@ public class GameWavesControlSystem : SystemBase
         {
             if (waveManagerTimerData.SpawnTimer <= 0)
             {
-                if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(elapsedTime)).NextFloat() > 0.5)
+                if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32((1+entityInQueryIndex)*elapsedTime)).NextFloat() > 0.5)
                 {
-                    var spawnLocation = RandomPointInCircle(elapsedTime*waveManagerData.CurrentWave) * 150;
+                    var spawnLocation = RandomPointInCircle((elapsedTime*(1+waveManagerData.CurrentWave))) * 150;
                     var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.SmallUFOPrefab);
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
@@ -98,10 +98,10 @@ public class GameWavesControlSystem : SystemBase
 
                 if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(elapsedTime)).NextFloat() > 0.7)
                 {
-                    var spawnLocation = RandomPointInCircle(elapsedTime*waveManagerData.CurrentWave) * 40;
+                    var spawnLocation = RandomPointInCircle(elapsedTime*(2+waveManagerData.CurrentWave)) * 80;
                     var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.MediumUFOPrefab);
                     ecb.SetComponent(entityInQueryIndex,newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x + 150, spawnLocation.y, -50)});
+                        new Translation() {Value = new float3(spawnLocation.x + 500, spawnLocation.y, -50)});
                     waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
                     ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
                 }
@@ -140,8 +140,8 @@ public class GameWavesControlSystem : SystemBase
     static float2 RandomPointInCircle(in double someIndex)
     {
         var index = Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(someIndex)).NextUInt();
-        var randomPointInCircleX = math.cos(Unity.Mathematics.Random.CreateFromIndex(index).NextFloat());
-        var randomPointInCircleY = math.sin(Unity.Mathematics.Random.CreateFromIndex(index).NextFloat());
+        var randomPointInCircleX = math.cos(Unity.Mathematics.Random.CreateFromIndex(index).NextFloat(360));
+        var randomPointInCircleY = math.sin(Unity.Mathematics.Random.CreateFromIndex(index).NextFloat(360));
         return new float2(randomPointInCircleX, randomPointInCircleY);
     }
 }
