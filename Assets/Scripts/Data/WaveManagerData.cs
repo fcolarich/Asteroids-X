@@ -13,7 +13,7 @@ public struct WaveManagerData : IComponentData
     public Entity SmallUFOPrefab;
     public Entity MediumUFOPrefab;
     public Entity BigUFOPrefab;
-    public float SpawnTimer;
+    public float UFOSpawnTimer;
     public float TimeBetweenTrySpawnsSeconds;
     public int BigUFOWaveIntervals;
 }

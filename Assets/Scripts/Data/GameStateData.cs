@@ -8,7 +8,8 @@ public struct GameStateData : IComponentData
         WaitingToStart,
         Playing,
         Paused,
-        PlayersDead
+        PlayersDead,
+        InOptionsMenu
     }
     public State GameState;
 }

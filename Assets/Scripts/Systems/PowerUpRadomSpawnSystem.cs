@@ -50,12 +50,11 @@ public class PowerUpRadomSpawnSystem : SystemBase
              int value = Random.CreateFromIndex(Convert.ToUInt32((1+entityInQueryIndex)*elapsedTime)).NextInt(0, powerUpArrayData.PowerUpArray.Value.Length);
              var newEntity = ecb2.Instantiate(entityInQueryIndex,powerUpArrayData.PowerUpArray.Value[value]);
              ecb2.SetComponent(entityInQueryIndex,newEntity, new ToInitialize {Value = true});
-             var index = Convert.ToUInt32(elapsedTime*deltaTime);
+             var index = Convert.ToUInt32(elapsedTime);
              var randomPointInCircleX = math.cos(Random.CreateFromIndex(index).NextFloat(360));
              var randomPointInCircleY = math.sin(Random.CreateFromIndex(index).NextFloat(360));
              var trans = new float2(randomPointInCircleX, randomPointInCircleY)*50;
              ecb2.SetComponent(entityInQueryIndex,newEntity, new Translation {Value =  new float3(trans, -50)});
-
          }
          else
          {

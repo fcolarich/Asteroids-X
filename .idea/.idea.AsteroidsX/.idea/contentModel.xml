@@ -9,6 +9,10 @@
         <e p="Input" t="Include">
           <e p="PlayersActions.cs" t="Include" />
         </e>
+        <e p="OptionsSetAditionalEnemiesPerWave.cs" t="Include" />
+        <e p="OptionsSetBIGUFOWavesBetweenSpawns.cs" t="Include" />
+        <e p="OptionsSetStartingEnemies.cs" t="Include" />
+        <e p="OptionsSetUFOSecondsBetweenSpawns.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AudioDespawn.cs" t="Include" />
           <e p="AudioManager.cs" t="Include" />
@@ -98,6 +102,7 @@
             <e p="AsteroidsTag.cs" t="Include" />
             <e p="EnemyBulletTag.cs" t="Include" />
             <e p="ParticleLinkTag.cs" t="Include" />
+            <e p="PiercingBulletTag.cs" t="Include" />
             <e p="Player1Tag.cs" t="Include" />
             <e p="Player2Tag.cs" t="Include" />
             <e p="PlayerBulletTag.cs" t="Include" />

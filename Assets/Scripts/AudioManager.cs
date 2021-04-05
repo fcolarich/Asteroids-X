@@ -57,6 +57,7 @@ public class AudioManager : MonoBehaviour
     
     private void AudioManagerOnPowerUpActivated(object sender, EventArgs e)
     {
+        _pooler.Spawn(powerUpActivated);
     }
 
   private void AudioManagerOnPlayer2Join(object sender, EventArgs e)
