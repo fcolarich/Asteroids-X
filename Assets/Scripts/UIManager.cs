@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text defeatLine2;
     [SerializeField] private RectTransform welcomeMessage;
     [SerializeField] private GameObject backGround;
+    [SerializeField] private GameObject optionsMenu;
 
     
     public EventHandler OnVideoFinished;
@@ -41,7 +42,22 @@ public class UIManager : MonoBehaviour
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<UIUpdateSystem>().OnLivesUpdatePlayer2 += UIManagerOnLivesUpdatePlayer2;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerCollisionSystem>().OnPlayersDestroyed += UIManagerOnPlayersDestroyed;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += UIManagerOnPlayer2Joined;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnOptions += UIManagerOnOptions;
         StartCoroutine(ShowScreen());
+    }
+
+    private void UIManagerOnOptions(object sender, EventArgs e)
+    {
+        if (sender.Equals(true))
+        {
+         optionsMenu.SetActive(true);
+         welcomeMessage.gameObject.SetActive(false);
+        }
+        else
+        {
+            optionsMenu.SetActive(false);
+            welcomeMessage.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator ShowScreen()

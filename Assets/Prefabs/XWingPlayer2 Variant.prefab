@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56a43e5538c6834ca777b185110cff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PowerUpParticle: {fileID: 174076, guid: cda1dafbd8a5c4b459b1fbac5d769f5f, type: 3}
+  ParticleGameObject: {fileID: 174076, guid: cda1dafbd8a5c4b459b1fbac5d769f5f, type: 3}
 --- !u!114 &8237725786739521269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c740b40ba9f4a8a4d891f14fba2b7811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  Value: 0
 --- !u!1001 &3865394391482241409
 PrefabInstance:
   m_ObjectHideFlags: 0

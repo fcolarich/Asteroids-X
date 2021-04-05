@@ -17,6 +17,7 @@ public class PlayerInputSystem : SystemBase
     public EventHandler OnRestart;
     public EventHandler OnPlayer2Join;
     public EventHandler OnSkipVideo;
+    public EventHandler OnOptions;
 
     private bool _player2Spawned = false;
     
@@ -33,6 +34,17 @@ public class PlayerInputSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         switch (gameState.GameState)
         {
+            case GameStateData.State.InOptionsMenu:
+            {
+                if (_playersActions.Player1.PauseGame.triggered)
+                {
+                    OnStart(this,EventArgs.Empty);
+                    gameState.GameState = GameStateData.State.WaitingToStart;
+                    SetSingleton(gameState);
+                    OnOptions.Invoke(false,EventArgs.Empty);
+                }
+                break;
+            }
             case GameStateData.State.WaitingToStart:
             {
                 if (_playersActions.Player1.StartGame.triggered)
@@ -44,6 +56,13 @@ public class PlayerInputSystem : SystemBase
                     { 
                         EntityManager.Instantiate(player1SpawnData.Player1Prefab);
                     }).WithoutBurst().WithStructuralChanges().Run();
+                }
+                if (_playersActions.Player1.PauseGame.triggered)
+                {
+                    OnStart(this,EventArgs.Empty);
+                    gameState.GameState = GameStateData.State.InOptionsMenu;
+                    SetSingleton(gameState);
+                    OnOptions.Invoke(true,EventArgs.Empty);
                 }
                 if (_playersActions.Player2.Fire.triggered && !_player2Spawned)
                 {
@@ -184,10 +203,9 @@ public class PlayerInputSystem : SystemBase
                 {
                     speedData.movementSpeed = 0;
                     var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
-                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                     trans.Value = new float3(hyperJumpLocation, -50);
-                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
-
+                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                 }).WithoutBurst().Run();
         }
 
@@ -198,9 +216,9 @@ public class PlayerInputSystem : SystemBase
                 {
                     speedData.movementSpeed = 0;
                     var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
-                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                     trans.Value = new float3(hyperJumpLocation, -50);
-                    Pooler.Instance.Spawn(gameObjectParticleData.PowerUpParticle, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
                 }).WithoutBurst().Run();
         }
 

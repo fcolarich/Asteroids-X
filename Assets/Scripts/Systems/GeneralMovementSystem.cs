@@ -15,6 +15,7 @@ public partial class GeneralMovementSystem : SystemBase
       Entities.ForEach((ref Translation trans, in MoveSpeedData moveSpeed) =>
       {
          trans.Value += moveSpeed.movementSpeed * deltaTime;
+         trans.Value.z = -50;
       }).ScheduleParallel();
    }
 }

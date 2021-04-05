@@ -5,12 +5,11 @@ using Unity.Transforms;
 
 public partial class ScreenWrappingSystem : SystemBase
 {
-    private float _cameraMaxHeight;
-    private float _cameraMinHeight;
-    private float _cameraMaxWidth;
-    private float _cameraMinWidth;
-    private const int CAMERA_BOUNDARY = 5;
-    
+    public float _cameraMaxHeight;
+    public float _cameraMinHeight;
+    public float _cameraMaxWidth;
+    public float _cameraMinWidth;
+    public int CAMERA_BOUNDARY = 5;
 
     protected override void OnStartRunning()
     {
@@ -34,24 +33,24 @@ public partial class ScreenWrappingSystem : SystemBase
         var cameraMaxWidth  = _cameraMaxWidth;
         var cameraMinWidth = _cameraMinWidth;
         
-        Entities.WithAll<MoveSpeedData>().WithNone<UFOBigTag>().WithNone<UFOSmallTag>().ForEach((ref Translation trans, in LocalToWorld localToWorld)  => 
+        Entities.WithAll<MoveSpeedData>().WithNone<UFOBigTag>().ForEach((ref Translation trans, in LocalToWorld localToWorld)  => 
                   {
-                      if (localToWorld.Position.y > cameraMaxHeight)
+                      if (localToWorld.Position.y >= cameraMaxHeight)
                       {
                           trans.Value.y = cameraMinHeight;
                       }
                       else if (localToWorld.Position.y < cameraMinHeight)
                       {
-                          trans.Value.y = cameraMaxHeight;
+                          trans.Value.y = cameraMaxHeight - 1;
                       }
                      
-                      if (localToWorld.Position.x > cameraMaxWidth)
+                      if (localToWorld.Position.x >= cameraMaxWidth)
                       {
                           trans.Value.x = cameraMinWidth;
                       } 
                       else if (localToWorld.Position.x < cameraMinWidth)
                       {
-                          trans.Value.x = cameraMaxWidth;
+                          trans.Value.x = cameraMaxWidth - 1;
                       }
                   }
                   ).ScheduleParallel();

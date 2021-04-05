@@ -27,7 +27,7 @@ public class InitializeAsteroidsSystem : SystemBase
             {
                 if (toInitializeTag.Value)
                 {
-                    var index = Random.CreateFromIndex(Convert.ToUInt32(entityInQueryIndex*elapsedTime)).NextUInt();
+                    var index = Random.CreateFromIndex(Convert.ToUInt32((1+entityInQueryIndex)*elapsedTime)).NextUInt();
                     moveSpeed.movementSpeed = GenerateRandomSpeed(speedModifier,index);
                     rot.Value = Random.CreateFromIndex(index).NextQuaternionRotation();
                     toInitializeTag.Value = false;

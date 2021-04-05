@@ -16,22 +16,27 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private GameObject enemyBigShipCreated;
     [SerializeField] private GameObject music;
     [SerializeField] private GameObject player2Joined;
+    [SerializeField] private GameObject powerUpActivated;
+
     private Pooler _pooler;
 
 
     void Start()
     {
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnBulletFire += AudioManagerOnFire;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnPlayerShot += AudioManagerOnPlayerShipExplode;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnEnemyShipCreated += AudioManagerOnEnemyShipCreated;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnEnemyBigShipCreated += AudioManagerOnEnemyBigShipCreated;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnEnemyHit += AudioManagerOnEnemyExplode;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<AudioEventActivationSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnBulletFire += AudioManagerOnFire;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnPlayerShot += AudioManagerOnPlayerShipExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnEnemyShipCreated += AudioManagerOnEnemyShipCreated;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnEnemyBigShipCreated += AudioManagerOnEnemyBigShipCreated;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnEnemyHit += AudioManagerOnEnemyExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnPowerUpActivated += AudioManagerOnPowerUpActivated;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += AudioManagerOnRestart;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += AudioManagerOnPlayer2Join;
         _pooler = Pooler.Instance;
         StartCoroutine(MusicFadeIn());
     }
+
+    
 
     IEnumerator MusicFadeIn()
     {
@@ -50,10 +55,12 @@ public class AudioManager : MonoBehaviour
         }
     }
     
+    private void AudioManagerOnPowerUpActivated(object sender, EventArgs e)
+    {
+        _pooler.Spawn(powerUpActivated);
+    }
 
-  
-    
-    private void AudioManagerOnPlayer2Join(object sender, EventArgs e)
+  private void AudioManagerOnPlayer2Join(object sender, EventArgs e)
     {
         _pooler.Spawn(player2Joined);
         

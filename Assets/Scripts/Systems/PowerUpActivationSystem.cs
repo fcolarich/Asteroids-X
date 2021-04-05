@@ -1,10 +1,5 @@
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Physics;
-using Unity.Rendering;
-using Unity.Transforms;
-using UnityEngine;
-
 
 public class PowerUpActivationSystem : SystemBase
 {
@@ -33,38 +28,43 @@ public class PowerUpActivationSystem : SystemBase
         var _bulletFireData = GetComponentDataFromEntity<BulletFireData>();
         
         
-        Entities.WithAll<PowerUpTag>().WithNone<PowerUpPrefab>().WithAll<OnCollision>()
-            .ForEach((Entity thisEntity, ref PowerUpData powerUpEffectData,
-                ref CollisionControlData collisionControlData, ref LifeTimeData lifeTimeData,
-                in OnHitParticlesData particlesData, in GameObjectParticleData powerUpParticleData) =>
+        Entities.WithChangeFilter<OnCollision>().WithAll<PowerUpTag>()
+            .ForEach((Entity thisEntity, ref PowerUpData powerUpEffectData, ref OnCollision onCollision,
+                ref CollisionControlData collisionControlData, ref LifeTimeData lifeTimeData, ref OnDeactivateParticles onDeactivateParticles,
+                in OnHitParticlesGameObjectClass particlesData, in GameObjectParticleData gameObjectParticleData) =>
             {
-                powerUpParticleData.PowerUpParticle.SetActive(false);
-                
-                ecb.RemoveComponent<OnCollision>(thisEntity);
-                if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
+                if (onCollision.Value)
                 {
-                    ecb.RemoveComponent<PhysicsCollider>(thisEntity);
-                    ecb.AddComponent(thisEntity, new ActivePowerUpTag {});
-                    var affectedTarget = collisionControlData.AffectedTarget;
-                    var particleObject = Pooler.Instance.Spawn(particlesData.ParticlePrefabObject);
-                    var linkedParticleEntity = ecb.CreateEntity();
-                    ecb.AddComponent(linkedParticleEntity, new LinkedParticleData()
+                    onCollision.Value = false;
+                    onDeactivateParticles.Value = true;
+                    if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
                     {
-                        Target = affectedTarget,
-                        ParticleObject = particleObject,
-                        TimerToDestroy = powerUpEffectData.PowerUpDurationSeconds
-                    });
-                    ecb.AddComponent(linkedParticleEntity, new ParticleLinkTag() { });
-                    lifeTimeData.lifeTimeSeconds += powerUpEffectData.PowerUpDurationSeconds+0.001f;
-                    powerUpEffectData.PowerUpTimer = powerUpEffectData.PowerUpDurationSeconds+0.001f;
-                }
-                else
-                {                    
-                    ecb.DestroyEntity(thisEntity);
+                        
+                        ecb.RemoveComponent<PhysicsCollider>(thisEntity);
+                        ecb.RemoveComponent<LifeTimeData>(thisEntity);
+                        ecb.AddComponent(thisEntity, new ActivePowerUp());
+                        
+                        //We create the entity that will follow the target and will move the particle effect with the target
+                        //We assign the target, then which particle effect to spawn and lastly the duration
+                        //In another system, the entity will spawn the gameObject particle effect and in yet another one, move it around.
+                        var affectedTarget = collisionControlData.AffectedTarget;
+                        var linkedParticleEntity = ecb.CreateEntity();
+                        ecb.AddComponent(linkedParticleEntity, new LinkedParticleData()
+                        {
+                            Target = affectedTarget,
+                            ParticleObject = particlesData.ParticlePrefabObject,
+                            TimerToDestroy = powerUpEffectData.PowerUpDurationSeconds
+                        });
+                        powerUpEffectData.PowerUpTimer = powerUpEffectData.PowerUpDurationSeconds + 0.001f;
+                    }
+                    else
+                    {
+                        ecb.DestroyEntity(thisEntity);
+                    }
                 }
             }).WithoutBurst().Run();
     
-        Entities.WithAll<PowerUpEffectFireBoosterData>().WithAll<ActivePowerUpTag>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpEffectFireBoosterData>().WithAll<ActivePowerUp>().ForEach((Entity thisEntity,
             ref PowerUpData powerUpData,
             ref CollisionControlData collisionControlData,
             in PowerUpEffectFireBoosterData powerUpEffectFireBoosterData) =>
@@ -99,7 +99,7 @@ public class PowerUpActivationSystem : SystemBase
 
 
 
-        Entities.WithAll<PowerUpEffectEngineBoosterData>().WithAll<ActivePowerUpTag>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpEffectEngineBoosterData>().WithAll<ActivePowerUp>().ForEach((Entity thisEntity,
             ref PowerUpData powerUpData, in CollisionControlData collisionControlData, 
             in PowerUpEffectEngineBoosterData powerUpEffectEngineBoosterData) =>
         {
@@ -128,7 +128,7 @@ public class PowerUpActivationSystem : SystemBase
 
 
 
-        Entities.WithAll<PowerUpEffectShieldData>().WithAll<ActivePowerUpTag>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpEffectShieldData>().WithAll<ActivePowerUp>().ForEach((Entity thisEntity,
             ref PowerUpData powerUpData, in CollisionControlData collisionControlData) =>
         {
             if (HasComponent<PlayerTag>(collisionControlData.AffectedTarget))
@@ -154,7 +154,7 @@ public class PowerUpActivationSystem : SystemBase
             powerUpData.PowerUpTimer -= deltaTime;
         }).Schedule();
 
-        Entities.WithAll<PowerUpBulletData>().WithAll<ActivePowerUpTag>().ForEach((Entity thisEntity,
+        Entities.WithAll<PowerUpBulletData>().WithAll<ActivePowerUp>().ForEach((Entity thisEntity,
             ref PowerUpBulletData powerUpBulletData,
             ref PowerUpData powerUpData, in CollisionControlData collisionControlData) =>
         {
