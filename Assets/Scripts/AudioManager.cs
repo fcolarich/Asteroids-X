@@ -25,10 +25,10 @@ public class AudioManager : MonoBehaviour
     {
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnBulletFire += AudioManagerOnFire;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnPlayerShot += AudioManagerOnPlayerShipExplode;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnEnemyShipCreated += AudioManagerOnEnemyShipCreated;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnEnemyBigShipCreated += AudioManagerOnEnemyBigShipCreated;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnEnemyUFOCreated += AudioManagerOnEnemyShipCreated;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnEnemyBigUFOCreated += AudioManagerOnEnemyBigShipCreated;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnEnemyHit += AudioManagerOnEnemyExplode;
-        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnBigShipDestroyed += AudioManagerOnEnemyBIGShipExplode;
+        World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnBigUFODestroyed += AudioManagerOnEnemyBIGShipExplode;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EventActivationSystem>().OnPowerUpActivated += AudioManagerOnPowerUpActivated;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnRestart += AudioManagerOnRestart;
         World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<PlayerInputSystem>().OnPlayer2Join += AudioManagerOnPlayer2Join;

@@ -1,116 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7134573933896403618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769620657821589629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18190fe9708bf6646ac9340c7694b725, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 0
---- !u!114 &-5527394941779528835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769620657821589629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59ba8453a8867af469fb2138a480d509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 0
---- !u!114 &-1534922333692312276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769620657821589629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 231f25735c6c558439fe9a7c76996827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 0
---- !u!114 &428897949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769620657821589629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9af0c26245579524bbccbd6057f9b307, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &428897950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769620657821589629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30eb4bab31009e4a86ec441a77c0142, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxBullets: 5
-  CurrentBullets: 0
-  SecondsBetweenBullets: 1
-  BulletTimer: 0
-  TryFire: 1
-  BulletPrefab: {fileID: 9093282602040498205, guid: b29792c75d705f64e9e116fbd4c97cba, type: 3}
-  BulletGroupTimer: 0
-  SecondsBetweenBulletGroups: 3
-  BulletSpeed: 120
---- !u!114 &428897954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769620657821589629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e246c47646e6b4483ab36cfd7a57f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentLives: 5
---- !u!114 &3099040883689126047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769620657821589629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f45a4e6ea8653a24395018760233b5b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 0
---- !u!114 &5057789027373539874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769620657821589629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3a5a30008a0764885b0cc9ffe43e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 0
 --- !u!1 &5850659319803946400
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +88,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3905612488530188005, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
+      propertyPath: CurrentLives
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: -3706108954131160682, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: m_ShapeType
       value: 31
@@ -279,6 +172,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1194810447945483750, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
+      propertyPath: CanFire
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194810447945483750, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
+      propertyPath: MaxBullets
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1434118352203810613, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: points
       value: 50
@@ -286,6 +187,10 @@ PrefabInstance:
     - target: {fileID: 2945560495545211462, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: SpeedModifier
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097975722952514537, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
+      propertyPath: IsBigUFO
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7479918704507730060, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
       propertyPath: m_RootOrder
@@ -351,11 +256,6 @@ PrefabInstance:
     - {fileID: 8333584886564129205, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
     - {fileID: 212412515385230084, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
---- !u!1 &1769620657821589629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 608308809076377764, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}
-  m_PrefabInstance: {fileID: 1224927693357394137}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8588878310105190485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7479918704507730060, guid: 1b29bdee00813294c9dd903e2c7f9213, type: 3}

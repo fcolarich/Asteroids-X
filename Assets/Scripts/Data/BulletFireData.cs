@@ -15,4 +15,5 @@ public struct BulletFireData : IComponentData
     public float BulletGroupTimer;
     public float SecondsBetweenBulletGroups;
     public float BulletSpeed;
+    public bool CanFire;
 }

@@ -21,64 +21,23 @@ public class EnemyCollisionSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
 
-        
-
-
         var ecb = _beginSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
         var elapsedTime = Time.ElapsedTime;
-
-        var rand = Random.CreateFromIndex(Convert.ToUInt32(elapsedTime));
-        rand.InitState();
         
-        Entities.WithChangeFilter<OnCollision>().WithAny<UFOSmallTag>().WithAny<UFOMediumTag>().
-            ForEach((int entityInQueryIndex, Entity thisEntity, ref OnCollision onCollision, 
-                    ref OnEnemyHit onEnemyHit, in Translation trans, in SpawnEntityData spawnEntityData,
+        Entities.WithChangeFilter<OnCollision>().WithAll<UFOTag>()
+            .ForEach((int entityInQueryIndex, UFOTag ufoTag, ref OnCollision onCollision, 
+                    ref OnEnemyHit onEnemyHit, ref UFOLivesData ufoLivesData, in Translation trans, in SpawnEntityData spawnEntityData,
                     in PowerUpRandomAppearData powerUpRandomAppearData) =>
                 {
                     if (onCollision.Value)
                     {
                         onCollision.Value = false;
 
-                        var index = Random.CreateFromIndex(Convert.ToUInt32((entityInQueryIndex+1)*elapsedTime)).NextUInt();
-
-                        if (Random.CreateFromIndex(index).NextFloat(1) < powerUpRandomAppearData.AppearanceChance)
+                        if (ufoTag.IsBigUFO)
                         {
-                            var newEntity = ecb.Instantiate(entityInQueryIndex,powerUpRandomAppearData.RandomPowerUp);
-                            ecb.SetComponent(entityInQueryIndex,newEntity, new Translation
-                            { Value = new float3(trans.Value.x, trans.Value.y, -50)});
+                            SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn,
+                                spawnEntityData.SpawnEntity, trans, ecb, true, elapsedTime);
                         }
-
-                        onEnemyHit.Value = true;
-                    }
-                }).ScheduleParallel();
-        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
-
-        //ASTEROIDS dont spawn PowerUps, only UFOS
-        Entities.WithChangeFilter<OnCollision>().WithAll<AsteroidsTag>()
-            .ForEach(
-                (int entityInQueryIndex, Entity thisEntity, ref OnCollision onCollision, ref OnEnemyHit onEnemyHit, in Translation trans,
-                    in SpawnEntityData spawnEntityData,
-                    in PowerUpRandomAppearData powerUpRandomAppearData) =>
-                {
-                    if (onCollision.Value)
-                    {
-                        onCollision.Value = false;
-                        SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true,elapsedTime);
-                        onEnemyHit.Value = true;
-                    }
-                }).ScheduleParallel();
-        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
-
-        
-        Entities.WithChangeFilter<OnCollision>().WithAny<UFOBigTag>().ForEach(
-                (int entityInQueryIndex, ref OnCollision onCollision,ref UFOLivesData ufoLivesData,
-                    ref OnEnemyHit onEnemyHit, ref OnDestroyed onDestroyed, in Translation trans,
-                    in SpawnEntityData spawnEntityData, in PowerUpRandomAppearData powerUpRandomAppearData) =>
-                {
-                    if (onCollision.Value)
-                    {
-                        onCollision.Value = false;
-                        SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true,elapsedTime);
                         
                         if (ufoLivesData.CurrentLives - 1 > 0)
                         {
@@ -93,17 +52,28 @@ public class EnemyCollisionSystem : SystemBase
                                 ecb.SetComponent(entityInQueryIndex,newEntity, new Translation
                                     { Value = new float3(trans.Value.x, trans.Value.y, -50)});
                             }
-                            onDestroyed.Value = true;
                         }
                         onEnemyHit.Value = true;
                     }
                 }).ScheduleParallel();
+      
         
-        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+        //ASTEROIDS dont spawn PowerUps, only UFOS
+        Entities.WithChangeFilter<OnCollision>().WithAll<AsteroidsTag>()
+            .ForEach(
+                (int entityInQueryIndex, Entity thisEntity, ref OnCollision onCollision, ref OnEnemyHit onEnemyHit, in Translation trans,
+                    in SpawnEntityData spawnEntityData,
+                    in PowerUpRandomAppearData powerUpRandomAppearData) =>
+                {
+                    if (onCollision.Value)
+                    {
+                        onCollision.Value = false;
+                        SpawnEntities(entityInQueryIndex, spawnEntityData.AmountToSpawn, spawnEntityData.SpawnEntity, trans, ecb, true,elapsedTime);
+                        onEnemyHit.Value = true;
+                    }
+                }).ScheduleParallel();
 
-        
-        
-        
+       
         Entities.WithChangeFilter<OnCollision>().WithAny<EnemyBulletTag>().ForEach((int entityInQueryIndex, Entity thisEntity, ref OnDestroyed onDestroyed, in OnCollision onCollision) =>
         {
             if (onCollision.Value)
@@ -136,7 +106,6 @@ public class EnemyCollisionSystem : SystemBase
                     trans.Value.y + spawnLocationModifier.y, -50)
             });
             ecb.SetComponent(entityInQueryIndex, newEntity, new ToInitialize {Value = true});
-
         }
     }
 }

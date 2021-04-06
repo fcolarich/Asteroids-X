@@ -2,7 +2,7 @@ using Unity.Entities;
 
 
 [GenerateAuthoringComponent]
-public struct OnEnemyShipCreated : IComponentData
+public struct OnUFOCreated : IComponentData
 {
     public bool Value;
 }

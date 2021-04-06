@@ -20,14 +20,16 @@ GameObject:
   - component: {fileID: 779554906554447531}
   - component: {fileID: 3443521582833716159}
   - component: {fileID: 1990567905419526545}
-  - component: {fileID: -2079229049790724427}
   - component: {fileID: -7614104756142146799}
   - component: {fileID: -5532864607612200695}
-  - component: {fileID: 1405755896109033955}
   - component: {fileID: 2017725098203722899}
   - component: {fileID: 2469738723561057625}
   - component: {fileID: 771839802678472394}
-  - component: {fileID: -4012911643891219462}
+  - component: {fileID: 5792509721772088171}
+  - component: {fileID: -2295005423001485406}
+  - component: {fileID: -2589575108654387530}
+  - component: {fileID: 9781994391351945}
+  - component: {fileID: 3149292149739230595}
   m_Layer: 0
   m_Name: XWing
   m_TagString: Untagged
@@ -198,7 +200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentLives: 500
   CanTakeDamage: 0
-  UpdateDelaySeconds: 0.5
   OriginPosition:
     x: 0
     y: 0
@@ -230,20 +231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
---- !u!114 &-2079229049790724427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5939172606624810271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28df53f459a68a7479396873366ae4e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AmountToSpawn: 1
-  SpawnEntity: {fileID: 6401130646095200284, guid: 03506b06a139fa5429569e3521ae1b15, type: 3}
 --- !u!114 &-7614104756142146799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +256,7 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
-  m_GravityFactor: 1
+  m_GravityFactor: 0
   m_OverrideDefaultMassDistribution: 0
   m_CenterOfMass:
     x: 0
@@ -306,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b275e5f92732148048d7b77e264ac30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShapeType: 0
+  m_ShapeType: 31
   m_PrimitiveCenter:
     x: 0.00000047683716
     y: 0
@@ -322,13 +309,13 @@ MonoBehaviour:
       z: 0
     RotationOrder: 4
   m_Capsule:
-    Height: 14.474133
-    Radius: 5.5429754
-    Axis: 0
-  m_Cylinder:
-    Height: 5.449275
+    Height: 11.085951
     Radius: 7.2370663
-    Axis: 1
+    Axis: 2
+  m_Cylinder:
+    Height: 11.085951
+    Radius: 7.2370663
+    Axis: 2
   m_CylinderSideCount: 20
   m_SphereRadius: 7.2370663
   m_MinimumSkinnedVertexWeight: 0.1
@@ -352,7 +339,7 @@ MonoBehaviour:
     m_Restitution:
       m_Override: 0
       m_Value:
-        Value: 0
+        Value: 0.58
         CombineMode: 2
     m_BelongsToCategories:
       m_Override: 0
@@ -392,12 +379,12 @@ MonoBehaviour:
     m_CollidesWithCategories:
       m_Override: 0
       m_Value:
-        Category00: 1
+        Category00: 0
         Category01: 0
-        Category02: 0
-        Category03: 0
-        Category04: 0
-        Category05: 0
+        Category02: 1
+        Category03: 1
+        Category04: 1
+        Category05: 1
         Category06: 0
         Category07: 0
         Category08: 0
@@ -437,19 +424,6 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!114 &1405755896109033955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5939172606624810271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a077889c2da3a7438c0c81ca7a6ebe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AffectedTarget: {fileID: 0}
 --- !u!114 &2017725098203722899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +445,7 @@ MonoBehaviour:
   BulletGroupTimer: 0
   SecondsBetweenBulletGroups: 1.3
   BulletSpeed: 150
+  CanFire: 1
 --- !u!114 &2469738723561057625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96dc42dc522e7f4eb572f1b8302d45f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPlayer1: 0
+  IsPlayer2: 0
 --- !u!114 &771839802678472394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,9 +472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08321a35569b0740af21d260a39c279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LinkedParticleEntity: {fileID: 5046066178861531201, guid: 2debb459fde3f784dade5ecb04d9fdb7, type: 3}
   ParticlePrefabObject: {fileID: 6026049665455155814, guid: 7be2b7692779fed4287ed3e189c34823, type: 3}
---- !u!114 &-4012911643891219462
+--- !u!114 &5792509721772088171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -506,7 +482,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 5939172606624810271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c740b40ba9f4a8a4d891f14fba2b7811, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f3a5a30008a0764885b0cc9ffe43e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
+--- !u!114 &-2295005423001485406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939172606624810271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ba8453a8867af469fb2138a480d509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &-2589575108654387530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939172606624810271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8508af010f5ee4193f257095450d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+--- !u!114 &9781994391351945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939172606624810271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45a4e6ea8653a24395018760233b5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+--- !u!114 &3149292149739230595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939172606624810271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56a43e5538c6834ca777b185110cff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticleGameObject: {fileID: 174076, guid: cda1dafbd8a5c4b459b1fbac5d769f5f, type: 3}

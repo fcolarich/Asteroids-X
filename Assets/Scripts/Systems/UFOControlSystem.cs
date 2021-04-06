@@ -27,8 +27,9 @@ public class UFOControlSystem : SystemBase
         var localTargetEntities = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).ToEntityArray(Allocator.TempJob);
         var localTranslation = GetComponentDataFromEntity<Translation>(true);
         var deltaTime = Time.DeltaTime;
+        
         Entities.WithReadOnly(localTranslation).WithReadOnly(localTargetEntities).WithDisposeOnCompletion(localTargetEntities).ForEach((Entity thisEntity, 
-            ref UFOGeneralData ufoGeneralData, ref Rotation rot, ref MoveSpeedData moveSpeedData, 
+            ref UFOGeneralData ufoGeneralData, ref Rotation rot, ref MoveSpeedData moveSpeedData, in UFOTag ufoTag,
             in MoveSpeedModifierData moveSpeedModifier, in Translation trans) =>
         {
             if (HasComponent<PlayerTag>(ufoGeneralData.TargetEntity))
@@ -49,7 +50,6 @@ public class UFOControlSystem : SystemBase
                     {
                         directionX = cameraWidth - x;    
                     }
-                    
                 }
                 else
                 {
@@ -74,21 +74,20 @@ public class UFOControlSystem : SystemBase
                 var targetDirection = new float3(directionX, directionY, 0);
 
 
-                ufoGeneralData.TargetDirection = targetDirection;
                  var rotation= quaternion.LookRotationSafe(targetDirection, math.down());
                 
-                if (HasComponent<UFOSmallTag>(thisEntity))
+                if (ufoTag.IsSmallUFO)
                 {
                     rot.Value = Quaternion.Lerp(rot.Value, rotation, deltaTime);
                     moveSpeedData.movementSpeed = math.forward(rot.Value) * moveSpeedModifier.SpeedModifier;
                 }
-                else if (HasComponent<UFOMediumTag>(thisEntity))
+                else if (ufoTag.IsMediumUFO)
                 {
                     var angle = Quaternion.Angle(rot.Value, rotation);
                     rot.Value = Quaternion.Lerp(rot.Value, rotation, deltaTime*angle/5f);
                     moveSpeedData.movementSpeed = math.left() * moveSpeedModifier.SpeedModifier;
                 }
-                else if (HasComponent<UFOBigTag>(thisEntity))
+                else if (ufoTag.IsBigUFO)
                 {
                     rot.Value = Quaternion.Lerp(rot.Value, rotation, deltaTime);
                     if (Vector3.Distance(trans.Value, targetPosition) > 60)

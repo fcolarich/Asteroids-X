@@ -20,7 +20,6 @@ GameObject:
   - component: {fileID: 5694132976342649959}
   - component: {fileID: 5157627827946324983}
   - component: {fileID: 6413984956407225321}
-  - component: {fileID: -1101647167446964008}
   - component: {fileID: 3262189302956143536}
   - component: {fileID: 6619003988407391273}
   m_Layer: 0
@@ -224,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6ab9b02aeb4c247bd21630dcb60ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPiercing: 0
 --- !u!114 &5157627827946324983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,20 +380,6 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!114 &-1101647167446964008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6401130646095200284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08321a35569b0740af21d260a39c279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LinkedParticleEntity: {fileID: 0}
-  ParticlePrefabObject: {fileID: 175648, guid: 922d2fa90ebdb384a9fcddc60e2f15e3, type: 3}
 --- !u!114 &3262189302956143536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,4 +405,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c740b40ba9f4a8a4d891f14fba2b7811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  Value: 0

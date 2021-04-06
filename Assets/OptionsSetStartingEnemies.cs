@@ -47,7 +47,7 @@ public class OptionsSetStartingEnemies : MonoBehaviour
     private void ChangeValue(int value)
     {
         count.text = value.ToString();
-        _waveManagerData.StartingAmountToSpawn = value;
+        _waveManagerData.StartingAsteroidAmountToSpawn = value;
         World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(_waveManager,_waveManagerData);
     }
 }

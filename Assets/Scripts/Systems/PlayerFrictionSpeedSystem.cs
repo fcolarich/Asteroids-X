@@ -11,7 +11,7 @@ public class PlayerFrictionSpeedSystem : SystemBase
         
         var deltaTime = Time.DeltaTime;
 
-        Entities.WithAny<Player1Tag>().WithAny<Player2Tag>().ForEach(
+        Entities.WithAll<PlayerTag>().ForEach(
             (ref MoveSpeedData moveSpeedData, in MoveSpeedModifierData speedModifierData) =>
             {
                 var movementSpeed = moveSpeedData.movementSpeed;

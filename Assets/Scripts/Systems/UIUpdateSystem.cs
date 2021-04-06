@@ -22,12 +22,10 @@ public class UIUpdateSystem : SystemBase
         var gameState = GetSingleton<GameStateData>();
         if (gameState.GameState != GameStateData.State.Playing) return;
       
-        var ecb = _beginSimulationEcbSystem.CreateCommandBuffer();
-
         Entities.WithChangeFilter<PlayerPointsData>().WithAll<PlayerTag>()
-            .ForEach((Entity thisEntity, in PlayerPointsData playerPointsData) =>
+            .ForEach((Entity thisEntity, in PlayerPointsData playerPointsData, in PlayerTag playerTag) =>
             {
-                if (HasComponent<Player1Tag>(thisEntity))
+                if (playerTag.IsPlayer1)
                 {
                     OnPointsUpdatePlayer1(playerPointsData.points, EventArgs.Empty);                    
                 }
@@ -35,12 +33,11 @@ public class UIUpdateSystem : SystemBase
                 {
                     OnPointsUpdatePlayer2(playerPointsData.points,EventArgs.Empty);                    
                 }
-            
             }).WithoutBurst().Run();
         
-        Entities.WithChangeFilter<PlayerLivesData>().WithAll<PlayerTag>().ForEach((Entity thisEntity, in PlayerLivesData playerLivesData) =>
+        Entities.WithChangeFilter<PlayerLivesData>().WithAll<PlayerTag>().ForEach((Entity thisEntity, in PlayerLivesData playerLivesData, in PlayerTag playerTag) =>
         {
-            if (HasComponent<Player1Tag>(thisEntity))
+            if (playerTag.IsPlayer1)
             {
                 OnLivesUpdatePlayer1(playerLivesData.CurrentLives, EventArgs.Empty);
             }
@@ -49,9 +46,5 @@ public class UIUpdateSystem : SystemBase
                 OnLivesUpdatePlayer2(playerLivesData.CurrentLives, EventArgs.Empty);
             }
         }).WithoutBurst().Run();
-
-
-        _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
-
     }
 }

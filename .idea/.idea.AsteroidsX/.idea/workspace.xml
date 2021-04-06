@@ -56,9 +56,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/PlayerBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOMediumTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/MoveAccelerationData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/UFOBigTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/CollisionControlData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/ScriptBehaviourUpdateOrder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -71,7 +69,6 @@
     <setting file="file://$PROJECT_DIR$/../../../Into the Endless Sea 2019/Assets/Ez/Pooly/Scripts/PoolyDespawner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/CodeGeneratedJobForEach/LambdaJobDescription.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/Player2Tag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ParticleCleanup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Transforms/Translation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/IJobChunk.cs" root0="SKIP_HIGHLIGHTING" />
@@ -83,7 +80,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/TriggerEventData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/TestingSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Transforms/LocalToWorld.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/ActivePowerUp.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.41/Unity.Entities/EntityCommandBufferSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Player/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AudioDespawn.cs" root0="FORCE_HIGHLIGHTING" />
@@ -91,7 +87,6 @@
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Player/PlayerMover.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpRadomSpawnSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tags/PiercingBulletTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/IntroToECSStarter/Assets/RW/Scripts/Managers/FXManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Systems/GeneralRotationSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PowerUpData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -122,17 +117,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/WaveManagerData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerData1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerTimerData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyHit2.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/AudioEventActivationSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerCollisionDetectionSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ActivePowerUpTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/OnActivePowerUp.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpData1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpManagerData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpArrayClass1.cs" />
@@ -149,17 +133,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpSpawningSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PowerUpSpawnData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EventActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/LifeTimeSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpActivationSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializeAsteroidsSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpRadomSpawnSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/PiercingBulletTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionDetectionSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/SetStartingEnemies.cs" />
@@ -168,11 +147,27 @@
       <option value="$PROJECT_DIR$/Assets/OptionsSetStartingEnemies.cs" />
       <option value="$PROJECT_DIR$/Assets/OptionsSetUFOSecondsBetweenSpawns.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameStateData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/PlayerTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/UFOTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/PlayerBulletTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnEnemyShipCreated.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/UFOGeneralData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EventData/OnUFOCreated.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralFireRateSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EnemyCollisionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EventActivationSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/AsteroidsTag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionDetectionSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerFrictionSpeedSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UIUpdateSystem.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -245,6 +240,7 @@
       <workItem from="1617479375885" duration="1550000" />
       <workItem from="1617569560165" duration="14345000" />
       <workItem from="1617654869786" duration="11999000" />
+      <workItem from="1617735216987" duration="6278000" />
     </task>
     <servers />
   </component>

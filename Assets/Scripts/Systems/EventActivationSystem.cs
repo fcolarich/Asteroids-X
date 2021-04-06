@@ -7,10 +7,10 @@ public class EventActivationSystem : SystemBase
 {
     public EventHandler OnBulletFire;
     public EventHandler OnEnemyHit;
-    public EventHandler OnBigShipDestroyed;
+    public EventHandler OnBigUFODestroyed;
     public EventHandler OnPlayerShot;
-    public EventHandler OnEnemyShipCreated;
-    public EventHandler OnEnemyBigShipCreated;
+    public EventHandler OnEnemyUFOCreated;
+    public EventHandler OnEnemyBigUFOCreated;
     public EventHandler OnPowerUpActivated;
     private BeginSimulationEntityCommandBufferSystem _beginSimulationEcbSystem;
 
@@ -47,24 +47,22 @@ public class EventActivationSystem : SystemBase
             }
         }).WithoutBurst().Run();
         
-        Entities.WithChangeFilter<OnEnemyShipCreated>().ForEach((ref OnEnemyShipCreated onEnemyShipCreated) =>
+        Entities.WithChangeFilter<OnUFOCreated>().ForEach((ref OnUFOCreated onEnemyShipCreated, in UFOTag ufoTag) =>
         {
             if (onEnemyShipCreated.Value)
             {
-                OnEnemyShipCreated(this, EventArgs.Empty);
+                if (ufoTag.IsBigUFO)
+                {
+                    OnEnemyBigUFOCreated(this, EventArgs.Empty);
+                }
+                else
+                {
+                    OnEnemyUFOCreated(this, EventArgs.Empty);   
+                }
                 onEnemyShipCreated.Value= false;
             }
         }).WithoutBurst().Run();
         
-        Entities.WithChangeFilter<OnEnemyBigShipCreated>().ForEach((ref OnEnemyBigShipCreated onEnemyBigShipCreated) =>
-        {
-            if (onEnemyBigShipCreated.Value)
-            {
-                OnEnemyBigShipCreated(this, EventArgs.Empty);
-                onEnemyBigShipCreated.Value= false;
-            }
-        }).WithoutBurst().Run();
-
         Entities.WithChangeFilter<OnBulletFired>().ForEach((ref OnBulletFired onBulletFired) =>
         {
             if (onBulletFired.Value)
@@ -74,37 +72,38 @@ public class EventActivationSystem : SystemBase
             }
         }).WithoutBurst().Run();
         
-        Entities.WithChangeFilter<OnPlayerShot>().ForEach((ref OnPlayerShot onPlayerShot, in OnHitParticlesGameObjectClass particlesData, in Translation trans) =>
+        Entities.WithChangeFilter<OnPlayerShot>().ForEach((ref OnPlayerShot onPlayerShot, 
+            in OnHitParticlesGameObjectClass particlesObjectClass, in Translation trans) =>
         {
             if (onPlayerShot.value)
             {
                 OnPlayerShot(this, EventArgs.Empty);
                 onPlayerShot.value = false;
-                Pooler.Instance.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
+                Pooler.Instance.Spawn(particlesObjectClass.ParticlePrefabObject, trans.Value, quaternion.identity);
             }
         }).WithoutBurst().Run();
         
         
-        Entities.WithChangeFilter<OnEnemyHit>().WithNone<UFOBigTag>().ForEach((ref OnDestroyed onDestroyed, ref OnEnemyHit onEnemyHit, in OnHitParticlesGameObjectClass particlesData, in Translation trans) =>
+        Entities.WithChangeFilter<OnEnemyHit>().WithAll<UFOTag>().ForEach((ref OnDestroyed onDestroyed, ref OnEnemyHit onEnemyHit, in UFOTag ufoTag,
+            in OnHitParticlesGameObjectClass particlesObjectClass, in UFOLivesData ufoLivesData, in Translation trans) =>
         {
             if (onEnemyHit.Value)
             {
-                OnEnemyHit(this, EventArgs.Empty);
-                Pooler.Instance.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
+                Pooler.Instance.Spawn(particlesObjectClass.ParticlePrefabObject, trans.Value, quaternion.identity);
                 onEnemyHit.Value= false;
-                onDestroyed.Value = true;
-            }
-        }).WithoutBurst().Run();
-        
-        Entities.WithChangeFilter<OnEnemyHit>().WithAll<UFOBigTag>().ForEach((ref OnEnemyHit onEnemyHit, ref UFOLivesData ufoLivesData, in OnHitParticlesGameObjectClass particlesData, in Translation trans) =>
-        {
-            if (onEnemyHit.Value)
-            {
-                Pooler.Instance.Spawn(particlesData.ParticlePrefabObject, trans.Value, quaternion.identity);
-                onEnemyHit.Value= false;
-                if (ufoLivesData.CurrentLives - 1 < 0)
+
+                if (ufoLivesData.CurrentLives - 1 <= 0)
                 {
-                    OnBigShipDestroyed(this, EventArgs.Empty);
+                    onDestroyed.Value = true;
+
+                    if (ufoTag.IsBigUFO)
+                    {
+                        OnBigUFODestroyed(this, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        OnEnemyHit(this, EventArgs.Empty);
+                    }
                 }
                 else
                 {
@@ -112,7 +111,19 @@ public class EventActivationSystem : SystemBase
                 }
             }
         }).WithoutBurst().Run();
-                            
+        
+        Entities.WithChangeFilter<OnEnemyHit>().WithAll<AsteroidsTag>().ForEach((ref OnDestroyed onDestroyed, in OnEnemyHit onEnemyHit,
+            in OnHitParticlesGameObjectClass particlesObjectClass, in Translation trans) =>
+        {
+            if (onEnemyHit.Value)
+            {
+                Pooler.Instance.Spawn(particlesObjectClass.ParticlePrefabObject, trans.Value, quaternion.identity);
+                onDestroyed.Value = true;
+                OnEnemyHit(this, EventArgs.Empty);
+            }
+        }).WithoutBurst().Run();
+
+
         _beginSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
         
     }

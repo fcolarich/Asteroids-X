@@ -25,54 +25,56 @@ public class GeneralFireRateSystem : SystemBase
         Entities.ForEach((int entityInQueryIndex, Entity thisEntity, ref BulletFireData bulletFireData,
             in Translation trans, in Rotation rot, in MoveSpeedData moveSpeed) =>
         {
-            if (bulletFireData.BulletTimer <= 0)
+            if (bulletFireData.CanFire)
             {
-
-                if (bulletFireData.TryFire && bulletFireData.CurrentBullets < bulletFireData.MaxBullets)
+                if (bulletFireData.BulletTimer <= 0)
                 {
-
-                    bulletFireData.CurrentBullets += 1;
-                    if (bulletFireData.CurrentBullets == 1)
+                    if (bulletFireData.TryFire && bulletFireData.CurrentBullets < bulletFireData.MaxBullets)
                     {
-                        bulletFireData.BulletGroupTimer = bulletFireData.SecondsBetweenBulletGroups;
-                    }
-
-                    bulletFireData.BulletTimer = bulletFireData.SecondsBetweenBullets;
-
-                    
-                    var bulletEntity = ecb.Instantiate(entityInQueryIndex,bulletFireData.BulletPrefab);
-                   
-                    ecb.SetComponent(entityInQueryIndex,thisEntity, new OnBulletFired() {Value = true});
-                    
-                    ecb.SetComponent(entityInQueryIndex,bulletEntity,
-                        new Translation() {Value = trans.Value + (10 * math.forward(rot.Value))});
-                    ecb.SetComponent(entityInQueryIndex,bulletEntity, new Rotation() {Value = rot.Value});
-                    ecb.SetComponent(entityInQueryIndex,bulletEntity,
-                        new MoveSpeedData()
+                        bulletFireData.CurrentBullets += 1;
+                        if (bulletFireData.CurrentBullets == 1)
                         {
-                            movementSpeed = math.forward(rot.Value) * bulletFireData.BulletSpeed +
-                                            moveSpeed.movementSpeed
-                        });
-                    ecb.SetComponent(entityInQueryIndex,bulletEntity, new BulletSourceData() {Source = thisEntity});
+                            bulletFireData.BulletGroupTimer = bulletFireData.SecondsBetweenBulletGroups;
+                        }
+
+                        bulletFireData.BulletTimer = bulletFireData.SecondsBetweenBullets;
+
+
+                        var bulletEntity = ecb.Instantiate(entityInQueryIndex, bulletFireData.BulletPrefab);
+
+                        ecb.SetComponent(entityInQueryIndex, thisEntity, new OnBulletFired() {Value = true});
+
+                        ecb.SetComponent(entityInQueryIndex, bulletEntity,
+                            new Translation() {Value = trans.Value + (10 * math.forward(rot.Value))});
+                        ecb.SetComponent(entityInQueryIndex, bulletEntity, new Rotation() {Value = rot.Value});
+                        ecb.SetComponent(entityInQueryIndex, bulletEntity,
+                            new MoveSpeedData()
+                            {
+                                movementSpeed = math.forward(rot.Value) * bulletFireData.BulletSpeed +
+                                                moveSpeed.movementSpeed
+                            });
+                        ecb.SetComponent(entityInQueryIndex, bulletEntity,
+                            new BulletSourceData() {Source = thisEntity});
+                    }
                 }
-            }
-            else
-            {
-                bulletFireData.BulletTimer -= deltaTime;
-            }
+                else
+                {
+                    bulletFireData.BulletTimer -= deltaTime;
+                }
 
-            if (bulletFireData.BulletGroupTimer <= 0)
-            {
-                bulletFireData.CurrentBullets = 0;
-            }
-            else
-            {
-                bulletFireData.BulletGroupTimer -= deltaTime;
-            }
+                if (bulletFireData.BulletGroupTimer <= 0)
+                {
+                    bulletFireData.CurrentBullets = 0;
+                }
+                else
+                {
+                    bulletFireData.BulletGroupTimer -= deltaTime;
+                }
 
-            if (HasComponent<PlayerTag>(thisEntity))
-            {
-                bulletFireData.TryFire = false;
+                if (HasComponent<PlayerTag>(thisEntity))
+                {
+                    bulletFireData.TryFire = false;
+                }
             }
         }).ScheduleParallel();
 

@@ -56,11 +56,11 @@ public class GameWavesControlSystem : SystemBase
             Entities.ForEach((int entityInQueryIndex, ref WaveManagerData waveManagerData) =>
             {
                 waveManagerData.CurrentWave += 1;
-                waveManagerData.CurrentAmountToSpawn = waveManagerData.StartingAmountToSpawn +
-                                                       (waveManagerData.CurrentWave * waveManagerData.IncrementPerWave);
+                waveManagerData.CurrentAsteroidAmountToSpawn = waveManagerData.StartingAsteroidAmountToSpawn +
+                                                       (waveManagerData.CurrentWave * waveManagerData.AditionalAsteroidsPerWave);
 
-                var tempAmountToSpawn = waveManagerData.CurrentAmountToSpawn;
-                for (int i = 0; i < tempAmountToSpawn; i++)
+                var asteroidAmountToSpawn = waveManagerData.CurrentAsteroidAmountToSpawn;
+                for (int i = 0; i < asteroidAmountToSpawn; i++)
                 {
                     var spawnLocation = RandomPointInCircle(elapsedTime*(i+1)) * 300;
                     var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.AsteroidPrefab);
@@ -77,7 +77,7 @@ public class GameWavesControlSystem : SystemBase
                     var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.BigUFOPrefab);
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x, spawnLocation.y, -50)});
-                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyBigShipCreated {Value = true});
+                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnUFOCreated {Value = true,});
                 }
             }).ScheduleParallel();
         }
@@ -93,7 +93,7 @@ public class GameWavesControlSystem : SystemBase
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
                     waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
-                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
+                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnUFOCreated() {Value = true});
                 }
 
                 if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(elapsedTime)).NextFloat() > 0.7)
@@ -103,7 +103,7 @@ public class GameWavesControlSystem : SystemBase
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x + 500, spawnLocation.y, -50)});
                     waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
-                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
+                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnUFOCreated() {Value = true});
                 }
             }
             else
@@ -117,7 +117,7 @@ public class GameWavesControlSystem : SystemBase
 
         Entities.ForEach((in WaveManagerData waveManagerData) =>
         {
-            if (destroyedAsteroidsAmount >= waveManagerData.CurrentAmountToSpawn * 4)
+            if (destroyedAsteroidsAmount >= waveManagerData.CurrentAsteroidAmountToSpawn * 4)
             {
                 _startNewWave = true;
             };

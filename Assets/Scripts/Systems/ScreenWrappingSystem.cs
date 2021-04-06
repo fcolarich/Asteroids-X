@@ -33,7 +33,7 @@ public partial class ScreenWrappingSystem : SystemBase
         var cameraMaxWidth  = _cameraMaxWidth;
         var cameraMinWidth = _cameraMinWidth;
         
-        Entities.WithAll<MoveSpeedData>().WithNone<UFOBigTag>().ForEach((ref Translation trans, in LocalToWorld localToWorld)  => 
+        Entities.WithAll<MoveSpeedData>().ForEach((ref Translation trans, in LocalToWorld localToWorld)  => 
                   {
                       if (localToWorld.Position.y >= cameraMaxHeight)
                       {

@@ -46,7 +46,7 @@ public class OptionsSetAditionalEnemiesPerWave : MonoBehaviour
     private void ChangeValue(int value)
     {
         count.text = value.ToString();
-        _waveManagerData.IncrementPerWave = value;
+        _waveManagerData.AditionalAsteroidsPerWave = value;
         World.DefaultGameObjectInjectionWorld.EntityManager.SetComponentData(_waveManager,_waveManagerData);
     }
 }

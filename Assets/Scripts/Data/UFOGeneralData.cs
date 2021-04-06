@@ -5,5 +5,4 @@ using Unity.Mathematics;
 public struct UFOGeneralData : IComponentData
 {
  public Entity TargetEntity;
- public float3 TargetDirection;
 }

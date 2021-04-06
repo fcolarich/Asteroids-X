@@ -113,42 +113,48 @@ public class PlayerInputSystem : SystemBase
         
         if (_playersActions.Player1.Move.ReadValue<Vector2>().y > 0)
         {
-            Entities.WithAll<Player1Tag>()
-                .ForEach((ref MoveSpeedData speedData, in MoveAccelerationData accelerationData,
-                    in Rotation rot, in MoveMaxSpeedData maxSpeedData) =>
+            Entities.ForEach((ref MoveSpeedData speedData, in MoveAccelerationData accelerationData,
+                    in Rotation rot, in PlayerTag playerTag, in MoveMaxSpeedData maxSpeedData) =>
                 {
-                    if (GetFloat3Magnitude(speedData.movementSpeed) < maxSpeedData.MaxSpeed)
+                    if (playerTag.IsPlayer1)
                     {
-                        speedData.movementSpeed +=
-                            deltaTime * accelerationData.acceleration * math.forward(rot.Value);
+                        if (GetFloat3Magnitude(speedData.movementSpeed) < maxSpeedData.MaxSpeed)
+                        {
+                            speedData.movementSpeed +=
+                                deltaTime * accelerationData.acceleration * math.forward(rot.Value);
+                        }
                     }
+                    
                 }).ScheduleParallel();
         }
 
         var player1ActionValueX = _playersActions.Player1.Move.ReadValue<Vector2>().x;
         if (player1ActionValueX != 0)
         {
-            Entities.WithAll<Player1Tag>().ForEach(
-                (ref MoveRotationData rotationData, in LocalToWorld localToWorld,
+            Entities.ForEach((ref MoveRotationData rotationData, in LocalToWorld localToWorld, in PlayerTag playerTag,
                     in MoveRotationModifierData rotationModifier) =>
                 {
-                    rotationData.rotation =
-                        CalculateRotation(localToWorld, rotationModifier, player1ActionValueX);
+                    if (playerTag.IsPlayer1)
+                    {
+                        rotationData.rotation =
+                            CalculateRotation(localToWorld, rotationModifier, player1ActionValueX);
+                    }
                 }).ScheduleParallel();
         }
 
 
         if (_playersActions.Player2.Move.ReadValue<Vector2>().y > 0)
         {
-            Entities.
-                WithAll<Player2Tag>()
-                .ForEach((ref MoveSpeedData speedData, in MoveAccelerationData accelerationData,
+            Entities.ForEach((ref MoveSpeedData speedData, in MoveAccelerationData accelerationData, in PlayerTag playerTag,
                     in Rotation rot, in MoveMaxSpeedData maxSpeedData) =>
                 {
-                    if (GetFloat3Magnitude(speedData.movementSpeed) < maxSpeedData.MaxSpeed)
+                    if (playerTag.IsPlayer2)
                     {
-                        speedData.movementSpeed +=
-                            deltaTime * accelerationData.acceleration * math.forward(rot.Value);
+                        if (GetFloat3Magnitude(speedData.movementSpeed) < maxSpeedData.MaxSpeed)
+                        {
+                            speedData.movementSpeed +=
+                                deltaTime * accelerationData.acceleration * math.forward(rot.Value);
+                        }
                     }
                 }).ScheduleParallel();
         }
@@ -156,33 +162,38 @@ public class PlayerInputSystem : SystemBase
         var player2ActionValueX = _playersActions.Player2.Move.ReadValue<Vector2>().x;
         if (player2ActionValueX != 0)
         {
-            Entities.
-                WithAll<Player2Tag>()
-                .ForEach((ref MoveRotationData rotationData, in LocalToWorld localToWorld,
+            Entities.ForEach((ref MoveRotationData rotationData, in LocalToWorld localToWorld,in PlayerTag playerTag,
                     in MoveRotationModifierData rotationModifier) =>
                 {
-                    rotationData.rotation =
-                        CalculateRotation(localToWorld, rotationModifier, player2ActionValueX);
-                    ;
+                    if (playerTag.IsPlayer2)
+                    {
+                        rotationData.rotation =
+                            CalculateRotation(localToWorld, rotationModifier, player2ActionValueX);
+                    }
                 }).ScheduleParallel();
         }
 
         if (_playersActions.Player1.Fire.triggered)
         {
-            Entities.WithAll<Player1Tag>()
-                .ForEach((ref BulletFireData bulletFireData) =>
-            { 
-                bulletFireData.TryFire = true;
-            }).WithStructuralChanges().WithoutBurst().Run();
+            Entities.ForEach((ref BulletFireData bulletFireData, in PlayerTag playerTag) =>
+            {
+                if (playerTag.IsPlayer1)
+                {
+                    bulletFireData.TryFire = true;
+                }
+            }).ScheduleParallel();
         }
 
         if (_playersActions.Player2.Fire.triggered)
         {
-            Entities.WithAll<Player2Tag>()
-                .ForEach((ref BulletFireData bulletFireData) =>
+            Entities
+                .ForEach((ref BulletFireData bulletFireData, in PlayerTag playerTag) =>
                 {
-                    bulletFireData.TryFire = true;
-                }).WithStructuralChanges().WithoutBurst().Run();
+                    if (playerTag.IsPlayer2)
+                    {
+                        bulletFireData.TryFire = true;
+                    }
+                }).ScheduleParallel();
             
             var playerAmount = GetEntityQuery(ComponentType.ReadOnly<PlayerTag>()).CalculateEntityCount();
             if (!_player2Spawned)
@@ -198,27 +209,37 @@ public class PlayerInputSystem : SystemBase
 
         if (_playersActions.Player1.Hyperspace.triggered)
         {
-            Entities.WithAll<Player1Tag>()
-                .ForEach((GameObjectParticleData gameObjectParticleData, ref MoveSpeedData speedData, ref Translation trans) =>
+            Entities
+                .ForEach((GameObjectParticleData gameObjectParticleData, ref MoveSpeedData speedData, ref Translation trans, in PlayerTag playerTag) =>
                 {
-                    speedData.movementSpeed = 0;
-                    var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
-                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
-                    trans.Value = new float3(hyperJumpLocation, -50);
-                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    if (playerTag.IsPlayer1)
+                    {
+                        speedData.movementSpeed = 0;
+                        var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
+                        Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject,
+                            new Vector3(trans.Value.x, trans.Value.y, -45), Quaternion.identity);
+                        trans.Value = new float3(hyperJumpLocation, -50);
+                        Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject,
+                            new Vector3(trans.Value.x, trans.Value.y, -45), Quaternion.identity);
+                    }
                 }).WithoutBurst().Run();
         }
 
         if (_playersActions.Player2.Hyperspace.triggered)
         {
-            Entities.WithAll<Player2Tag>()
-                .ForEach((GameObjectParticleData gameObjectParticleData, ref MoveSpeedData speedData, ref Translation trans) =>
+            Entities.ForEach((GameObjectParticleData gameObjectParticleData, ref MoveSpeedData speedData, 
+                ref Translation trans, in PlayerTag playerTag) =>
                 {
-                    speedData.movementSpeed = 0;
-                    var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
-                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
-                    trans.Value = new float3(hyperJumpLocation, -50);
-                    Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject, new Vector3(trans.Value.x, trans.Value.y, -45),Quaternion.identity);
+                    if (playerTag.IsPlayer2)
+                    {
+                        speedData.movementSpeed = 0;
+                        var hyperJumpLocation = Random.insideUnitCircle.normalized * 90;
+                        Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject,
+                            new Vector3(trans.Value.x, trans.Value.y, -45), Quaternion.identity);
+                        trans.Value = new float3(hyperJumpLocation, -50);
+                        Pooler.Instance.Spawn(gameObjectParticleData.ParticleGameObject,
+                            new Vector3(trans.Value.x, trans.Value.y, -45), Quaternion.identity);
+                    }
                 }).WithoutBurst().Run();
         }
 
