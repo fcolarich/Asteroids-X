@@ -2,7 +2,7 @@ using Unity.Entities;
 
 
 [GenerateAuthoringComponent]
-public struct ActivePowerUpTag : IComponentData
+public struct PiercingBulletTag : IComponentData
 {
 
 }

@@ -26,6 +26,7 @@ public class BulletCollisionDetectionSystem : JobComponentSystem
         [ReadOnly] public ComponentDataFromEntity<UFOTag> UfoTag;
         [ReadOnly] public ComponentDataFromEntity<BulletSourceData> BulletSourceData;
         [ReadOnly] public ComponentDataFromEntity<PlayerBulletTag> PlayerBulletTag;
+        [ReadOnly] public ComponentDataFromEntity<PiercingBulletTag> PiercingBulletTag;
         public ComponentDataFromEntity<OnCollisionRegistered> OnCollisionRegistered;
         public ComponentDataFromEntity<PlayerPointsData> PlayerPointsData;
         public EntityCommandBuffer Ecb;
@@ -59,7 +60,10 @@ public class BulletCollisionDetectionSystem : JobComponentSystem
                         var localPlayerPointsData = PlayerPointsData[BulletSourceData[playerBullet].Source];
                         localPlayerPointsData.points += PlayerPointsData[enemyEntity].points;
                         PlayerPointsData[BulletSourceData[playerBullet].Source] = localPlayerPointsData;
-                        Ecb.SetComponent(playerBullet, new OnDestroyed {Value = true});
+                        if (!PiercingBulletTag.HasComponent(playerBullet))
+                        {
+                            Ecb.SetComponent(playerBullet, new OnDestroyed {Value = true});
+                        }
                         Ecb.SetComponent(enemyEntity, new OnCollision {Value = true});
                     }
                 }
@@ -78,6 +82,8 @@ public class BulletCollisionDetectionSystem : JobComponentSystem
             UfoTag = GetComponentDataFromEntity<UFOTag>(true),
             PlayerBulletTag = GetComponentDataFromEntity<PlayerBulletTag>(true),
             BulletSourceData = GetComponentDataFromEntity<BulletSourceData>(true),
+            PiercingBulletTag = GetComponentDataFromEntity<PiercingBulletTag>(true),
+
             Ecb = _endSimulationEntityCommandBufferSystem.CreateCommandBuffer()
         };
         

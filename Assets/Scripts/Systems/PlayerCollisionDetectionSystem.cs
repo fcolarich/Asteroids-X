@@ -59,7 +59,6 @@ public class PlayerCollisionDetectionSystem : JobComponentSystem
                     {
                         LocalCollisionControlData.AffectedTarget = playerEntity;
                         CollisionControlData[otherEntity] = LocalCollisionControlData;
-                        Ecb.AddComponent<OnCollision>(otherEntity);
                         Ecb.SetComponent(otherEntity, new OnCollision() {Value = true});
                     }
                     else

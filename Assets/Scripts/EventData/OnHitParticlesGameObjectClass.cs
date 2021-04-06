@@ -2,8 +2,7 @@ using Unity.Entities;
 using UnityEngine;
 
 [GenerateAuthoringComponent]
-public class OnHitParticlesData : IComponentData
+public class OnHitParticlesGameObjectClass : IComponentData
 {
-    public Entity LinkedParticleEntity;
     public GameObject ParticlePrefabObject;
 }

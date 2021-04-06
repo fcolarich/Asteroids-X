@@ -38,7 +38,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56a43e5538c6834ca777b185110cff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PowerUpParticle: {fileID: 174076, guid: cda1dafbd8a5c4b459b1fbac5d769f5f, type: 3}
+  ParticleGameObject: {fileID: 174076, guid: cda1dafbd8a5c4b459b1fbac5d769f5f, type: 3}
 --- !u!114 &-1656486348101571208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,21 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
---- !u!114 &-240840699543813697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3250483971266368678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 333d1eac0b71ee94e9389d89ccedd56f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParticleObject: {fileID: 152614, guid: d3b0d84ff68c0654191182c929a51062, type: 3}
-  Target: {fileID: 3250483971266368678}
-  TimerToDestroy: 0
 --- !u!114 &661697675
 MonoBehaviour:
   m_ObjectHideFlags: 0

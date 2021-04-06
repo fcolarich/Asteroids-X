@@ -55,7 +55,6 @@ public class GameWavesControlSystem : SystemBase
             _resetGame = true;
             Entities.ForEach((int entityInQueryIndex, ref WaveManagerData waveManagerData) =>
             {
-                Debug.Log("new WAVE");
                 waveManagerData.CurrentWave += 1;
                 waveManagerData.CurrentAmountToSpawn = waveManagerData.StartingAmountToSpawn +
                                                        (waveManagerData.CurrentWave * waveManagerData.IncrementPerWave);
@@ -63,7 +62,7 @@ public class GameWavesControlSystem : SystemBase
                 var tempAmountToSpawn = waveManagerData.CurrentAmountToSpawn;
                 for (int i = 0; i < tempAmountToSpawn; i++)
                 {
-                    var spawnLocation = RandomPointInCircle(elapsedTime*i) * 300;
+                    var spawnLocation = RandomPointInCircle(elapsedTime*(i+1)) * 300;
                     var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.AsteroidPrefab);
                     ecb.SetComponent(entityInQueryIndex,newEntity,
                         new Translation() {Value = new float3(spawnLocation.x+100, spawnLocation.y, -50)});
@@ -82,7 +81,37 @@ public class GameWavesControlSystem : SystemBase
                 }
             }).ScheduleParallel();
         }
-        
+
+        Entities.ForEach((int entityInQueryIndex,ref WaveManagerTimerData waveManagerTimerData,in WaveManagerData waveManagerData) =>
+        {
+            if (waveManagerTimerData.SpawnTimer <= 0)
+            {
+                if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32((1+entityInQueryIndex)*elapsedTime)).NextFloat() > 0.5)
+                {
+                    var spawnLocation = RandomPointInCircle((elapsedTime*(1+waveManagerData.CurrentWave))) * 150;
+                    var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.SmallUFOPrefab);
+                    ecb.SetComponent(entityInQueryIndex,newEntity,
+                        new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
+                    waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
+                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
+                }
+
+                if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(elapsedTime)).NextFloat() > 0.7)
+                {
+                    var spawnLocation = RandomPointInCircle(elapsedTime*(2+waveManagerData.CurrentWave)) * 80;
+                    var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.MediumUFOPrefab);
+                    ecb.SetComponent(entityInQueryIndex,newEntity,
+                        new Translation() {Value = new float3(spawnLocation.x + 500, spawnLocation.y, -50)});
+                    waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
+                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
+                }
+            }
+            else
+            {
+                waveManagerTimerData.SpawnTimer -= deltaTime;
+            }
+        }).ScheduleParallel();
+
         var destroyedAsteroidsAmount = GetEntityQuery(ComponentType.ReadOnly<SmallAsteroidDestroyedTag>())
             .CalculateEntityCount();
 
@@ -94,38 +123,6 @@ public class GameWavesControlSystem : SystemBase
             };
         }).WithoutBurst().Run();
         
-        
-        Entities.ForEach((int entityInQueryIndex,ref WaveManagerTimerData waveManagerTimerData,in WaveManagerData waveManagerData) =>
-        {
-            if (waveManagerTimerData.SpawnTimer <= 0)
-            {
-                if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(elapsedTime)).NextFloat() > 0.5)
-                {
-                    var spawnLocation = RandomPointInCircle(elapsedTime*waveManagerData.CurrentWave) * 150;
-                    var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.SmallUFOPrefab);
-                    ecb.SetComponent(entityInQueryIndex,newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x + 100, spawnLocation.y, -50)});
-                    waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
-                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
-                }
-
-                if (Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(elapsedTime)).NextFloat() > 0.7)
-                {
-                    var spawnLocation = RandomPointInCircle(elapsedTime*waveManagerData.CurrentWave) * 40;
-                    var newEntity = ecb.Instantiate(entityInQueryIndex,waveManagerData.MediumUFOPrefab);
-                    ecb.SetComponent(entityInQueryIndex,newEntity,
-                        new Translation() {Value = new float3(spawnLocation.x + 150, spawnLocation.y, -50)});
-                    waveManagerTimerData.SpawnTimer = waveManagerData.TimeBetweenTrySpawnsSeconds;
-                    ecb.SetComponent(entityInQueryIndex,newEntity, new OnEnemyShipCreated() {Value = true});
-                }
-            }
-            else
-            {
-                waveManagerTimerData.SpawnTimer -= deltaTime;
-            }
-        }).ScheduleParallel();
-
-
         if (_startNewWave)
         {
             _newWave = true;
@@ -143,8 +140,8 @@ public class GameWavesControlSystem : SystemBase
     static float2 RandomPointInCircle(in double someIndex)
     {
         var index = Unity.Mathematics.Random.CreateFromIndex(Convert.ToUInt32(someIndex)).NextUInt();
-        var randomPointInCircleX = math.cos(Unity.Mathematics.Random.CreateFromIndex(index).NextFloat());
-        var randomPointInCircleY = math.sin(Unity.Mathematics.Random.CreateFromIndex(index).NextFloat());
+        var randomPointInCircleX = math.cos(Unity.Mathematics.Random.CreateFromIndex(index).NextFloat(360));
+        var randomPointInCircleY = math.sin(Unity.Mathematics.Random.CreateFromIndex(index).NextFloat(360));
         return new float2(randomPointInCircleX, randomPointInCircleY);
     }
 }

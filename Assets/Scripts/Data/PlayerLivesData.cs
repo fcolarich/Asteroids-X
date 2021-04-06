@@ -8,7 +8,6 @@ public struct PlayerLivesData : IComponentData
 {
   public int CurrentLives;
   public bool CanTakeDamage;
-  public float UpdateDelaySeconds;
   public float3 OriginPosition;
   public int EarnedLives;
 }

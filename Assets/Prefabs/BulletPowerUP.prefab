@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 7539000908664725175}
   - component: {fileID: 7539000908664725174}
   - component: {fileID: -8453121143184652562}
-  - component: {fileID: 660149491276805000}
   m_Layer: 0
   m_Name: BulletPowerUP
   m_TagString: Untagged
@@ -307,8 +306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NewBulletEntity: {fileID: 0}
   OldBulletEntity: {fileID: 6401130646095200284, guid: 03506b06a139fa5429569e3521ae1b15, type: 3}
-  PowerUpTimer: 0
-  PowerUpDurationSeconds: 3
 --- !u!114 &7539000908664725174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a077889c2da3a7438c0c81ca7a6ebe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasCollided: 0
   AffectedTarget: {fileID: 0}
 --- !u!114 &-8453121143184652562
 MonoBehaviour:
@@ -336,15 +332,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 0
---- !u!114 &660149491276805000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7539000908664725180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70c3a8512ede334bbd690d91a44bc8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
