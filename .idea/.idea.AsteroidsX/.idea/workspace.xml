@@ -122,8 +122,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tags/ToInitializeTag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Data/BulletFireData1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/RandomNumberData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/WaveManagerData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/WaveManagerData1.cs" />
@@ -159,7 +157,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GeneralMovementSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ScreenWrappingSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/GameWavesControlSystem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PowerUpRadomSpawnSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tags/PiercingBulletTag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/BulletCollisionDetectionSystem.cs" />
@@ -173,6 +170,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameStateData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerInputSystem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/MoveSpeedData.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UFOControlSystem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Data/PlayerLivesData.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ptiTKDfFfLL0OxfDN0hsaAyCfb" />
@@ -244,7 +244,7 @@
       <workItem from="1617478336846" duration="1013000" />
       <workItem from="1617479375885" duration="1550000" />
       <workItem from="1617569560165" duration="14345000" />
-      <workItem from="1617654869786" duration="8481000" />
+      <workItem from="1617654869786" duration="11999000" />
     </task>
     <servers />
   </component>
