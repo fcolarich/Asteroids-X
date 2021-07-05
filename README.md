@@ -59,4 +59,4 @@ To support this, we have a traditional UI, particles and audio, that get control
 ..
 Final thoughts:
 Although I achieved what I set myself to achieve, I still wish I could have completed the bonus level, which was going to be a 3D shooter, with a view from behind the cockpit, where the player had to destroy asteroids and enemies that were coming towards them, like old school flight games.
-Also missing and already scheduled to be implemented are the store with permanent upgrades module, the leaderboard, as well as some variety in the game modes.
+Also missing are the store with permanent upgrades module, the leaderboard, as well as some variety in the game modes.
