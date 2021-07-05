@@ -34,6 +34,7 @@ There will be several power ups, including the two required:
 -	Super Blasters (shots go through everything)
 -	Engine Booster (faster movement)
 -	Fire Rate Booster (faster shooting)
+
 The UFOS will behave more aggressively:
 -	The small UFO will keep following the player trying to ram it
 -	The medium UFO will shoot directly at the player
