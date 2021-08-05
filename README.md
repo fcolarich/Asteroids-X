@@ -1,8 +1,8 @@
-AsteroidsX
+**ASTEROIDS-X**
 
-ASTEROIDS-X – By Francisco Colarich
+The project consists on developing a version of the Atari’s Asteroids game using the ECS paradigm with Unity DOTS.
+![image](https://user-images.githubusercontent.com/56565104/128292165-5dab5ac0-ef01-4351-bfbb-fda62c41f113.png)
 
-The project consists on developing a version of the Atari’s Asteroids game using DOTS.
 
 The game is a 2D shooter where the player controls a spaceship that has to avoid being hit by asteroids while destroying them with its gun. The level is wrapped around the borders, so anything crossing one side, appears on the other instantly (including bullets and the player ship).
 The asteroids come in 3 sizes, big, medium and small. Each one, except the small, when destroyed produce 2 smaller asteroids that fly faster than their predecessor and in random directions. The small asteroids are the only ones that when destroyed leave the level entirely.
@@ -57,7 +57,11 @@ Finally, we have the ScreenWrapping system, that allows the screen to wrap depen
 
 To support this, we have a traditional UI, particles and audio, that get controlled either by events, by UI actions or managed hybrid systems. Particles and audio are pooled to increase performance.
 
+Images:
+![image](https://user-images.githubusercontent.com/56565104/128292194-8e2a3279-ac42-4825-bbc3-692cddbda4db.png)
+
+![image](https://user-images.githubusercontent.com/56565104/128292215-302f395f-59b9-4b89-ac70-f9b67c2e7793.png)
+
 ..
 Final thoughts:
 Although I achieved what I set myself to achieve, I still wish I could have completed the bonus level, which was going to be a 3D shooter, with a view from behind the cockpit, where the player had to destroy asteroids and enemies that were coming towards them, like old school flight games.
-Also missing are the store with permanent upgrades module, the leaderboard, as well as some variety in the game modes.
